@@ -11,25 +11,25 @@
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('nombres') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Nombres</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" placeholder="Ingrese nombres" value="{{ old('name') }}" required autofocus>
+                                <input id="nombres" type="text" class="form-control" name="nombres" placeholder="Ingrese nombres" value="{{ old('nombres') }}" required autofocus>
 
-                                @if ($errors->has('name'))
+                                @if ($errors->has('nombres'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('nombres') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <div class="form-group{{ $errors->has('apellidos') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Apellidos</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" placeholder="Ingrese apellidos" value="{{ old('name') }}" required autofocus>
+                                <input id="apellidos" type="text" class="form-control" name="apellidos" placeholder="Ingrese apellidos" value="{{ old('apellidos') }}" required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">

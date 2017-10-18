@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\User;
 
 class UserController extends Controller
 {
@@ -54,9 +56,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( User $user)
     {
         //
+        return view('usuarios.edit',['user'=>$user]);
+
     }
 
     /**
@@ -66,9 +70,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
         //
+
+        $user -> $nombres = $request['nombres'];
+        $user -> $apellidos = $request['apellidos'];
+        $user -> $sexo = $request['sexo'];
+        
+        $user -> save();
+        //modificar...
+        return redirect('Inicio')
+
     }
 
     /**

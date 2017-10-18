@@ -33,5 +33,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('usuarios','UsuarioController', ['parameters' => [
-    'usuario' => 'usuario'
+    'user' => 'user'
 ]]);
