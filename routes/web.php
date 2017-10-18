@@ -21,6 +21,11 @@ Route::get('/', function () {
 Route::get('/Inicio', function () {
     return view('index');
 });
+
+Route::get('/Usuario', function () {
+    return view('usuarios/edit');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
