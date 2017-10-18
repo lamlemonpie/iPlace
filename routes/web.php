@@ -15,7 +15,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-    
+
 });
 
 Route::get('/Inicio', function () {
@@ -29,3 +29,9 @@ Route::get('/Usuario', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::resource('usuarios','UsuarioController', ['parameters' => [
+    'usuario' => 'usuario'
+]]);
