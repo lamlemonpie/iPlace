@@ -79,9 +79,9 @@
 						<div class="form-group ">
 							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Guardar</button>
 						</div>
-					</form>
 				</div>
-				</div>
+				</form>
+				
 
 				<div class="col-xs-6 col-md-4"></div>
 
