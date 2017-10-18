@@ -24,11 +24,21 @@
 				<div class="main-login main-center">
 					<form class="form-horizontal" method="post" action="#">
 						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Nombre:</label>
+							<label for="name" class="cols-sm-2 control-label">Nombres:</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" id="Nombre" placeholder="Ingrese nombre" name="nombre" value="" >
+									<input type="text" class="form-control" id="id_nombre" placeholder="Ingrese nombres" name="nombre" value="" >
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Apellidos:</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" id="id_apellidos" placeholder="Ingrese apellidos" name="apellidos" value="" >
 								</div>
 							</div>
 						</div>
@@ -38,7 +48,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="" aria-hidden="true"></i>@</span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Ingrese email" value=""/>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Ingrese email" value="" readonly/>
 								</div>
 							</div>
 						</div>
@@ -48,7 +58,11 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="sexo" id="sexo"  placeholder="Ingrese sexo" value=""/>
+									<select class="form-control" id="sexo" name="sexo">
+						              <option value="M" >Masculino</option>
+						              <option value="F" >Femenino</option>
+						              <option value="O" >Otro</option>
+						            </select>
 								</div>
 							</div>
 						</div>
@@ -58,7 +72,7 @@
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" id="password" value="Password"/>
+									<input type="password" class="form-control" name="password" id="password" value="Password" readonly/>
 								</div>
 							</div>
 						</div>
