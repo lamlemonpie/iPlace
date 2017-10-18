@@ -22,7 +22,6 @@
                         {{ csrf_field() }}
 
 				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="#">
 						<div class="form-group">
 							<label for="name" class="cols-sm-2 control-label">Nombres:</label>
 							<div class="cols-sm-10">
