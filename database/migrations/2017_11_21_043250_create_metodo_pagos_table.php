@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrganizadorsTable extends Migration
+class CreateMetodoPagosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateOrganizadorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organizadors', function (Blueprint $table) {
+        Schema::create('metodo_pagos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_usuario');
+            $table->char('tipo_tarjeta', 250);
+            $table->char('numero_tarjeta');
+            $table->dateTime('fecha_vencimiento');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateOrganizadorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizadors');
+        Schema::dropIfExists('metodo_pagos');
     }
 }
