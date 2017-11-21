@@ -18,6 +18,13 @@ class CreateEmpresaOrganizadorsTable extends Migration
             $table->integer('id_empresa')->unsigned();
             $table->integer('id_organizador')->unsigned();
             $table->timestamps();
+
+
+            $table->foreign('id_empresa')->references('id')
+                ->on('empresas');
+
+            $table->foreign('id_organizador')->references('id')
+                ->on('organizadors');
         });
     }
 

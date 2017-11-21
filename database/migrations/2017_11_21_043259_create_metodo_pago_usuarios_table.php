@@ -20,6 +20,12 @@ class CreateMetodoPagoUsuariosTable extends Migration
             $table->dateTime('fecha_agrego');
             $table->timestamps();
 
+            $table->foreign('id_metodo_pago')->references('id')
+                ->on('metodo_pagos');
+
+            $table->foreign('id_usuario')->references('id')
+                ->on('usuarios');
+
         });
     }
 

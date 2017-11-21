@@ -19,6 +19,12 @@ class CreateEventoAmbitosTable extends Migration
             $table->integer('id_ambito')->unsigned();
             $table->dateTime('fecha_agrego');
             $table->timestamps();
+
+            $table->foreign('id_evento')->references('id')
+                ->on('eventos');
+            $table->foreign('id_ambito')->references('id')
+                ->on('ambitos');
+
         });
     }
 

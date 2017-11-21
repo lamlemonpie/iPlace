@@ -19,6 +19,12 @@ class CreateUsuarioAmbitosTable extends Migration
             $table->integer('id_ambito')->unsigned();
             $table->dateTime('fecha_agrego');
             $table->timestamps();
+
+            $table->foreign('id_usuario')->references('id')
+                ->on('usuarios');
+
+            $table->foreign('id_ambito')->references('id')
+                ->on('ambitos');
         });
     }
 

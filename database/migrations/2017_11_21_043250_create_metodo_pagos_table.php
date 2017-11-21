@@ -15,7 +15,7 @@ class CreateMetodoPagosTable extends Migration
     {
         Schema::create('metodo_pagos', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('tipo_tarjeta',50);
+            $table->char('tipo_tarjeta', 250);
             $table->char('numero_tarjeta');
             $table->dateTime('fecha_vencimiento');
             $table->timestamps();
