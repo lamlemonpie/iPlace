@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace iPlace;
 
 use Illuminate\Database\Eloquent\Model;
 

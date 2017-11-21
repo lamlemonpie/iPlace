@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace iPlace;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nombres', 'apellidos', 'email', 'password', 'sexo',
+        'nombres', 'apellidos', 'email', 'password', 'sexo', 'id_ultima_ubicacion'
     ];
 
     /**

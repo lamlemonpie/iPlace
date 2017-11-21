@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace iPlace\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use App\User;
+use iPlace\User;
 
 class UserController extends Controller
 {
