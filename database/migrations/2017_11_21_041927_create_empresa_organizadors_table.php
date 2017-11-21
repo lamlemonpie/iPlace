@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrganizadorsTable extends Migration
+class CreateEmpresaOrganizadorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateOrganizadorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organizadors', function (Blueprint $table) {
+        Schema::create('empresa_organizadors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_usuario');
+            $table->integer('id_empresa')->unsigned();
+            $table->integer('id_organizador')->unsigned();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateOrganizadorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizadors');
+        Schema::dropIfExists('empresa_organizadors');
     }
 }

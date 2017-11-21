@@ -15,10 +15,21 @@ class CreateUsuarioEventosTable extends Migration
     {
         Schema::create('usuario_eventos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_usuario');
-            $table->integer('id_evento');
+            $table->integer('id_usuario')->unsigned();
+            $table->integer('id_evento')->unsigned();
+            $table->integer('id_pago')->unsigned();
             $table->dateTime('fecha_registro');
             $table->timestamps();
+
+
+            $table->foreign('id_usuario')->references('id')
+                ->on('users');
+
+            $table->foreign('id_evento')->references('id')
+                ->on('eventos');
+
+            $table->foreign('id_pago')->references('id')
+                ->on('pagos');
         });
     }
 

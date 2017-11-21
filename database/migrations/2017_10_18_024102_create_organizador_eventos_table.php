@@ -15,10 +15,17 @@ class CreateOrganizadorEventosTable extends Migration
     {
         Schema::create('organizador_eventos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_organizador');
-            $table->integer('id_evento');
+            $table->integer('id_organizador')->unsigned();
+            $table->integer('id_evento')->unsigned();
             $table->dateTime('fecha_ingreso');
             $table->timestamps();
+            $table->char('ruc', 16);
+
+            $table->foreign('id_organizador')->references('id')
+                ->on('organizadors');
+
+            $table->foreign('id_evento')->references('id')
+                ->on('eventos');
         });
     }
 
