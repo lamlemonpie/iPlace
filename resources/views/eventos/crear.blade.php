@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <br><br>
     <div class="row main">
 
         <div class="col-xs-6 col-md-4"></div>
