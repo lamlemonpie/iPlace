@@ -3,89 +3,60 @@
 
 @section('content')
 
-		<div class="container">
-			<div class="row main">
-				<div class="col-xs-6 col-md-4"></div>
+<div class="container">
+  <br><br> <br>
 
-				<div class="col-xs-6 col-md-4">
+  	<div class="row">
+	    <div class="col-xs-2 col-sm-2 col-md-2"></div>
+	    <div class="col-xs-8 col-sm-8 col-md-8 well well-sm">
+	        <form class="form-horizontal" role="form" method="POST" action="">
+	        <input name="_method" type="hidden" value="PATCH">
+	                {{ csrf_field() }}
 
-				<div class="panel-heading">
-	               <div class="panel-title text-center">
-	               		<h1 class="title">Editar Usuario</h1>
-	               		<br>
-	               	</div>
-	            </div> 
-
-
-	            <form class="form-horizontal" role="form" method="POST" action="">
-                <input name="_method" type="hidden" value="PATCH">
-                        {{ csrf_field() }}
-
-				<div class="main-login main-center">
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Nombres:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" id="id_nombre" placeholder="Ingrese nombres" name="nombre" value="" >
-								</div>
-							</div>
+	        <legend><b>Editar Usuario</b></legend>
+	        	<div class="col-sm-6 col-md-4">
+	        	<br>
+		            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+		        </div>
+		        <div class="col-sm-6 col-md-8">
+					<label for="name" class="control-label">Nombres:</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" id="id_nombre" placeholder="Ingrese nombres" name="nombre" value="{user->nombre}" >
 						</div>
-
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Apellidos:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" id="id_apellidos" placeholder="Ingrese apellidos" name="apellidos" value="" >
-								</div>
-							</div>
+					<label for="name" class="control-label">Apellidos:</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" id="id_apellidos" placeholder="Ingrese apellidos" name="apellidos" value="{user->apellidos}" >
 						</div>
-
-						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Email:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="" aria-hidden="true"></i>@</span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Ingrese email" value="" readonly/>
-								</div>
-							</div>
+					<label for="email" class="control-label">Email:</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="" aria-hidden="true"></i>@</span>
+							<input type="text" class="form-control" name="email" id="email"  placeholder="Ingrese email" value="{user->email}" readonly/>
 						</div>
-
-						<div class="form-group">
-							<label for="sexo" class="cols-sm-2 control-label">Sexo:</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i></span>
-									<select class="form-control" id="sexo" name="sexo">
-						              <option value="M" >Masculino</option>
-						              <option value="F" >Femenino</option>
-						              <option value="O" >Otro</option>
-						            </select>
-								</div>
-							</div>
+					<label for="sexo" class="control-label">Sexo:</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i></span>
+							<select class="form-control" id="sexo" name="sexo">
+				              <option value="M" >Masculino</option>
+				              <option value="F" >Femenino</option>
+				              <option value="O" >Otro</option>
+				            </select>
 						</div>
-
-						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Password</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" id="password" value="Password" readonly/>
-								</div>
-							</div>
+					<label for="password" class="control-label">Password</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></span>
+							<input type="password" class="form-control" name="password" id="password" value="Password" readonly/>
 						</div>
-						<br><br>
-						<div class="form-group ">
-							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Guardar</button>
-						</div>
-				</div>
-				</form>
-				
-
-				<div class="col-xs-6 col-md-4"></div>
-
-			</div>
+						<br>
+					<div class="pull-right">
+						<button type="button" class="btn btn-info btn-lg login-button">Guardar</button>
+					</div>
+		        </div>
+			</form>
+			<div class="col-xs-2 col-sm-2 col-md-2"></div>
 		</div>
+	</div>
+</div>
 
 @endsection

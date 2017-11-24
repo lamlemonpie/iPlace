@@ -14,7 +14,7 @@
             <img src="../images/Fondo1.jpg">
                 <div class="carousel-caption">
                     <p><font size="12"> ¡Bienvenidos! </font></p>
-                    <button type="button" class="btn btn-default btn-lg"> Ver eventos </button>
+                    <a href="{{ asset('eventos/mostrar') }}" role="button" class="btn btn-default btn-lg"> Ver eventos </a>
                 </div>
             </div>
             <div class="item">

@@ -3,48 +3,48 @@
 
 @section('content')
 
-<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-<br>
-        <div class="panel-heading">
-                 <div class="panel-title text-center">
-                    <h1 class="title">Perfil de Usuario</h1>
-                    <br>
-                  </div>
-              </div> 
+<div class="container">
+  <br><br> <br>
 
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title">{usuario->nombre}</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-
-              <div class=" col-md-12 col-lg-12 "> 
-                  <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td>Nombre:</td>
-                        <td>{usuario->nombre}</td>
-                      </tr>
-                      <tr>
-                        <td>Apellidos:</td>
-                        <td>{usuario->apellidos}</td>
-                      </tr>
-                      <tr>
-                        <td>Genero:</td>
-                        <td>{usuario->genero}</td>
-                      </tr>
-                      <tr>
-                        <td>Email</td>
-                        <td>info@support.com</td>
-                     
-                    </tbody>
-                  </table>
-              </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-xs-3 col-sm-3 col-md-3"></div>
+    <div class="col-xs-6 col-sm-6 col-md-6 well well-sm">
+          <legend><b>Perfil de Usuario</b></legend>
+          <div class="col-sm-6 col-md-4">
+              <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+          </div>
+          <div class="col-sm-6 col-md-8">
+              <table class="table table-responsive">
+                <tr>
+                  <td><i class="glyphicon glyphicon-user"></i><b> NOMBRE:</b></td>
+                  <td>{user->nombre}</td>
+                </tr>
+                <tr>
+                  <td><i class="glyphicon glyphicon-user"></i><b> APELLIDOS:</b></td>
+                  <td> {user->apellidos} </td> 
+                </tr>
+                <tr>
+                  <td><i class="glyphicon glyphicon-envelope"></i><b> E-MAIL:</b></td>
+                  <td> {user->email} </td> 
+                </tr>
+                <tr>
+                  <td><i class="glyphicon glyphicon-heart-empty"></i><b> SEXO:</b></td>
+                  <td> {user->sexo} </td> 
+                </tr>
+              </table>
+              <a href="{{ ('/usuarios/editar') }}" role="button" class="btn btn-info btn-md pull-right">Editar usuario</a><br>
+              <p>
+          </div>
       </div>
-
+      <div class="col-xs-3 col-sm-3 col-md-3"></div>
+  </div>
+  <br>
 </div>
+
+<style>
+  th, td {
+    padding: 8px;
+  }
+</style>
 
 @endsection('content')

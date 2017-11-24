@@ -4,54 +4,38 @@
 @section('content')
 
 <div class="container">
-	<div class="row main">
-		<div class="col-xs-6 col-md-4"></div>
+  <br><br> <br>
 
-		<div class="col-xs-6 col-md-4">
+  	<div class="row">
+	    <div class="col-xs-2 col-sm-2 col-md-2"></div>
+	    <div class="col-xs-8 col-sm-8 col-md-8 well well-sm">
+	        <form class="form-horizontal" role="form" method="POST" action="">
+	        <input name="_method" type="hidden" value="PATCH">
+	                {{ csrf_field() }}
 
-		<div class="panel-heading">
-           <div class="panel-title text-center">
-           		<h1 class="title">Editar empresa</h1>
-           		<br>
-           	</div>
-        </div> 
-
-
-        <form class="form-horizontal" role="form" method="POST" action="">
-        <input name="_method" type="hidden" value="PATCH">
-                {{ csrf_field() }}
-
-		<div class="main-login main-center">
-				<div class="form-group">
-					<label for="nombre_emp" class="cols-sm-2 control-label">Nombre:</label>
-					<div class="cols-sm-10">
+	        <legend class="text-center"><b>Editar Empresa</b></legend>
+		        <div class="col-sm-6 col-md-6">
+					<label for="empresa_name" class="control-label">Nombre de la empresa:</label>
 						<div class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-briefcase" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" id="id_nombre_emp" name="nombre_emp" value="{empresa->nombre}" autofocus>
+							<span class="input-group-addon"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" id="id_empresa_name" name="empresa_name" value="{empresa->nombre}" >
 						</div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label for="descripcion" class="cols-sm-2 control-label">Descripcion:</label>
-					<div class="cols-sm-10">
+					<label for="ruc" class="control-label">RUC:</label>
 						<div class="input-group">
-							<span class="input-group-addon"><i class="" aria-hidden="true"></i>@</span>
-							<input class="form-control" name="descripcion"  id="id_descripcion" value="{empresa->descripcion}" required></textarea>
+							<span class="input-group-addon"><i class="glyphicon glyphicon-qrcode" aria-hidden="true"></i></span>
+							<input type="text" class="form-control" id="id_ruc" placeholder="Ingrese apellidos" name="ruc" value="{empresa->ruc}" >
 						</div>
-					</div>
+		        </div>
+		        <div class="col-sm-6 col-md-6">
+		        	<label for="">Descripción de la empresa</label>
+                        <input type="text" class="form-control" id="id_ruc" placeholder="Ingrese apellidos" name="ruc" value="{empresa->Descripción}" >
+		        </div>
+				<div class="pull-right">
+				<br><br><br><br>
+					<button type="button" class="btn btn-info btn-lg login-button">Guardar</button>
 				</div>
-
-			<br><br>
-				<div class="form-group ">
-					<button type="button" class="btn btn-primary btn-lg btn-block "> Guardar </button>
-				</div>
+			</form>
 		</div>
-		</form>
-		
-
-		<div class="col-xs-6 col-md-4"></div>
-
 	</div>
 </div>
 

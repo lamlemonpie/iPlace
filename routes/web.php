@@ -14,12 +14,12 @@
 
 
 Route::get('/', function () {
-    return view('index');
+    return view('home');
 
 });
 
 Route::get('/Inicio', function () {
-    return view('index');
+    return view('home');
 });
 
 Route::get('/usuarios/login', function () {
@@ -65,6 +65,14 @@ Route::get('/eventos/crear', function () {
 
 Route::get('/eventos/editar', function () {
     return view('eventos.editar');
+});
+
+Route::get('/eventos/mostrar', function () {
+    return view('eventos.mostrar');
+});
+
+Route::get('/eventos/ver', function () {
+    return view('eventos.ver');
 });
 
 Auth::routes();

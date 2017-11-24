@@ -72,29 +72,49 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                        <li><a href="{{ ('/organizadores/crear') }}">Convertirme en organizador</a></li>
-                        <li><a href="{{ ('/usuarios/mostrar') }}">Usuarios</a></li>
-                        <li><a href="{{ ('/eventos/crear') }}">Eventos</a></li>
-                        <li><a href="{{ ('/empresa/crear') }}">Empresas</a></li>
-                        <li class="active" class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                <i class="fa fa-user-circle-o"></i> {{ Auth::user()->nombres }} <span class="caret"></span>
-                            </a>
+                            <li><a href="{{ ('/organizadores/crear') }}">Convertirme en organizador</a></li>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out"></i> Salir
-                                    </a>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-user-circle-o"></i> Eventos <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ ('/eventos/crear') }}"><i class="glyphicon glyphicon-check"></i> Crear evento </a></li>
+                                    <li><a href="{{ ('#') }}"><i class="glyphicon glyphicon-list"></i> Ver mis eventos </a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-user-circle-o"></i> Empresas <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ ('/empresa/crear') }}"><i class="glyphicon glyphicon-check"></i> Crear empresa </a></li>
+                                    <li><a href="{{ ('#') }}"><i class="glyphicon glyphicon-list"></i> Ver mis empresas </a></li>
+                                </ul>
+                            </li>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="active" class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-user-circle-o"></i> {{ Auth::user()->nombres }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ ('/usuarios/mostrar') }}"><i class="glyphicon glyphicon-user"></i> Ver perfil</a></li>
+                                    <li><a href="{{ ('/usuarios/editar') }}"><i class="glyphicon glyphicon-pencil"></i> Editar perfil</a></li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-sign-out"></i> Salir
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
                         @endguest
                     </ul>
                 </div>
@@ -195,7 +215,7 @@
     .navbar-inverse .navbar-nav > .active > a:hover,
     .navbar-inverse .navbar-nav > .active > a:focus{
         color: #FFFFFF;
-        background-color: #0C8053;
+        background-color: #49AC8E;
         text-shadow: none;
     }
     .navbar-inverse .navbar-nav > li > a:hover,
