@@ -45,6 +45,9 @@
   th, td {
     padding: 8px;
   }
+  .well{
+      background-color: rgb(255, 255, 255);
+      }
 </style>
 
 @endsection('content')

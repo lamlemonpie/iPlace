@@ -59,4 +59,10 @@
 	</div>
 </div>
 
+
+<style type="">
+	.well{
+      background-color: rgb(250, 250, 250);
+    }
+</style>
 @endsection

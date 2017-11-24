@@ -279,4 +279,10 @@
     </form>
 </div>
 
+<style type="text/css">
+    .well{
+        background-color: rgb(248, 248, 248);
+        }
+</style>
+
 @endsection

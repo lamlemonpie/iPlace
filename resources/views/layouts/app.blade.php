@@ -200,6 +200,7 @@
       min-height : 100%;
     }
     .second-navbar{
+      float: none;
       top: 50px;
       background-color: #424142;
     }
@@ -208,8 +209,15 @@
         background-color: #000000;
         color : #FFF;
         padding: 1% 0;
-        font-size: 1.2em;
+        font-size: 1.3em;
         border: 0;
+    }
+    .navbar .nav > li > a {
+        color:  #FFF;
+    }
+    .navbar-inverse .navbar-nav {
+        display:inline-block;
+        float:none;
     }
     .navbar-inverse .navbar-nav > .active > a,
     .navbar-inverse .navbar-nav > .active > a:hover,
@@ -221,7 +229,7 @@
     .navbar-inverse .navbar-nav > li > a:hover,
     .navbar-inverse .navbar-nav > li > a:focus{
         color:#0C8053;
-        background-color: #D8D8D8;
+        background-color: #FFFFFF;
     }
 
     .navbar-inverse .navbar-nav > .open > a,
