@@ -52,18 +52,22 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        <li>
+                        <div class="col-sm-12 col-md-12">
+                            <form class="navbar-form" role="search">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="form-control" placeholder="Search" name="q">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+
+                        </li>
                     </ul>
 
-                    <div class="col-sm-5 col-md-5">
-                        <form class="navbar-form" role="search">
-                        <div class="input-group col-md-12">
-                            <input type="text" class="form-control" placeholder="Search" name="q">
-                            <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                            </div>
-                        </div>
-                        </form>
-                    </div>
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -83,7 +87,7 @@
                                     <li><a href="{{ ('#') }}"><i class="glyphicon glyphicon-list"></i> Ver mis eventos </a></li>
                                 </ul>
                             </li>
-                            
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="fa fa-user-circle-o"></i> Empresas <span class="caret"></span>
@@ -120,8 +124,8 @@
                 </div>
             </div>
         </nav>
-        
 
+        @auth
         <nav class="navbar navbar-inverse navbar-static-top second-navbar">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -142,6 +146,7 @@
                         <li><a href="{{ ('#') }}"> Ingeniería </a></li>
                     </ul>
                 </div>
+                @endauth
             </div>
         </nav>
 
@@ -190,7 +195,7 @@
 
 
 </body>
-</html> 
+</html>
 
 <style type="text/css">
     body {
@@ -250,11 +255,11 @@
       /* Set the fixed height of the footer here */
       height: 280;
       margin-top: -280;
-      background: 
-      /* color overlay */ 
+      background:
+      /* color overlay */
         linear-gradient(
           rgba(20, 20, 20, 0.9),
-          rgba(20, 20, 20, 0.9) 
+          rgba(20, 20, 20, 0.9)
         ),
         /* image to overlay */
         url(http://images.cdn.fotopedia.com/_avPIZmqM3w-7z161LH_268-hd.jpg);
@@ -269,8 +274,8 @@
     }
     a:hover, a:focus
     {
-        color:#FFFFFF; 
-        text-decoration:none; 
+        color:#FFFFFF;
+        text-decoration:none;
         cursor:pointer;
     }
     #social-fb:hover {
@@ -285,5 +290,5 @@
     #social-em:hover {
      color: #f39c12;
     }
-    
+
 </style>

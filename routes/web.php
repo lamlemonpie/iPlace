@@ -22,6 +22,21 @@ Route::get('/Inicio', function () {
     return view('home');
 });
 
+
+Route::group(['prefix'=>'usuarios'],function(){
+
+  Route::get('/','pacientesController@todos' );
+  //Route::get('todos','pacientesController@todos');
+
+  Route::get('{id}/editar','UserController@edit' );
+
+  Route::post('guardar','UserController@update');
+
+
+});
+
+
+
 Route::get('/usuarios/login', function () {
     return view('auth.login');
 });
