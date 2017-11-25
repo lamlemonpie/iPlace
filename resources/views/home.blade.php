@@ -3,7 +3,10 @@
 @section('content')
 
     <br>
-    <div id="myCarousel" class="carousel slide" date-ride="carousel">
+    <div class="container">
+    <br>    
+    <div class=" carousel carousel-inner slide" id="myCarousel" role="listbox" style=" width:100%; height: 500px !important;">
+    <!--<div id="myCarousel" class="carousel slide" date-ride="carousel">-->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -33,6 +36,7 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+    </div>
     </div>
 
     <br>
