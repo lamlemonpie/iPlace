@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 
+<<<<<<< Updated upstream
 Route::group(['prefix'=>'usuarios'], function(){
   Route::get('/register', function () {
     return view('auth.register');
@@ -55,6 +56,8 @@ Route::group(['prefix'=>'organizadores'], function(){
   });  
   
 });
+=======
+>>>>>>> Stashed changes
 
 
 Route::group(['prefix'=>'empresas'], function(){
@@ -111,5 +114,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+<<<<<<< Updated upstream
 
+=======
+Route::resource('users','UserController');
+>>>>>>> Stashed changes
 Route::get('prueba','UserController@prueba');

@@ -5,7 +5,6 @@ namespace iPlace\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use iPlace\User;
-use iPlace\User;
 use iPlace\Evento;
 use iPlace\Usuario_evento;
 
@@ -48,9 +47,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
+
+        return view('usuarios.mostrar',['user'=>$user]);
+
     }
 
     /**
@@ -62,6 +64,7 @@ class UserController extends Controller
     public function edit( User $user)
     {
         //
+
         return view('usuarios.edit',['user'=>$user]);
 
     }
@@ -106,11 +109,11 @@ class UserController extends Controller
       $user->email = 'texs.mv@gmail.com';
       $user->sexo = 'M';
       $user -> save();
-      
+
       $b = new Usuario_evento();
       $b->usuario()->associate($user);
       $b->save();
-      
+
       dd($user->eventos_usuario);
     }
 }

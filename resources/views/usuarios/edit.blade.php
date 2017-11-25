@@ -22,17 +22,17 @@
 					<label for="name" class="control-label">Nombres:</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" id="id_nombre" placeholder="Ingrese nombres" name="nombre" value="{user->nombre}" >
+							<input type="text" class="form-control" id="id_nombre" placeholder="Ingrese nombres" name="nombre" value="{{$user->nombres}}" >
 						</div>
 					<label for="name" class="control-label">Apellidos:</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" id="id_apellidos" placeholder="Ingrese apellidos" name="apellidos" value="{user->apellidos}" >
+							<input type="text" class="form-control" id="id_apellidos" placeholder="Ingrese apellidos" name="apellidos" value="{{$user->apellidos}}" >
 						</div>
 					<label for="email" class="control-label">Email:</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="" aria-hidden="true"></i>@</span>
-							<input type="text" class="form-control" name="email" id="email"  placeholder="Ingrese email" value="{user->email}" readonly/>
+							<input type="text" class="form-control" name="email" id="email"  placeholder="Ingrese email" value="{{$user->email}}" readonly/>
 						</div>
 					<label for="sexo" class="control-label">Sexo:</label>
 						<div class="input-group">
