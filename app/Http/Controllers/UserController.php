@@ -5,6 +5,9 @@ namespace iPlace\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use iPlace\User;
+use iPlace\User;
+use iPlace\Evento;
+use iPlace\Usuario_evento;
 
 class UserController extends Controller
 {
@@ -77,10 +80,10 @@ class UserController extends Controller
         $user -> $nombres = $request['nombres'];
         $user -> $apellidos = $request['apellidos'];
         $user -> $sexo = $request['sexo'];
-        
+
         $user -> save();
         //modificar...
-        return redirect('Inicio')
+        return redirect('Inicio');
 
     }
 
@@ -93,5 +96,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function prueba(){
+      $user =new User();
+      $user->nombres = 'Alexis';
+      $user->apellidos = 'Mendoza';
+      $user->password= 'pass';
+      $user->email = 'texs.mv@gmail.com';
+      $user->sexo = 'M';
+      $user -> save();
+      
+      $b = new Usuario_evento();
+      $b->usuario()->associate($user);
+      $b->save();
+      
+      dd($user->eventos_usuario);
     }
 }

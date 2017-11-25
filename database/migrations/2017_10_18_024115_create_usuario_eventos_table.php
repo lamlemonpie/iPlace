@@ -15,10 +15,10 @@ class CreateUsuarioEventosTable extends Migration
     {
         Schema::create('usuario_eventos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_usuario')->unsigned();
-            $table->integer('id_evento')->unsigned();
-            $table->integer('id_pago')->unsigned();
-            $table->dateTime('fecha_registro');
+            $table->integer('id_usuario')->unsigned()->nullable();
+            $table->integer('id_evento')->unsigned()->nullable();
+            $table->integer('id_pago')->unsigned()->nullable();
+            $table->dateTime('fecha_registro')->nullable();
             $table->timestamps();
 
 

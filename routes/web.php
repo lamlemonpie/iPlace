@@ -83,3 +83,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('usuarios','UsuarioController', ['parameters' => [
     'user' => 'user'
 ]]);
+
+
+Route::get('prueba','UserController@prueba');

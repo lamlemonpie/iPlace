@@ -27,5 +27,22 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function eventos_usuario(){
+        return $this->hasMany('iPlace\Usuario_evento', 'id_usuario', 'id');
+    }
+    
+    
+    public function ultima_ubicacion(){
+        return $this->belongsTo('iPlace\Ubicacion', 'id_ultima_ubicacion', 'id');
+    }
+    
+    public function metodos_pago(){
+        return $this->hasMany('iPlace\Metodo_pago', 'id_metodo_pago', 'id');
+    }
+    
+    
+    
+    
 
+    
 }
