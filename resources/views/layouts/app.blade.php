@@ -155,7 +155,7 @@
             <br>
                 <div class="row">
                     <div class="col-sm-4 col-md-4">
-                    <a class="navbar-brand" href="{{ url('/home') }}"><img src="../images/logotipo2.png">
+                    <a class="navbar-brand" href="{{ url('/home') }}"><img src="{{asset('images/logotipo2.png')}}">
                     </a>
                     </div>
                 </div>
