@@ -102,8 +102,8 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ ('/usuarios/mostrar') }}"><i class="glyphicon glyphicon-user"></i> Ver perfil</a></li>
-                                    <li><a href="{{ ('/usuarios/editar') }}"><i class="glyphicon glyphicon-pencil"></i> Editar perfil</a></li>
+                                    <li><a href="{{asset('users/'.Auth::user()->id)}}"><i class="glyphicon glyphicon-user"></i> Ver perfil</a></li>
+                                    <li><a href="{{asset('users/'.Auth::user()->id.'/edit')}}"><i class="glyphicon glyphicon-pencil"></i> Editar perfil</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();

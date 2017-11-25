@@ -11,28 +11,28 @@
     <div class="col-xs-6 col-sm-6 col-md-6 well well-sm">
           <legend><b>Perfil de Usuario</b></legend>
           <div class="col-sm-6 col-md-4">
-              <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+              <img src="https://lh3.googleusercontent.com/-BSFw5UvWs3I/WGxL8mWashI/AAAAAAAAAaM/OdIsQkUTvlkl4k1DVxZuqCLXqtIKO7PlwCJoC/w635-h960/15823051_1065303886913447_6605360329040841707_n.jpg" alt="" class="img-rounded img-responsive" />
           </div>
           <div class="col-sm-6 col-md-8">
               <table class="table table-responsive">
                 <tr>
                   <td><i class="glyphicon glyphicon-user"></i><b> NOMBRE:</b></td>
-                  <td>{user->nombre}</td>
+                  <td>{{$user->nombres}}</td>
                 </tr>
                 <tr>
                   <td><i class="glyphicon glyphicon-user"></i><b> APELLIDOS:</b></td>
-                  <td> {user->apellidos} </td> 
+                  <td> {{$user->apellidos}} </td>
                 </tr>
                 <tr>
                   <td><i class="glyphicon glyphicon-envelope"></i><b> E-MAIL:</b></td>
-                  <td> {user->email} </td> 
+                  <td> {{$user->email}} </td>
                 </tr>
                 <tr>
                   <td><i class="glyphicon glyphicon-heart-empty"></i><b> SEXO:</b></td>
-                  <td> {user->sexo} </td> 
+                  <td> {{$user->sexo}} </td>
                 </tr>
               </table>
-              <a href="{{ ('/users/editar') }}" role="button" class="btn btn-info btn-md pull-right">Editar usuario</a><br>
+              <a href="{{ ('/users/'.$user->id.'/edit') }}" role="button" class="btn btn-info btn-md pull-right">Editar usuario</a><br>
               <p>
           </div>
       </div>

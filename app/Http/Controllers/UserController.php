@@ -51,7 +51,7 @@ class UserController extends Controller
     {
         //
 
-        return view('usuarios.mostrar',['user'=>$user]);
+        return view('users.show',['user'=>$user]);
 
     }
 
@@ -65,7 +65,7 @@ class UserController extends Controller
     {
         //
 
-        return view('usuarios.edit',['user'=>$user]);
+        return view('users.edit',['user'=>$user]);
 
     }
 
@@ -79,14 +79,17 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
-
-        $user -> $nombres = $request['nombres'];
-        $user -> $apellidos = $request['apellidos'];
-        $user -> $sexo = $request['sexo'];
-
-        $user -> save();
+        
+        // $user -> $nombres = $request['nombres'];
+        // $user -> $apellidos = $request['apellidos'];
+        // $user -> $sexo = $request['sexo'];
+        //
+        // $user -> save();
         //modificar...
-        return redirect('Inicio');
+
+        $user ->update($request->all());
+
+        return redirect('/home');
 
     }
 
