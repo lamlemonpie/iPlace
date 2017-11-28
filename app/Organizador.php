@@ -19,11 +19,15 @@ class Organizador extends Model
       return $this->hasMany('iPlace\Empresa_organizador', 'id_organizador', 'id');
     }
     
-    public function solicitudes_recividas(){
+    public function solicitudes_recibidas(){
       return $this->hasMany('iPlace\Solicitud', 'id_organizador_propietario', 'id');
     }
     
     public function solicitudes_enviadas(){
       return $this->hasMany('iPlace\Solicitud', 'id_organizador_solicitante', 'id');
+    }
+
+    public function empresas_admin(){
+      return $this->hasMany('iPlace\Empresa', 'id_admin', 'id');
     }
 }

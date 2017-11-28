@@ -4,10 +4,12 @@ namespace iPlace\Http\Controllers;
 
 use Illuminate\Http\Request;
 use iPlace\User;
+use iPlace\Organizador;
 use iPlace\Empresa;
 use Illuminate\Support\Facades\Auth;
+use DateTime;
 
-class OrganizadorController extends Controller
+class EmpresaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,8 +29,7 @@ class OrganizadorController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $empresas = Empresa::all();
-        return view('organizadores.crear',['user'=>$user, 'empresas'=>$empresas]);
+        return view('empresa.crear',['user'=>$user]);
     }
 
     /**
@@ -39,7 +40,21 @@ class OrganizadorController extends Controller
      */
     public function store(Request $request)
     {
-        //Poner solicitud a admin de empresa
+        $organizador = Organizador::where('id_usuario', Auth::user()->id)
+                                    ->get()
+                                    ->first();
+        request()->validate([
+            'nombre' => 'required|string|min:4|max:50',
+            'descripcion' => 'required|string|min:4'
+        ]);
+        $empresa = new Empresa();
+        $empresa->nombre = $request['nombre'];
+        $empresa->descripcion = $request['descripcion'];
+        $empresa->fecha_creacion = new DateTime();
+        $empresa->admin()->associate($organizador);
+        $empresa->save();
+
+        return redirect('/home');
     }
 
     /**
@@ -85,5 +100,30 @@ class OrganizadorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function crearNuevaEmpresaAjx()
+    {
+        return response()->json(view('empresa.crearAjx')->render());
+    }
+
+    public function storeAjx(Request $request)
+    {
+        $organizador = new Organizador();
+        $organizador->usuario()->associate(Auth::user());
+        $organizador->save();
+
+        request()->validate([
+            'nombre' => 'required|string|min:4|max:50',
+            'descripcion' => 'required|string|min:4'
+        ]);
+        $empresa = new Empresa();
+        $empresa->nombre = $request['nombre'];
+        $empresa->descripcion = $request['descripcion'];
+        $empresa->fecha_creacion = new DateTime();
+        $empresa->admin()->associate($organizador);
+        $empresa->save();
+
+        return redirect('/home');
     }
 }

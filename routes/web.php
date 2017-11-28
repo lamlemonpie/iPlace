@@ -40,7 +40,7 @@ Route::group(['prefix'=>'usuarios'], function(){
 });
 
 
-Route::group(['prefix'=>'organizadores'], function(){
+/*Route::group(['prefix'=>'organizadores'], function(){
 
   Route::get('/crear', function () {
       return view('organizadores.crear');
@@ -56,22 +56,7 @@ Route::group(['prefix'=>'organizadores'], function(){
 
 });
 
-
-Route::group(['prefix'=>'empresas'], function(){
-
-  Route::get('/crear', function () {
-      return view('empresa.crear');
-  });
-
-  Route::get('/editar', function () {
-      return view('empresa.editar');
-  });
-
-  Route::get('/ver', function () {
-      return view('empresa.ver');
-  });
-
-});
+});*/
 
 
 Route::group(['prefix'=>'eventos'], function(){
@@ -105,7 +90,15 @@ Route::get('/Inicio', function () {
 
 
 
+Route::group(['prefix'=>'empresas'], function(){
 
+  Route::get('/crearNuevaEmpresaAjx', 'EmpresaController@crearNuevaEmpresaAjx');
+  Route::post('/storeAjx', 'EmpresaController@storeAjx');
+  Route::get('/ver', function () { 
+      return view('empresa.ver'); 
+  });
+
+});
 
 
 
@@ -113,5 +106,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 Route::resource('users','UserController');
+Route::resource('organizadors','OrganizadorController');
+Route::resource('empresas','EmpresaController');
 Route::get('prueba','UserController@prueba');

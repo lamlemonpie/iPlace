@@ -74,7 +74,7 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li><a href="{{ ('/organizadores/crear') }}">Convertirme en organizador</a></li>
+                            <li><a href="{{ asset('organizadors/create') }}">Convertirme en organizador</a></li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -91,7 +91,7 @@
                                     <i class="fa fa-user-circle-o"></i> Empresas <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ ('/empresas/crear') }}"><i class="glyphicon glyphicon-check"></i> Crear empresa </a></li>
+                                    <li><a href="{{ ('/empresas/create') }}"><i class="glyphicon glyphicon-check"></i> Crear empresa </a></li>
                                     <li><a href="{{ ('') }}"><i class="glyphicon glyphicon-list"></i> Ver mis empresas </a></li>
                                 </ul>
                             </li>

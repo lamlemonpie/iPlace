@@ -89,7 +89,7 @@ class UserController extends Controller
 
         $user ->update($request->all());
 
-        return redirect('/home');
+        return redirect('/users/'.$user->id);
 
     }
 

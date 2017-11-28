@@ -20,6 +20,9 @@ class CreateEmpresasTable extends Migration
             $table->text('descripcion');
             $table->dateTime('fecha_creacion');
             $table->timestamps();
+
+            $table->foreign('id_admin')->references('id')
+                ->on('organizadors');
         });
     }
 
