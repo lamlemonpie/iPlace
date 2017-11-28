@@ -67,6 +67,9 @@ Route::group(['prefix'=>'empresas'], function(){
       return view('empresa.editar');
   });
 
+  Route::get('/ver', function () {
+      return view('empresa.ver');
+  });
 
 });
 
