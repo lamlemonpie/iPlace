@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use iPlace\User;
 use iPlace\Organizador;
 use iPlace\Empresa;
+use iPlace\Empresa_organizador;
+
 use Illuminate\Support\Facades\Auth;
 use DateTime;
 
@@ -18,7 +20,15 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        //
+      $organizador = Organizador::where('id_usuario', Auth::user()->id)
+                                  ->get()
+                                  ->first();
+
+        $empresas = Empresa::where('id_admin',$organizador->id)
+                        ->get();
+
+
+        return view('empresa.index',['empresas'=>$empresas]);
     }
 
     /**
@@ -54,6 +64,12 @@ class EmpresaController extends Controller
         $empresa->admin()->associate($organizador);
         $empresa->save();
 
+        $s = new Empresa_organizador;
+        $s -> empresa() -> associate($empresa);
+        $s -> organizador() -> associate($organizador);
+        $s -> save();
+
+
         return redirect('/home');
     }
 
@@ -63,9 +79,21 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Empresa $empresa)
     {
         //
+        $nombres = $empresa -> admin -> usuario -> nombres;
+        $apellidos = $empresa -> admin -> usuario -> apellidos;
+
+        $organizadores = Empresa_organizador::where('id_empresa',$empresa->id)
+                        ->get();
+
+
+
+
+      
+
+        return view('empresa.ver',['empresa'=>$empresa, 'nombres'=>$nombres, 'apellidos'=>$apellidos,]);
     }
 
     /**
@@ -74,9 +102,10 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Empresa $empresa)
     {
         //
+        return view('empresa.editar',['empresa'=>$empresa]);
     }
 
     /**
@@ -122,6 +151,14 @@ class EmpresaController extends Controller
         $empresa->descripcion = $request['descripcion'];
         $empresa->fecha_creacion = new DateTime();
         $empresa->admin()->associate($organizador);
+        $empresa->save();
+
+        $s = new Empresa_organizador;
+        $s -> empresa() -> associate($empresa);
+        $s -> organizador() -> associate($organizador);
+        $s -> save();
+
+        $empresa->empresas_organizador()->associate($s);
         $empresa->save();
 
         return redirect('/home');

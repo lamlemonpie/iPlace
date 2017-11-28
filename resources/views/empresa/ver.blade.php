@@ -13,7 +13,7 @@
 	        <input name="_method" type="hidden" value="PATCH">
 	                {{ csrf_field() }}
 
-	        <legend class="text-center"><b>Perfil de {empresa->nombre}</b></legend>
+	        <legend class="text-center"><b>Datos de la Empresa</b></legend>
 
 	        	<div class="col-sm-6 col-md-4">
 	        		<div class="img">
@@ -24,15 +24,15 @@
 		        	<table class="table table-responsive">
 	                <tr>
 	                  <td><i class="glyphicon glyphicon-folder-open"></i><b> Nombre:</b></td>
-	                  <td>{$empresa->nombre}</td>
+	                  <td>{{$empresa->nombre}}</td>
 	                </tr>
 	                <tr>
 	                  <td><i class="glyphicon glyphicon-th-list"></i><b> Descripcion:</b></td>
-	                  <td> {$empresa->descripcion </td>
+	                  <td> {{$empresa->descripcion}} </td>
 	                </tr>
 	                <tr>
 	                  <td><i class="glyphicon glyphicon-user"></i><b> Organizador:</b></td>
-	                  <td> {$empresa->organizador } </td>
+	                  <td> {{$nombres }} {{$apellidos}}</td>
 	                </tr>
 	                <tr>
 	                  <td><i class="glyphicon glyphicon-ok"></i><b> Integrantes:</b></td>

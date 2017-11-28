@@ -9,20 +9,20 @@
   	<div class="row">
 	    <div class="col-xs-2 col-sm-2 col-md-2"></div>
 	    <div class="col-xs-8 col-sm-8 col-md-8 well well-sm">
-	        <form class="form-horizontal" role="form" method="POST" action="{{asset('users/'.$user->id)}}">
+	        <form class="form-horizontal" role="form" method="POST" action="">
 	        <input name="_method" type="hidden" value="PATCH">
 	                {{ csrf_field() }}
 
 	        <legend><b>Editar Usuario</b></legend>
 	        	<div class="col-sm-6 col-md-4">
 	        	<br>
-		            <img src="https://cdn3.iconfinder.com/data/icons/users-6/100/654853-user-men-2-512.png" alt="" class="img-rounded img-responsive" />
+		            <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
 		        </div>
 		        <div class="col-sm-6 col-md-8">
 					<label for="name" class="control-label">Nombres:</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" id="id_nombre" placeholder="Ingrese nombres" name="nombres" value="{{$user->nombres}}" >
+							<input type="text" class="form-control" id="id_nombre" placeholder="Ingrese nombres" name="nombre" value="{{$user->nombres}}" >
 						</div>
 					<label for="name" class="control-label">Apellidos:</label>
 						<div class="input-group">
@@ -43,9 +43,14 @@
 				              <option value="O" >Otro</option>
 				            </select>
 						</div>
+					<label for="password" class="control-label">Password</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></span>
+							<input type="password" class="form-control" name="password" id="password" value="Password" readonly/>
+						</div>
 						<br>
 					<div class="pull-right">
-						<button type="submit" class="btn btn-info btn-lg login-button">Guardar</button>
+						<button type="button" class="btn btn-info btn-lg login-button">Guardar</button>
 					</div>
 		        </div>
 			</form>

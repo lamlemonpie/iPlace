@@ -18,6 +18,8 @@ class UserController extends Controller
     public function index()
     {
         //
+        $users = User::all();
+        return view('users.index',['users'=>$users]);
     }
 
     /**
@@ -78,14 +80,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
-        
-        // $user -> $nombres = $request['nombres'];
-        // $user -> $apellidos = $request['apellidos'];
-        // $user -> $sexo = $request['sexo'];
-        //
-        // $user -> save();
-        //modificar...
 
         $user ->update($request->all());
 
@@ -109,7 +103,7 @@ class UserController extends Controller
       $user->nombres = 'Alexis';
       $user->apellidos = 'Mendoza';
       $user->password= 'pass';
-      $user->email = 'texs.mv@gmail.com';
+      $user->email = 'texs.mssav@gmail.com';
       $user->sexo = 'M';
       $user -> save();
 
@@ -117,6 +111,6 @@ class UserController extends Controller
       $b->usuario()->associate($user);
       $b->save();
 
-      dd($user->eventos_usuario);
+      dd($b->usuario);
     }
 }

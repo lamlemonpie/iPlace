@@ -11,12 +11,12 @@
     <div class="col-xs-6 col-sm-6 col-md-6 well well-sm">
           <legend><b>Perfil de Usuario</b></legend>
           <div class="col-sm-6 col-md-4">
-              <img src="https://cdn3.iconfinder.com/data/icons/users-6/100/654853-user-men-2-512.png" alt="" class="img-rounded img-responsive" />
+              <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
           </div>
           <div class="col-sm-6 col-md-8">
               <table class="table table-responsive">
                 <tr>
-                  <td><i class="glyphicon glyphicon-user"></i><b> NOMBRE:</b></td>
+                  <td><i class="glyphicon glyphicon-user"></i><b> NOMBRES:</b></td>
                   <td>{{$user->nombres}}</td>
                 </tr>
                 <tr>
@@ -29,13 +29,7 @@
                 </tr>
                 <tr>
                   <td><i class="glyphicon glyphicon-heart-empty"></i><b> SEXO:</b></td>
-                  @if ($user->sexo == "F")
-                    <td> Femenino </td>
-                  @elseif ($user->sexo == "M")
-                    <td> Masculino </td>
-                  @else
-                    <td> Otro </td>
-                  @endif
+                  <td> {{$user->sexo}} </td>
                 </tr>
               </table>
               <a href="{{ ('/users/'.$user->id.'/edit') }}" role="button" class="btn btn-info btn-md pull-right">Editar usuario</a><br>
