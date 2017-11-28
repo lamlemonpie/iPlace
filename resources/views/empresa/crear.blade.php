@@ -20,11 +20,13 @@
 							<span class="input-group-addon"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i></span>
 							<input type="text" class="form-control" id="id_empresa_name" name="empresa_name" placeholder="Ingresar nombre de la empresa" value="">
 						</div>
+					<!--
 					<label for="ruc" class="control-label">RUC:</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-qrcode" aria-hidden="true"></i></span>
 							<input type="text" class="form-control" id="id_ruc" placeholder="Ingresar RUC de la empresa" value="" >
 						</div>
+					-->
 		        </div>
 		        <div class="col-sm-6 col-md-6">
 		        	<label for="">Descripción de la empresa</label>

@@ -29,7 +29,13 @@
                 </tr>
                 <tr>
                   <td><i class="glyphicon glyphicon-heart-empty"></i><b> SEXO:</b></td>
-                  <td> {{$user->sexo}} </td>
+                  @if ($user->sexo == "F")
+                    <td> Femenino </td>
+                  @elseif ($user->sexo == "M")
+                    <td> Masculino </td>
+                  @else
+                    <td> Otro </td>
+                  @endif
                 </tr>
               </table>
               <a href="{{ ('/users/'.$user->id.'/edit') }}" role="button" class="btn btn-info btn-md pull-right">Editar usuario</a><br>
