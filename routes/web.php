@@ -86,11 +86,10 @@ Route::group(['prefix'=>'organizadors'], function(){
 
 });
 
-//Route::get('empresas/createAjx','EmpresaController@createAjx');
 
 Route::group(['prefix'=>'empresas'], function(){
 
-  Route::get('/createAjx', 'EmpresaController@creteAjx');
+  Route::get('/createAjx', 'EmpresaController@createAjx');
   Route::post('/storeAjx', 'EmpresaController@storeAjx');
 
 
@@ -98,6 +97,11 @@ Route::group(['prefix'=>'empresas'], function(){
 Route::resource('empresas','EmpresaController');
 
 Route::resource('solicituds','SolicitudController');
+Route::get('solicituds/enviado','SolicitudController@indexEnviado');
+
+
+
+
 Route::resource('users','UserController');
 Auth::routes();
 

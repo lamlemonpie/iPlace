@@ -121,4 +121,17 @@ class SolicitudController extends Controller
     {
         //
     }
+
+
+    public function indexEnviado()
+    {
+
+      $solicitudes = Auth::user()->organizador->solicitudes_enviadas;
+
+      dd($solicitudes);
+
+      return view('solicituds.indexEnviado',['solicitudes'=>$solicitudes]);
+
+    }
+
 }

@@ -24,6 +24,16 @@
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/css/multi-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/js/jquery.multi-select.min.js"></script>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+
+
     <!--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css"></link>
@@ -82,7 +92,8 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ ('#') }}"><i class="glyphicon glyphicon-check"></i> Crear solicitud </a></li>
-                                    <li><a href="{{ ('/solicituds') }}"><i class="glyphicon glyphicon-list"></i> Ver mis solicitudes </a></li>
+                                    <li><a href="{{ ('/solicituds') }}"><i class="glyphicon glyphicon-list"></i> Ver mis solicitudes Recibidas </a></li>
+                                    <li><a href="{{ ('/solicituds/enviado') }}"><i class="glyphicon glyphicon-list"></i> Ver mis solicitudes Enviadas </a></li>
                                 </ul>
                             </li>
 
