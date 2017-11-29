@@ -3,12 +3,12 @@
 namespace iPlace\Http\Controllers;
 
 use Illuminate\Http\Request;
-use iPlace\User;
-use iPlace\Empresa;
-use iPlace\Solicitud;
 use Illuminate\Support\Facades\Auth;
+use iPlace\Organizador;
+use iPlace \Solicitud;
+use iPlace\Empresa;
 
-class OrganizadorController extends Controller
+class SolicitudController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,6 +18,11 @@ class OrganizadorController extends Controller
     public function index()
     {
         //
+
+        $solicitudes = Auth::user()->organizador->solicitudes_recibidas;
+
+
+        return view('solicituds.index',['solicitudes'=>$solicitudes]);
     }
 
     /**
@@ -27,9 +32,7 @@ class OrganizadorController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        $empresas = Empresa::all();
-        return view('organizadores.crear',['user'=>$user, 'empresas'=>$empresas]);
+        //
     }
 
     /**
@@ -40,7 +43,38 @@ class OrganizadorController extends Controller
      */
     public function store(Request $request)
     {
-        //Poner solicitud a admin de empresa
+      //Corregir con asociacion de usuario a organizador.
+
+      $organizador = Auth::user()->organizador;
+      $org_propietario = Empresa::find($request['id_empresa']) -> admin;
+      $admin = $org_propietario -> usuario;
+
+      if($organizador)
+      {
+        $solic = Solicitud::where('id_organizador_solicitante',$organizador->id);
+        if($solic)
+        {
+          return view('solicituds.enviado',['admin'=>$admin]);
+        }
+
+
+      }
+      else
+      {
+        $organizador = new Organizador();
+        $organizador->usuario()->associate(Auth::user());
+        $organizador->save();
+      }
+
+      $solicitud = new Solicitud();
+      $solicitud -> organizador_Solicitante() -> associate($organizador);
+      $solicitud -> organizador_Propietario() -> associate($org_propietario);
+      $solicitud -> save();
+
+
+
+      return view('solicituds.enviado',['admin'=>$admin]);
+
     }
 
     /**
@@ -87,6 +121,4 @@ class OrganizadorController extends Controller
     {
         //
     }
-
-
 }

@@ -91,7 +91,7 @@ class EmpresaController extends Controller
 
 
 
-      
+
 
         return view('empresa.ver',['empresa'=>$empresa, 'nombres'=>$nombres, 'apellidos'=>$apellidos,]);
     }
@@ -115,9 +115,17 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Empresa $empresa)
     {
         //
+        //$empresa ->update($request->all());
+
+        $empresa -> nombre = $request['nombre'];
+        $empresa -> descripcion = $request['descripcion'];
+        $empresa -> save();
+
+        return redirect('/empresas/'.$empresa->id);
+
     }
 
     /**
@@ -131,7 +139,7 @@ class EmpresaController extends Controller
         //
     }
 
-    public function crearNuevaEmpresaAjx()
+    public function createAjx()
     {
         return response()->json(view('empresa.crearAjx')->render());
     }
@@ -141,6 +149,8 @@ class EmpresaController extends Controller
         $organizador = new Organizador();
         $organizador->usuario()->associate(Auth::user());
         $organizador->save();
+
+
 
         request()->validate([
             'nombre' => 'required|string|min:4|max:50',
@@ -157,9 +167,6 @@ class EmpresaController extends Controller
         $s -> empresa() -> associate($empresa);
         $s -> organizador() -> associate($organizador);
         $s -> save();
-
-        $empresa->empresas_organizador()->associate($s);
-        $empresa->save();
 
         return redirect('/home');
     }

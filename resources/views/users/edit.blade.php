@@ -38,9 +38,9 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-heart-empty" aria-hidden="true"></i></span>
 							<select class="form-control" id="sexo" name="sexo">
-				              <option value="M" >Masculino</option>
-				              <option value="F" >Femenino</option>
-				              <option value="O" >Otro</option>
+                <option value="M" @if ("M" == $user->sexo) selected @endif>Masculino</option>
+                <option value="F" @if ("F" == $user->sexo) selected @endif>Femenino</option>
+                <option value="O" @if ("O" == $user->sexo) selected @endif>Otro</option>
 				            </select>
 						</div>
 						<br>

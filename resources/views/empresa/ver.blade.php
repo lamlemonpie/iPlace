@@ -9,9 +9,7 @@
   	<div class="row">
 	    <div class="col-xs-2 col-sm-2 col-md-2"></div>
 	    <div class="col-xs-8 col-sm-8 col-md-8 well well-sm">
-	        <form class="form-horizontal" role="form" method="POST" action="">
-	        <input name="_method" type="hidden" value="PATCH">
-	                {{ csrf_field() }}
+
 
 	        <legend class="text-center"><b>Datos de la Empresa</b></legend>
 
@@ -44,10 +42,10 @@
 	                  </td>
 	                </tr>
 	              </table>
-	              <a href="{{ ('') }}" role="button" class="btn btn-info btn-md pull-right">Editar empresa</a><br>
+	              <a href="{{ ('/empresas/'.$empresa->id.'/edit') }}" role="button" class="btn btn-info btn-md pull-right">Editar empresa</a><br>
 	              <p>
 		        </div>
-			</form>
+
 		</div>
 	</div>
 </div>

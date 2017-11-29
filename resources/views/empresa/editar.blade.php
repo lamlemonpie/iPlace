@@ -10,7 +10,7 @@
   	<div class="row">
 	    <div class="col-xs-2 col-sm-2 col-md-2"></div>
 	    <div class="col-xs-8 col-sm-8 col-md-8 well well-sm">
-	        <form class="form-horizontal" role="form" method="POST" action="">
+	        <form class="form-horizontal" role="form" method="POST" action="{{asset('empresas/'.$empresa->id)}}">
 	        <input name="_method" type="hidden" value="PATCH">
 	                {{ csrf_field() }}
 
@@ -25,12 +25,12 @@
 		        	<label for="empresa_name" class="control-label">Nombre de la empresa:</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i></span>
-							<input type="text" class="form-control" id="id_empresa_name" name="empresa_name" value="{empresa->nombre}" >
+							<input type="text" class="form-control" id="nombre" name="nombre" value="{{$empresa->nombre}}" >
 						</div><br>
 					<label for="">Descripción de la empresa</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-th-list" aria-hidden="true"></i></span>
-                        	<input type="text" class="form-control" id="id_ruc" placeholder="Ingrese apellidos" name="ruc" value="{empresa->Descripción}" >
+                        	<input type="text" class="form-control" id="descripcion" placeholder="Ingrese Descripcion" name="descripcion" value="{{$empresa->descripcion}}" >
                         </div><br>
 					<label for="organizador" class="control-label">Organizador (Administrador):</label>
 						<div class="input-group">

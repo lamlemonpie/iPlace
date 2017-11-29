@@ -78,6 +78,16 @@
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-user-circle-o"></i> Solicitud <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ ('#') }}"><i class="glyphicon glyphicon-check"></i> Crear solicitud </a></li>
+                                    <li><a href="{{ ('/solicituds') }}"><i class="glyphicon glyphicon-list"></i> Ver mis solicitudes </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="fa fa-user-circle-o"></i> Eventos <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
@@ -171,7 +181,7 @@
                 <div class="row">
                       <div class="col-md-4">
                           <br>
-                            <p><a class="footertext" href="{{ ('#') }}">¿Cómo funcina?</a></p>
+                            <p><a class="footertext" href="{{ ('#') }}">¿Cómo funciona?</a></p>
                             <p><a class="footertext" href="{{ ('#') }}">Preguntas frecuentes</a></p>
                             <p><a class="footertext" href="{{ ('#') }}">Acerca de nosotros</a></p>
                           <br>
@@ -181,7 +191,7 @@
                             <p><a class="footertext" href="{{ ('#') }}">Explora iPlace</a></p>
                             <p><a class="footertext" href="{{ ('#') }}">Danos tu opinion</a></p>
                             <p><a class="footertext" href="{{ ('#') }}">Blog</a></p>
-                            <p><a class="footertext" href="{{ ('#') }}">Libro de Reclamanciones</a></p>
+                            <p><a class="footertext" href="{{ ('#') }}">Libro de Reclamaciones</a></p>
                           <br>
                       </div>
                       <div class="col-md-4">
