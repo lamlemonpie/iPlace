@@ -12,7 +12,7 @@ class Solicitud extends Model
     }
 
     public function organizador_Solicitante(){
-      return $this->belongsTo('iPlace\Organizador','id_organizador_solicitante','id');
+      return $this->belongsTo('iPlace\Organizador','id_usuario_solicitante','id');
     }
 
 

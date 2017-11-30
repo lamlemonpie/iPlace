@@ -24,7 +24,7 @@ class CreateMetodoPagoUsuariosTable extends Migration
                 ->on('metodo_pagos');
 
             $table->foreign('id_usuario')->references('id')
-                ->on('usuarios');
+                ->on('users');
 
         });
     }

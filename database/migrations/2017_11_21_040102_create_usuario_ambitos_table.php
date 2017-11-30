@@ -21,7 +21,7 @@ class CreateUsuarioAmbitosTable extends Migration
             $table->timestamps();
 
             $table->foreign('id_usuario')->references('id')
-                ->on('usuarios');
+                ->on('users');
 
             $table->foreign('id_ambito')->references('id')
                 ->on('ambitos');
