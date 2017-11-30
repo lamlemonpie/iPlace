@@ -93,11 +93,21 @@ Route::group(['prefix'=>'empresas'], function(){
   Route::post('/storeAjx', 'EmpresaController@storeAjx');
 
 
+
 });
 Route::resource('empresas','EmpresaController');
 
+
+
+Route::group(['prefix'=>'solicituds'], function(){
+
+  Route::post('{solicitud}/accept', 'SolicitudController@aceptarSolicitud');
+  Route::get('/enviado','SolicitudController@indexEnviado');
+
+});
 Route::resource('solicituds','SolicitudController');
-Route::get('solicituds/enviado','SolicitudController@indexEnviado');
+
+
 
 
 

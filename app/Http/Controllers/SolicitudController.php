@@ -5,8 +5,9 @@ namespace iPlace\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use iPlace\Organizador;
-use iPlace \Solicitud;
+use iPlace\Solicitud;
 use iPlace\Empresa;
+use iPlace\Empresa_organizador;
 
 class SolicitudController extends Controller
 {
@@ -45,31 +46,27 @@ class SolicitudController extends Controller
     {
       //Corregir con asociacion de usuario a organizador.
 
-      $organizador = Auth::user()->organizador;
-      $org_propietario = Empresa::find($request['id_empresa']) -> admin;
+      $usuario = Auth::user();
+
+      $empresa = Empresa::find($request['id_empresa']);
+      $org_propietario = $empresa -> admin;
       $admin = $org_propietario -> usuario;
 
-      if($organizador)
+
+      if(Solicitud::where('id_usuario_solicitante',$usuario->id) -> exists())
       {
-        $solic = Solicitud::where('id_organizador_solicitante',$organizador->id);
-        if($solic)
-        {
-          return view('solicituds.enviado',['admin'=>$admin]);
-        }
 
-
+        return view('solicituds.enviado',['admin'=>$admin]);
       }
-      else
-      {
-        $organizador = new Organizador();
-        $organizador->usuario()->associate(Auth::user());
-        $organizador->save();
+      else {
+        $solicitud = new Solicitud();
+        $solicitud -> usuario_Solicitante() -> associate($usuario);
+        $solicitud -> organizador_Propietario() -> associate($org_propietario);
+        $solicitud -> empresa() -> associate($empresa);
+        $solicitud -> save();
       }
 
-      $solicitud = new Solicitud();
-      $solicitud -> organizador_Solicitante() -> associate($organizador);
-      $solicitud -> organizador_Propietario() -> associate($org_propietario);
-      $solicitud -> save();
+
 
 
 
@@ -83,9 +80,15 @@ class SolicitudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Solicitud $solicitud)
     {
         //
+
+        $usuario = $solicitud -> usuario_Solicitante;
+        $organizador = $solicitud -> organizador_Propietario-> usuario;
+        $empresa = $solicitud -> empresa;
+
+        return view('solicituds.show',['solicitud'=>$solicitud,'usuario'=>$usuario,'organizador'=>$organizador, 'empresa'=>$empresa]);
     }
 
     /**
@@ -126,12 +129,40 @@ class SolicitudController extends Controller
     public function indexEnviado()
     {
 
-      $solicitudes = Auth::user()->organizador->solicitudes_enviadas;
+      $solicitudes = Auth::user()->solicitudes_enviadas;
 
-      dd($solicitudes);
 
       return view('solicituds.indexEnviado',['solicitudes'=>$solicitudes]);
 
     }
+
+    public function aceptarSolicitud(Solicitud $solicitud)
+    {
+
+
+      $usuario = $solicitud -> usuario_Solicitante;
+      $organizador = Organizador::where('id_usuario',$usuario->id)->first();
+
+
+      if( !$organizador  )
+      {
+
+        $organizador = new Organizador();
+        $organizador -> usuario() -> associate($usuario);
+        $organizador -> save();
+
+      }
+
+      $eo = new Empresa_organizador();
+      $eo -> empresa()->associate($solicitud->empresa);
+      $eo -> organizador()->associate($organizador);
+      $eo -> save();
+
+      $solicitud->delete();
+
+      return redirect('/home');
+
+    }
+
 
 }

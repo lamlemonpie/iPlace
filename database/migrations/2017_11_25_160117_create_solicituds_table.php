@@ -16,13 +16,16 @@ class CreateSolicitudsTable extends Migration
         Schema::create('solicituds', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('id_organizador_propietario')->unsigned();            
+            $table->integer('id_organizador_propietario')->unsigned();
             $table->integer('id_usuario_solicitante')->unsigned();
-            
+            $table->integer('id_empresa')->unsigned();
+
             $table->foreign('id_usuario_solicitante')->references('id')
               ->on('users');
             $table->foreign('id_organizador_propietario')->references('id')
               ->on('organizadors');
+            $table->foreign('id_empresa')->references('id')
+              ->on('empresas');
         });
     }
 

@@ -44,7 +44,9 @@ class User extends Authenticatable
       return $this->hasOne('iPlace\Organizador','id_usuario','id');
     }
 
-
+    public function solicitudes_enviadas(){
+      return $this->hasMany('iPlace\Solicitud','id_usuario_solicitante','id');
+    }
 
 
 }
