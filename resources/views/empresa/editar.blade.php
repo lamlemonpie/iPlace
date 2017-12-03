@@ -36,19 +36,22 @@
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
 							<select class="form-control" id="id_organizador" name="organizador">
-				              <option value="" > Persona 1</option>
-				              <option value="" > Persona 2</option>
-				              <option value="" > Persona 3</option>
+							<option value="$empresa->admin->id" > {{$empresa->admin->usuario->nombres}} {{$empresa->admin->usuario->apellidos}}</option>
+							@foreach($organizadores as $organizador)
+								@if($empresa->admin->id != $organizador->id_organizador)
+				              		<option value="$organizador->id_organizador" > {{$organizador->organizador->usuario->nombres}} {{$organizador->organizador->usuario->apellidos}}</option>
+				              	@endif
+				            @endforeach
 				            </select>
 						</div><br>
 					<label for="integrantes" class="control-label">Integrantes:</label><br>
 						<script src="../public/js/jquery.multi-select.js" type="text/javascript">
 							$('#integrantes').multiSelect();
 						</script>
-						<select multiple="multiple" id="integrantes" name="integrantes[]">
-					      <option value="" > Persona 1</option>
-			              <option value="" > Persona 2</option>
-			              <option value="" > Persona 3</option>
+						<select multiple='multiple' id='integrantes' name="integrantes[]">
+							@foreach($organizadores as $organizador)
+				              <option value="$organizador->id_organizador" > {{$organizador->organizador->usuario->nombres}} {{$organizador->organizador->usuario->apellidos}}</option>
+				            @endforeach
 					    </select>
 					    <br>
 					<div class="pull-right">

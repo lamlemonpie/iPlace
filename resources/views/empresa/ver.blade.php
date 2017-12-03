@@ -35,9 +35,9 @@
 	                <tr>
 	                  <td><i class="glyphicon glyphicon-ok"></i><b> Integrantes:</b></td>
 	                  <td>
-	                  
-	                  	<li> {{$empresa}} </li>
-	                  
+	                  @foreach($organizadores as $organizador)
+	                  	<li> {{$organizador->organizador->usuario->nombres }} {{$organizador->organizador->usuario->apellidos }} </li>
+	                  @endforeach
 	                  </td>
 	                </tr>
 	              </table>

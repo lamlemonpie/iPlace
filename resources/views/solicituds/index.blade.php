@@ -5,7 +5,6 @@
 
 <div class="container">
   <br><br> <br>
-
   	<div class="row">
 	    <div class="col-xs-1 col-sm-1 col-md-1"></div>
 	    <div class="col-xs-10 col-sm-10 col-md-10 well well-sm">
@@ -31,7 +30,7 @@
 										<td>{{$solicitud->usuario_solicitante->nombres}} {{$solicitud->usuario_solicitante->apellidos}}</td>
 										<td>{{$solicitud->empresa->nombre}}</td>
 										<td>
-											<a href="{{asset('solicituds/id_solicitud')}}" class="btn btn-info btn-xs">
+											<a href="{{asset('solicituds/'.$solicitud->id)}}" class="btn btn-info btn-xs">
 											  <span class="glyphicon glyphicon-ok"></span> 
 											</a>
 										</td>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Solicitud Enviada')
+@section('title', 'Solicitudes Enviadas')
 
 @section('content')
 
@@ -8,4 +8,5 @@
 {{$admin}}
 
 
-@endsection
+
+@endsection('content')
