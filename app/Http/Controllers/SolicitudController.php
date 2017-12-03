@@ -4,6 +4,7 @@ namespace iPlace\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use iPlace\User;
 use iPlace\Organizador;
 use iPlace\Solicitud;
 use iPlace\Empresa;
@@ -21,8 +22,6 @@ class SolicitudController extends Controller
         //
 
         $solicitudes = Auth::user()->organizador->solicitudes_recibidas;
-
-
         return view('solicituds.index',['solicitudes'=>$solicitudes]);
     }
 
@@ -129,7 +128,7 @@ class SolicitudController extends Controller
     public function indexEnviado()
     {
 
-      $solicitudes = Auth::user()->solicitudes_enviadas;
+      $solicitudes = Auth::user()->organizador->solicitudes_enviadas;
 
 
       return view('solicituds.indexEnviado',['solicitudes'=>$solicitudes]);
