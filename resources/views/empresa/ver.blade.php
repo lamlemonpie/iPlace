@@ -35,10 +35,9 @@
 	                <tr>
 	                  <td><i class="glyphicon glyphicon-ok"></i><b> Integrantes:</b></td>
 	                  <td>
-	                  <li> {$empresa->integrante 1 } </li>
-	                  <li> {$empresa->integrante 2 } </li>
-	                  <li> {$empresa->integrante 3 } </li>
-	                  <li> {$empresa->integrante 4 } </li>
+	                  
+	                  	<li> {{$empresa}} </li>
+	                  
 	                  </td>
 	                </tr>
 	              </table>

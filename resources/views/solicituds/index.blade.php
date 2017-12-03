@@ -3,9 +3,6 @@
 
 @section('content')
 
-<br><br><br>
-{{$solicitudes}}
-
 <div class="container">
   <br><br> <br>
 
@@ -20,8 +17,8 @@
 						<table class="table col-sm-12">
 							<thead>
 								<tr>
-									<th> De: </th>
-									<th> Para: </th>
+									<th> De (Persona): </th>
+									<th> Para (Empresa): </th>
 									<th> Aceptar </th>
 									<th> Rechazar </th>
 									<th> Ver </th>
@@ -31,10 +28,10 @@
 							<tbody>
 								@foreach($solicitudes as $solicitud)
 									<tr>
-										<td>{{$solicitud->id_organizador_solicitante}}</td>
-										<td>{{$solicitud->id_organizador_propietario}}</td>
+										<td>{{$solicitud->usuario_solicitante->nombres}} {{$solicitud->usuario_solicitante->apellidos}}</td>
+										<td>{{$solicitud->empresa->nombre}}</td>
 										<td>
-											<a href="{{asset('solicituds')}}" class="btn btn-info btn-xs">
+											<a href="{{asset('solicituds/id_solicitud')}}" class="btn btn-info btn-xs">
 											  <span class="glyphicon glyphicon-ok"></span> 
 											</a>
 										</td>
