@@ -21,7 +21,6 @@ class SolicitudController extends Controller
     {
         //
 
-        //$solicitudes = Auth::user()->organizador->solicitudes_recibidas;
         $solicitudes = Solicitud::with('empresa','usuario_Solicitante')->where('id_organizador_propietario',Auth::user()->organizador->id)->get();
 
         return view('solicituds.index',['solicitudes'=>$solicitudes]);

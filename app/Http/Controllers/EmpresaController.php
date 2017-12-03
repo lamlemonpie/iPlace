@@ -50,27 +50,27 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {
-        $organizador = Organizador::where('id_usuario', Auth::user()->id)
-                                    ->get()
-                                    ->first();
-        request()->validate([
-            'nombre' => 'required|string|min:4|max:50',
-            'descripcion' => 'required|string|min:4'
-        ]);
-        $empresa = new Empresa();
-        $empresa->nombre = $request['nombre'];
-        $empresa->descripcion = $request['descripcion'];
-        $empresa->fecha_creacion = new DateTime();
-        $empresa->admin()->associate($organizador);
-        $empresa->save();
+      $organizador = Organizador::where('id_usuario', Auth::user()->id)
+                                          ->get()
+                                          ->first();
+      request()->validate([
+          'nombre' => 'required|string|min:4|max:50',
+          'descripcion' => 'required|string|min:4'
+      ]);
+      $empresa = new Empresa();
+      $empresa->nombre = $request['nombre'];
+      $empresa->descripcion = $request['descripcion'];
+      $empresa->fecha_creacion = new DateTime();
+      $empresa->admin()->associate($organizador);
+      $empresa->save();
 
-        $s = new Empresa_organizador;
-        $s -> empresa() -> associate($empresa);
-        $s -> organizador() -> associate($organizador);
-        $s -> save();
+      $s = new Empresa_organizador;
+      $s -> empresa() -> associate($empresa);
+      $s -> organizador() -> associate($organizador);
+      $s -> save();
 
 
-        return redirect('/home');
+      return redirect('/home');
     }
 
     /**
@@ -85,15 +85,10 @@ class EmpresaController extends Controller
         $nombres = $empresa -> admin -> usuario -> nombres;
         $apellidos = $empresa -> admin -> usuario -> apellidos;
 
-        $organizadores = Empresa_organizador::where('id_empresa',$empresa->id)
+        $organizadores = Empresa_organizador::with('organizador.usuario')->where('id_empresa',$empresa->id)
                         ->get();
 
-
-
-
-
-
-        return view('empresa.ver',['empresa'=>$empresa, 'nombres'=>$nombres, 'apellidos'=>$apellidos,]);
+        return view('empresa.ver',['empresa'=>$empresa, 'nombres'=>$nombres, 'apellidos'=>$apellidos,'organizadores'=>$organizadores]);
     }
 
     /**
@@ -105,7 +100,13 @@ class EmpresaController extends Controller
     public function edit(Empresa $empresa)
     {
         //
-        return view('empresa.editar',['empresa'=>$empresa]);
+        $nombres = $empresa -> admin -> usuario -> nombres;
+        $apellidos = $empresa -> admin -> usuario -> apellidos;
+
+        $organizadores = Empresa_organizador::with('organizador.usuario')->where('id_empresa',$empresa->id)
+                        ->get();
+                        
+        return view('empresa.editar',['empresa'=>$empresa, 'nombres'=>$nombres, 'apellidos'=>$apellidos,'organizadores'=>$organizadores]);
     }
 
     /**
