@@ -22,6 +22,8 @@ class SolicitudController extends Controller
         //
 
         $solicitudes = Auth::user()->organizador->solicitudes_recibidas;
+        $solicitudes = Solicitud::with('empresa','usuario_Solicitante')->where('id_organizador_propietario',Auth::user()->id)->get();
+
         return view('solicituds.index',['solicitudes'=>$solicitudes]);
     }
 
@@ -128,8 +130,7 @@ class SolicitudController extends Controller
     public function indexEnviado()
     {
 
-      $solicitudes = Auth::user()->organizador->solicitudes_enviadas;
-
+      $solicitudes = Solicitud::with('empresa','organizador_Propietario.usuario')->where('id_usuario_solicitante',Auth::user()->id)->get();
 
       return view('solicituds.indexEnviado',['solicitudes'=>$solicitudes]);
 
