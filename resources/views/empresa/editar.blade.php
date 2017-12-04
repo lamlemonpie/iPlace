@@ -44,8 +44,9 @@
 				            @endforeach
 				            </select>
 						</div><br>
+					<!--
 					<label for="integrantes" class="control-label">Integrantes:</label><br>
-						<script src="../public/js/jquery.multi-select.js" type="text/javascript">
+						<script src="iPlace/public/js/jquery.multi-select.js" type="text/javascript">
 							$('#integrantes').multiSelect();
 						</script>
 						<select multiple='multiple' id='integrantes' name="integrantes[]">
@@ -53,7 +54,30 @@
 				              <option value="$organizador->id_organizador" > {{$organizador->organizador->usuario->nombres}} {{$organizador->organizador->usuario->apellidos}}</option>
 				            @endforeach
 					    </select>
+					    <link href="iPlace/public/css/multiselect.css" media="screen" rel="stylesheet" type="text/css">
 					    <br>
+					-->
+					<label for="integrantes" class="control-label">Integrantes:</label><br>
+					    <table class="table col-sm-12">
+							<thead>
+								<tr>
+									<th> Nombre: </th>
+									<th> Eliminar </th>
+								</tr>
+							</thead>
+							<tbody>
+									@foreach($organizadores as $organizador)
+									<tr>
+							              	<td>{{$organizador->organizador->usuario->nombres}} {{$organizador->organizador->usuario->apellidos}}</td>
+											<td>
+												<a href="{{asset('')}}" class="btn btn-danger btn-xs">
+												  <span class="glyphicon glyphicon-remove"></span> 
+												</a>
+											</td>
+									</tr>
+							        @endforeach
+							</tbody>
+						</table>
 					<div class="pull-right">
 						<button type="submit" class="btn btn-info btn-lg login-button">Guardar</button>
 					</div>
