@@ -39,6 +39,10 @@
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css"></link>
     -->
 
+
+
+
+
 </head>
 <body>
     <div id="app">
@@ -290,7 +294,8 @@
           rgba(20, 20, 20, 0.9)
         ),
         /* image to overlay */
-        url(http://images.cdn.fotopedia.com/_avPIZmqM3w-7z161LH_268-hd.jpg);
+        /*url(http://images.cdn.fotopedia.com/_avPIZmqM3w-7z161LH_268-hd.jpg);*/
+        url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/a7fbff15899853.562b53338a6e9.png);
     }
     .footertext {
       color: #ffffff;
@@ -318,5 +323,23 @@
     #social-em:hover {
      color: #f39c12;
     }
+    #map {
+      height: 700px;
+      width: 100%;
+     }
+   #floating-panel {
+      position: absolute;
+      top: 150px;
+      left: 25%;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+      text-align: center;
+      font-family: 'Roboto','sans-serif';
+      line-height: 30px;
+      padding-left: 10px;
+    }
+
 
 </style>

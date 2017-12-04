@@ -118,4 +118,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('prueba','UserController@prueba');
+Route::get('mapita',function(){
+  return view('mapas.prueba');
+});
