@@ -86,6 +86,7 @@ class EmpresaController extends Controller
         $apellidos = $empresa -> admin -> usuario -> apellidos;
 
         $organizadores = Empresa_organizador::with('organizador.usuario')->where('id_empresa',$empresa->id)
+                        ->where('id_organizador','!=',$empresa->admin->id)
                         ->get();
 
         return view('empresa.ver',['empresa'=>$empresa, 'nombres'=>$nombres, 'apellidos'=>$apellidos,'organizadores'=>$organizadores]);
@@ -104,8 +105,9 @@ class EmpresaController extends Controller
         $apellidos = $empresa -> admin -> usuario -> apellidos;
 
         $organizadores = Empresa_organizador::with('organizador.usuario')->where('id_empresa',$empresa->id)
+                        ->where('id_organizador','!=',$empresa->admin->id)
                         ->get();
-                        
+
         return view('empresa.editar',['empresa'=>$empresa, 'nombres'=>$nombres, 'apellidos'=>$apellidos,'organizadores'=>$organizadores]);
     }
 
@@ -171,4 +173,26 @@ class EmpresaController extends Controller
 
         return redirect('/home');
     }
+
+    public function expellOrganizador($empresa,$organizador)
+    {
+        $empresa = Empresa::find($empresa);
+        $organizador = Organizador::find($organizador);
+        $e_o = $organizador->empresas_organizador()->where('id_empresa',$empresa->id)->get()->first();
+        $e_o -> delete();
+        $solicitud = $organizador->usuario->solicitudes_enviadas()->where('id_empresa',$empresa->id)->get()->first();
+        $solicitud -> delete();
+        //return 'success';
+        return response()->json(true);
+
+    }
+
+    public function todosOrganizadores(Empresa $empresa)
+    {
+      $organizadores = Empresa_organizador::with('organizador.usuario')->where('id_empresa',$empresa->id)
+                      ->where('id_organizador','!=',$empresa->admin->id)
+                      ->get();
+      return view('empresa.organizadores',['empresa'=>$empresa,'organizadores'=>$organizadores]);
+    }
+
 }

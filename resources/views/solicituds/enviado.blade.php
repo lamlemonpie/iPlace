@@ -4,8 +4,7 @@
 @section('content')
 
 <br> <br>
-
-{{$admin}}
+Tu solicitud fue correctamente enviada a {{$admin->nombres}} {{$admin->apellidos}}
 
 
 

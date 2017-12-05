@@ -91,7 +91,9 @@ Route::group(['prefix'=>'empresas'], function(){
 
   Route::get('/createAjx', 'EmpresaController@createAjx');
   Route::post('/storeAjx', 'EmpresaController@storeAjx');
+  Route::delete('{empresa}/expellOrganizador/{organizador}','EmpresaController@expellOrganizador');
 
+  Route::get('/{empresa}/organizadors','EmpresaController@todosOrganizadores');
 
 
 });
@@ -106,6 +108,7 @@ Route::group(['prefix'=>'solicituds'], function(){
 
 });
 Route::resource('solicituds','SolicitudController');
+
 
 
 

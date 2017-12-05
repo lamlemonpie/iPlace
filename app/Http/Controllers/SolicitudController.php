@@ -17,11 +17,16 @@ class SolicitudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
 
         $solicitudes = Solicitud::with('empresa','usuario_Solicitante')->where('id_organizador_propietario',Auth::user()->organizador->id)->get();
+
+        if($request->ajax())
+        {
+          return view('solicituds.indexAjx',['solicitudes'=>$solicitudes]);
+        }
 
         return view('solicituds.index',['solicitudes'=>$solicitudes]);
     }
@@ -53,7 +58,7 @@ class SolicitudController extends Controller
       $admin = $org_propietario -> usuario;
 
 
-      if(Solicitud::where('id_usuario_solicitante',$usuario->id) -> exists())
+      if(Solicitud::where('id_usuario_solicitante',$usuario->id)->where('id_empresa',$empresa->id) -> exists())
       {
 
         return view('solicituds.enviado',['admin'=>$admin]);
@@ -120,22 +125,29 @@ class SolicitudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Solicitud $solicitud)
     {
-        //
+        $solicitud->delete();
+        return redirect('/solicituds');
     }
 
 
-    public function indexEnviado()
+    public function indexEnviado(Request $request)
     {
 
       $solicitudes = Solicitud::with('empresa','organizador_Propietario.usuario')->where('id_usuario_solicitante',Auth::user()->id)->get();
+
+      if($request->ajax())
+      {
+        return view('solicituds.indexEnviadoAjx',['solicitudes'=>$solicitudes]);
+      }
 
       return view('solicituds.indexEnviado',['solicitudes'=>$solicitudes]);
 
     }
 
-    public function aceptarSolicitud(Solicitud $solicitud)
+
+    public function aceptarSolicitud(Request $request,Solicitud $solicitud)
     {
 
 
@@ -157,7 +169,13 @@ class SolicitudController extends Controller
       $eo -> organizador()->associate($organizador);
       $eo -> save();
 
-      $solicitud->delete();
+      $solicitud->aceptado = True;
+      $solicitud->save();
+
+      if($request->ajax())
+      {
+        return response()->json(true);
+      }
 
       return redirect('/home');
 

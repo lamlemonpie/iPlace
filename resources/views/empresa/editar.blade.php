@@ -6,7 +6,6 @@
 <div class="container">
   <br><br> <br>
 
-	<link href="../public/css/multi-select.css" media="screen" rel="stylesheet" type="text/css">
   	<div class="row">
 	    <div class="col-xs-2 col-sm-2 col-md-2"></div>
 	    <div class="col-xs-8 col-sm-8 col-md-8 well well-sm">
@@ -58,26 +57,31 @@
 					    <br>
 					-->
 					<label for="integrantes" class="control-label">Integrantes:</label><br>
-					    <table class="table col-sm-12">
-							<thead>
-								<tr>
-									<th> Nombre: </th>
-									<th> Eliminar </th>
-								</tr>
-							</thead>
-							<tbody>
-									@foreach($organizadores as $organizador)
-									<tr>
-							              	<td>{{$organizador->organizador->usuario->nombres}} {{$organizador->organizador->usuario->apellidos}}</td>
-											<td>
-												<a href="{{asset('')}}" class="btn btn-danger btn-xs">
-												  <span class="glyphicon glyphicon-remove"></span> 
-												</a>
-											</td>
-									</tr>
-							        @endforeach
-							</tbody>
-						</table>
+          <div class="tabla">
+
+            <table class="table col-sm-12">
+            <thead>
+              <tr>
+                <th> Nombre: </th>
+                <th> Eliminar </th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach($organizadores as $organizador)
+                <tr>
+                            <td>{{$organizador->organizador->usuario->nombres}} {{$organizador->organizador->usuario->apellidos}}</td>
+                    <td>
+                      <a type="button" onclick="eliminarOrganizador({{$empresa->id}},{{$organizador->organizador->id}})" class="btn btn-danger btn-xs">
+                        <span class="glyphicon glyphicon-remove"></span>
+                      </a>
+                    </td>
+                </tr>
+                    @endforeach
+            </tbody>
+          </table>
+
+          </div>
+
 					<div class="pull-right">
 						<button type="submit" class="btn btn-info btn-lg login-button">Guardar</button>
 					</div>
@@ -94,5 +98,33 @@
 	  height: auto;
 	}
 </style>
+
+
+<script>
+
+
+function eliminarOrganizador(empresa,organizador){
+  console.log(empresa);
+  console.log(organizador);
+  var direccion = "{{asset('empresas')}}"+ "/" + empresa + "/expellOrganizador/"+ organizador;
+  console.log(direccion);
+  $.ajax(
+
+    {
+      url:direccion,
+      type: 'POST',
+      data : {'_token': '{{ csrf_token() }}', '_method': 'delete'},
+
+      success: function(data){
+          console.log(data);
+          $(".tabla").load("{{asset('empresas')}}"+ "/" + empresa + "/organizadors");
+      }
+    }
+
+  );
+
+}
+
+</script>
 
 @endsection('content')

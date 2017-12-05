@@ -19,6 +19,7 @@ class CreateSolicitudsTable extends Migration
             $table->integer('id_organizador_propietario')->unsigned();
             $table->integer('id_usuario_solicitante')->unsigned();
             $table->integer('id_empresa')->unsigned();
+            $table->boolean('aceptado')->default(0);
 
             $table->foreign('id_usuario_solicitante')->references('id')
               ->on('users');

@@ -19,25 +19,31 @@
 		            	<img src="{{asset('images/foto.png')}}" />
 	        		</div>
 		        </div>
-            <div class="col-sm-6 col-md-8">
-		        	<table class="table table-responsive">
-	                <tr>
-	                  <td><i class="glyphicon glyphicon-folder-open"></i><b> Nombre Empresa:</b></td>
-	                  <td>{{$empresa->nombre}}</td>
-	                </tr>
-	                <tr>
-	                  <td><i class="glyphicon glyphicon-th-list"></i><b> Solicitante:</b></td>
-	                  <td> {{$usuario->nombres}} {{$usuario->apellidos}} </td>
-	                </tr>
-	                <tr>
-	                  <td><i class="glyphicon glyphicon-user"></i><b> Organizador:</b></td>
-	                  <td> {{$organizador->nombres }} {{$organizador->apellidos}}</td>
-	                </tr>
-	              </table>
-                <input type="hidden" name="solicitud" value="{{$solicitud->id}}" >
-	              <button  type="submit" class="btn btn-info btn-md pull-right">Aceptar Solicitud</button><br>
-	              <p>
-		        </div>
+            <div class="tabla">
+
+              <div class="col-sm-6 col-md-8">
+                <table class="table table-responsive">
+                    <tr>
+                      <td><i class="glyphicon glyphicon-folder-open"></i><b> Nombre Empresa:</b></td>
+                      <td>{{$empresa->nombre}}</td>
+                    </tr>
+                    <tr>
+                      <td><i class="glyphicon glyphicon-th-list"></i><b> Solicitante:</b></td>
+                      <td> {{$usuario->nombres}} {{$usuario->apellidos}} </td>
+                    </tr>
+                    <tr>
+                      <td><i class="glyphicon glyphicon-user"></i><b> Organizador:</b></td>
+                      <td> {{$organizador->nombres }} {{$organizador->apellidos}}</td>
+                    </tr>
+                  </table>
+                  <input type="hidden" name="solicitud" value="{{$solicitud->id}}" >
+                  @if($solicitud->aceptado == False)
+                  <button  type="submit" class="btn btn-info btn-md pull-right">Aceptar Solicitud</button><br>
+                  @endif
+                  <p>
+              </div>
+
+            </div>
 			</form>
 
 		</div>
@@ -51,5 +57,9 @@
 	  height: auto;
 	}
 </style>
+
+
+
+
 
 @endsection('content')
