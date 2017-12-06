@@ -324,12 +324,12 @@
      color: #f39c12;
     }
     #map {
-      height: 700px;
+      height: 500px;
       width: 100%;
      }
    #floating-panel {
       position: absolute;
-      top: 150px;
+      top: 35px;
       left: 25%;
       z-index: 5;
       background-color: #fff;

@@ -5,7 +5,7 @@
 <div class="container">
 <br><br><br>
 
-    <form class="form-horizontal" role="form" method="POST" action="">
+    <form class="form-horizontal" role="form" method="GET" action="{{asset('pruebita')}}">
     <input name="_method" type="hidden" value="PATCH">
                     {{ csrf_field() }}
 
@@ -241,9 +241,110 @@
                     
                 </div>
                 <div class="col-xs-5 col-md-5">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.5871874198974!2d-71.52405075505996!3d-16.394978299924194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424bacd71a2591%3A0x568581cab2a28f07!2sPiscina+Municipal+Miraflores!5e0!3m2!1ses-419!2spe!4v1511473482381"></iframe>
-                    </div>
+                  <input type="hidden" id="long" name="longitud" value=""/>
+                  <input type="hidden" id="lat" name="latitud" value=""/>
+                  
+                  <div id="floating-panel">
+                    <input id="address" type="textbox" value="Sydney, NSW">
+                    <input id="submit" type="button" value="Geocode">
+                    
+                  </div>
+
+                  <div id="map"></div>
+
+                    <script>
+                      // Note: This example requires that you consent to location sharing when
+                      // prompted by your browser. If you see the error "The Geolocation service
+                      // failed.", it means you probably did not give permission for the browser to
+                      // locate you.
+
+                      function initMap() {
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                          center: {lat: -34.397, lng: 150.644},
+                          zoom: 14
+                          
+                        });
+                        
+                        var longitud = document.getElementById("long");
+                        var latitud = document.getElementById("lat");
+                        latitud.value = -34.397;
+                        longitud.value = 150.644;
+                        
+                        var geocoder = new google.maps.Geocoder();
+
+                        document.getElementById('submit').addEventListener('click', function() {
+                          geocodeAddress(geocoder, map);
+                        });
+                        
+                        var infoWindow = new google.maps.InfoWindow({map: map});
+                        var marker = new google.maps.Marker({
+                          position: map.getCenter(),
+                          map: map
+                        });
+                        // Try HTML5 geolocation.
+                        if (navigator.geolocation) {
+                          navigator.geolocation.getCurrentPosition(function(position) {
+                            var pos = {
+                              lat: position.coords.latitude,
+                              lng: position.coords.longitude
+                            };
+                            latitud.value = position.coords.latitude;
+                            longitud.value = position.coords.longitude;
+                            infoWindow.setPosition(pos);
+                            infoWindow.setContent('Location found.');
+                            map.setCenter(pos);
+                            marker.setPosition(pos);
+                          }, function() {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                          });
+                        } else {
+                          // Browser doesn't support Geolocation
+                          handleLocationError(false, infoWindow, map.getCenter());
+                        }
+                        
+                        google.maps.event.addListener(map, 'dblclick', function(e) {
+                          var positionDoubleclick = e.latLng;
+                          marker.setPosition(positionDoubleclick);
+                          var longitud = document.getElementById("long");
+                          var latitud = document.getElementById("lat");
+                          latitud.value = e.latLng.lat();
+                          longitud.value = e.latLng.lng();
+                          // if you don't do this, the map will zoom in
+                          //e.stopPropagation();
+                        });
+                        
+                      }
+
+                      
+
+
+                      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent(browserHasGeolocation ?
+                                              'Error: The Geolocation service failed.' :
+                                              'Error: Your browser doesn\'t support geolocation.');
+                      }
+                      
+                      
+                      function geocodeAddress(geocoder, resultsMap) {
+                       var address = document.getElementById('address').value;
+                       geocoder.geocode({'address': address}, function(results, status) {
+                         if (status === 'OK') {
+                           resultsMap.setCenter(results[0].geometry.location);
+                           //markers[0].setPosition(results[0].geometry.location);
+                         } else {
+                           alert('Geocode was not successful for the following reason: ' + status);
+                         }
+                       });
+                     }
+                    </script>
+                    
+                    
+                    <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEUDWClhcBHlakaF_9bQIzvEP5XwI-OcE&callback=initMap">
+                    </script>
+
+
                 </div>
                 <div class="col-xs-1 col-md-1"></div>
             </div>
@@ -271,7 +372,7 @@
         <div class="row">
             <div class="col-xs-8 col-md-8"></div>
             <div class="col-xs-4 col-md-4">
-            <button type="button" class="btn btn-info btn-success btn-lg btn-block">Crear Evento</button><br></div>
+            <button type="submit" class="btn btn-info btn-success btn-lg btn-block">Crear Evento</button><br></div>
         </div>
 
     </div>

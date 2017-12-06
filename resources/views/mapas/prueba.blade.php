@@ -3,10 +3,14 @@
 
 
 <div id="floating-panel">
+  
   <input id="address" type="textbox" value="Sydney, NSW">
   <input id="submit" type="button" value="Geocode">
   
 </div>
+
+<input type="hidden" id="long" name="longitud"/>
+<input type="hidden" id="lat" name="latitud"/>
 
 <div id="map"></div>
 
@@ -59,6 +63,10 @@
       google.maps.event.addListener(map, 'dblclick', function(e) {
         var positionDoubleclick = e.latLng;
         marker.setPosition(positionDoubleclick);
+        var longitud = document.getElementById("long");
+        var latitud = document.getElementById("lat");
+        latitud = e.latLng.lat();
+        longitud = e.latLng.lng();
         // if you don't do this, the map will zoom in
         //e.stopPropagation();
       });

@@ -124,3 +124,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('mapita',function(){
   return view('mapas.prueba');
 });
+  
+
+Route::get('/pruebita','EventoController@prueba');
