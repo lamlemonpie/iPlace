@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Ver empresa')
+@section('title', 'Ver Categoría')
 
 @section('content')
 
@@ -11,7 +11,7 @@
 	    <div class="col-xs-8 col-sm-8 col-md-8 well well-sm">
 
 
-	        <legend class="text-center"><b>Datos de la Empresa</b></legend>
+	        <legend class="text-center"><b>Datos de la Categoría</b></legend>
 
 	        	<div class="col-sm-6 col-md-4">
 	        		<div class="img">
@@ -22,26 +22,14 @@
 		        	<table class="table table-responsive">
 	                <tr>
 	                  <td><i class="glyphicon glyphicon-folder-open"></i><b> Nombre:</b></td>
-	                  <td>{{$empresa->nombre}}</td>
+	                  <td>{{$categoria->nombre}}</td>
 	                </tr>
 	                <tr>
 	                  <td><i class="glyphicon glyphicon-th-list"></i><b> Descripcion:</b></td>
-	                  <td> {{$empresa->descripcion}} </td>
-	                </tr>
-	                <tr>
-	                  <td><i class="glyphicon glyphicon-user"></i><b> Organizador:</b></td>
-	                  <td> {{$nombres }} {{$apellidos}}</td>
-	                </tr>
-	                <tr>
-	                  <td><i class="glyphicon glyphicon-ok"></i><b> Integrantes:</b></td>
-	                  <td>
-	                  @foreach($organizadores as $organizador)
-	                  	<li> {{$organizador->organizador->usuario->nombres }} {{$organizador->organizador->usuario->apellidos }} </li>
-	                  @endforeach
-	                  </td>
+	                  <td> {{$categoria->descripcion}} </td>
 	                </tr>
 	              </table>
-	              <a href="{{ ('/empresas/'.$empresa->id.'/edit') }}" role="button" class="btn btn-info btn-md pull-right">Editar empresa</a><br>
+	              <a href="{{ ('/ambitos/'.$categoria->id.'/edit') }}" role="button" class="btn btn-info btn-md pull-right">Editar categoría</a><br>
 	              <p>
 		        </div>
 

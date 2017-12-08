@@ -130,6 +130,17 @@
                                 </ul>
                             </li>
 
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-user-circle-o"></i> Categorías <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ ('/ambitos/create') }}"><i class="glyphicon glyphicon-check"></i> Crear categoría </a></li>
+                                    <li><a href="{{ ('/ambitos') }}"><i class="glyphicon glyphicon-list"></i> Ver categorías </a></li>
+                                </ul>
+                            </li>
+
+
                             <li class="active" class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="fa fa-user-circle-o"></i> {{ Auth::user()->nombres }} <span class="caret"></span>

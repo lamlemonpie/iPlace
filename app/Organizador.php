@@ -23,7 +23,6 @@ class Organizador extends Model
       return $this->hasMany('iPlace\Solicitud', 'id_organizador_propietario', 'id');
     }
 
-
     public function empresas_admin(){
       return $this->hasMany('iPlace\Empresa', 'id_admin', 'id');
     }

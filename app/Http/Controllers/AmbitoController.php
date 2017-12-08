@@ -3,12 +3,10 @@
 namespace iPlace\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use iPlace\Evento;
-use iPlace\User;
-use iPlace\Empresa;
+use iPlace\Ambito;
+use DateTime;
 
-class EventoController extends Controller
+class AmbitoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,8 @@ class EventoController extends Controller
      */
     public function index()
     {
-        //
+        $categorias = Ambito::all();
+        return view('ambitos.index',['categorias'=>$categorias]);
     }
 
     /**
@@ -27,8 +26,7 @@ class EventoController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        return view('eventos.crear',['user'=>$user]);
+        return view('ambitos.create');
     }
 
     /**
@@ -39,7 +37,14 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = new Ambito();
+        $categoria->nombre = $request['nombre'];
+        $categoria->descripcion = $request['descripcion'];
+        $categoria->fecha_creacion = new DateTime();
+        $categoria->fecha_modificacion = new DateTime();
+        $categoria->save();
+
+        return redirect('/ambitos');
     }
 
     /**
@@ -48,9 +53,9 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Ambito $ambito)
     {
-        //
+        return view('ambitos.show',['categoria'=>$ambito]);
     }
 
     /**
@@ -59,9 +64,9 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ambito $ambito)
     {
-        //
+        return view('ambitos.edit',['categoria'=>$ambito]);
     }
 
     /**
@@ -71,9 +76,14 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Ambito $ambito)
     {
-        //
+        $ambito -> nombre = $request['nombre'];
+        $ambito -> descripcion = $request['descripcion'];
+        $ambito->fecha_modificacion = new DateTime();
+        $ambito -> save();
+
+        return redirect('/ambitos/'.$ambito->id);
     }
 
     /**
@@ -85,13 +95,5 @@ class EventoController extends Controller
     public function destroy($id)
     {
         //
-    }
-    //
-    
-    public function prueba(Request $r){
-      
-      echo $r['latitud'];
-      echo $r['longitud'];
-      dd($r);
     }
 }

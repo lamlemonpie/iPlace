@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Mis Empresas')
+@section('title', 'Categorías')
 
 @section('content')
 
@@ -10,10 +10,10 @@
 	    <div class="col-xs-1 col-sm-1 col-md-1"></div>
 	    <div class="col-xs-10 col-sm-10 col-md-10 well well-sm">
 
-			<legend><b>Mis Empresas</b></legend>
+			<legend><b>Categorías</b></legend>
 
-			<div class="tablaEmpresas table-responsive">
-				<div class="tablaempresa col-sm-12">
+			<div class="tablacategoria table-responsive">
+				<div class="tablacategoria col-sm-12">
 						<table class="table col-sm-12">
 							<thead>
 								<tr>
@@ -25,17 +25,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($empresas as $empresa)
+								@foreach($categorias as $categoria)
 									<tr>
-										<td>{{$empresa->nombre}}</td>
-										<td>{{$empresa->descripcion}}</td>
+										<td>{{$categoria->nombre}}</td>
+										<td>{{$categoria->descripcion}}</td>
 										<td>
-											<a href="{{asset('empresas')}}{{'/'.$empresa->id}}" class="btn btn-info btn-xs">
+											<a href="{{asset('ambitos')}}{{'/'.$categoria->id}}" class="btn btn-info btn-xs">
 											  <span class="glyphicon glyphicon-user"></span>
 											</a>
 										</td>
 										<td>
-											<a href="{{asset('empresas')}}{{'/'.$empresa->id.'/edit'}}" class="btn btn-warning btn-xs">
+											<a href="{{asset('ambitos')}}{{'/'.$categoria->id.'/edit'}}" class="btn btn-warning btn-xs">
 											  <span class="glyphicon glyphicon-pencil"></span>
 											</a>
 										 </td>

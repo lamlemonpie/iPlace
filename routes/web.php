@@ -61,23 +61,10 @@ Route::group(['prefix'=>'usuarios'], function(){
 
 Route::group(['prefix'=>'eventos'], function(){
 
-  Route::get('/crear', function () {
-      return view('eventos.crear');
-  });
 
-  Route::get('/editar', function () {
-      return view('eventos.editar');
-  });
-
-  Route::get('/mostrar', function () {
-      return view('eventos.mostrar');
-  });
-
-  Route::get('/ver', function () {
-      return view('eventos.ver');
-  });
 
 });
+Route::resource('eventos','EventoController');
 
 Route::resource('organizadors','OrganizadorController');
 Route::group(['prefix'=>'organizadors'], function(){
@@ -111,7 +98,7 @@ Route::resource('solicituds','SolicitudController');
 
 
 
-
+Route::resource('ambitos','AmbitoController');
 
 
 
@@ -124,6 +111,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('mapita',function(){
   return view('mapas.prueba');
 });
-  
+
 
 Route::get('/pruebita','EventoController@prueba');
