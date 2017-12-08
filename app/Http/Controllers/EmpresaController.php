@@ -182,6 +182,10 @@ class EmpresaController extends Controller
         $e_o -> delete();
         $solicitud = $organizador->usuario->solicitudes_enviadas()->where('id_empresa',$empresa->id)->get()->first();
         $solicitud -> delete();
+        if (!$organizador->empresas_organizador() -> exists())
+        {
+            $organizador -> delete();
+        }
         //return 'success';
         return response()->json(true);
 

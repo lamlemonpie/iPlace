@@ -20,7 +20,7 @@
 						</div>
 		        </div>
 		        <div class="col-sm-6 col-md-6">
-		        	<label for="">Descripción de la empresa</label>
+		        	<label for="">Descripción de la categoría:</label>
                         <textarea name="descripcion" id="descripcion" class="form-control" rows="4" cols="14" required="required" placeholder="Escriba aquí la descripción de la categoría"></textarea><br>
 		        </div>
 					<div class="pull-right">

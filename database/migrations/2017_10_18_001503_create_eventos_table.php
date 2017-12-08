@@ -18,7 +18,12 @@ class CreateEventosTable extends Migration
             $table->string('nombre');
             $table->integer('id_ubicacion')->unsigned();
             //$table->integer('id_organizador_evento')->unsigned();
-            
+            $table->string('ciudad');
+            $table->string('direccion');
+            $table->string('referencia')->nullable();
+            $table->string('link_youtube')->nullable();
+            $table->string('descripcion');
+            $table->string('info_adicional')->nullable();
             $table->float('precio', 8, 2);
             $table->dateTime('fecha_creacion');
             $table->dateTime('fecha_inicio');

@@ -92,10 +92,10 @@
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <i class="fa fa-user-circle-o"></i> Solicitud <span class="caret"></span>
+                                    <i class="fa fa-user-circle-o"></i> Solicitudes <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ ('#') }}"><i class="glyphicon glyphicon-check"></i> Crear solicitud </a></li>
+                                    <li><a href="{{ ('/solicituds/create') }}"><i class="glyphicon glyphicon-check"></i> Enviar solicitud a empresa </a></li>
                                     <li><a href="{{ ('/solicituds') }}"><i class="glyphicon glyphicon-list"></i> Ver mis solicitudes Recibidas </a></li>
                                     <li><a href="{{ ('/solicituds/enviado') }}"><i class="glyphicon glyphicon-list"></i> Ver mis solicitudes Enviadas </a></li>
                                 </ul>
@@ -106,7 +106,7 @@
                                     <i class="fa fa-user-circle-o"></i> Eventos <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ ('/eventos/crear') }}"><i class="glyphicon glyphicon-check"></i> Crear evento </a></li>
+                                    <li><a href="{{ ('/eventos/create') }}"><i class="glyphicon glyphicon-check"></i> Crear evento </a></li>
                                     <li><a href="{{ ('#') }}"><i class="glyphicon glyphicon-list"></i> Ver mis eventos </a></li>
                                 </ul>
                             </li>

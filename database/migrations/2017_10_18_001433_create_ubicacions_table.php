@@ -17,7 +17,7 @@ class CreateUbicacionsTable extends Migration
             $table->increments('id');
             $table->double('latitud', 15, 8);
             $table->double('longitud', 15, 8);
-            $table->integer('id_maps');
+            $table->integer('id_maps')->nullable();
             $table->timestamps();
         });
     }

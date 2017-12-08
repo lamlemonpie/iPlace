@@ -38,7 +38,9 @@ class SolicitudController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        $empresas = Empresa::all();
+        return view('solicituds.create',['user'=>$user, 'empresas'=>$empresas]);
     }
 
     /**

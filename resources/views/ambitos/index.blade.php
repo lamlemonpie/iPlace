@@ -18,7 +18,7 @@
 							<thead>
 								<tr>
 									<th>Nombre</th>
-									<th>Descripcion</th>
+									<th>Descripción</th>
 									<th> Ver</th>
 									<th> Editar </th>
 

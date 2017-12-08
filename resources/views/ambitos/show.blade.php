@@ -25,7 +25,7 @@
 	                  <td>{{$categoria->nombre}}</td>
 	                </tr>
 	                <tr>
-	                  <td><i class="glyphicon glyphicon-th-list"></i><b> Descripcion:</b></td>
+	                  <td><i class="glyphicon glyphicon-th-list"></i><b> Descripción:</b></td>
 	                  <td> {{$categoria->descripcion}} </td>
 	                </tr>
 	              </table>

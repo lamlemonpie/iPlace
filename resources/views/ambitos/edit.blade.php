@@ -27,7 +27,7 @@
 							<span class="input-group-addon"><i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i></span>
 							<input type="text" class="form-control" id="nombre" name="nombre" value="{{$categoria->nombre}}" required>
 						</div><br>
-					<label for="">Descripción de la categoria</label>
+					<label for="">Descripción de la categoría:</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-th-list" aria-hidden="true"></i></span>
                         	<input type="text" class="form-control" id="descripcion" placeholder="Ingrese Descripcion" name="descripcion" value="{{$categoria->descripcion}}" required>

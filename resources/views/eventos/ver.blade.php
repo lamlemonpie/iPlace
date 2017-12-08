@@ -4,25 +4,20 @@
 
 <div class="container">
 <br><br><br>
-
-    <form class="form-horizontal" role="form" method="POST" action="">
-    <input name="_method" type="hidden" value="PATCH">
-                    {{ csrf_field() }}
-
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
                 <div class="col-xs-7 col-md-7">
                     <div class="card">
                         <div class="container">
-                            <h2><b> Nombre</b></h2>
+                            <h2><b>{{$evento->nombre}}</b></h2>
                         </div>
                         <div class="card-image">
                             <a href="{{asset('#')}}" title=""><img src="../images/Fondo1.jpg" class="img-responsive"></a>
                         </div><!-- card image -->
                         <div class="card-content">
                             <span class="card-title">Descripción del evento</span>
-                            <p>Lalalal Lalalal Lalalal LalalalLalalalLalalal</p>
+                            <p>{{$evento->descripcion}}</p>
                             <br>
                         </div><!-- card content -->
                     </div>
@@ -40,37 +35,38 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Some example text.</p>
-                            <p class="card-text"><i class="glyphicon glyphicon-time"></i> Some example text.</p>
-                            <p class="card-text"><i class="glyphicon glyphicon-tags"></i>  Some example text.</p>
+                            <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Fecha de Inicio: <?php $fechaInicio = new DateTime($evento->fecha_inicio); echo $fechaInicio->format('d/m/Y'); ?></p>
+                            <p class="card-text"><i class="glyphicon glyphicon-time"></i> Hora de Inicio: <?php $horaInicio = new DateTime($evento->fecha_inicio); echo $horaInicio->format('H:i'); ?></p><br>
+                            <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Fecha de Finalización: <?php $fechaFin = new DateTime($evento->fecha_fin); echo $fechaFin->format('d/m/Y'); ?></p>
+                            <p class="card-text"><i class="glyphicon glyphicon-time"></i> Hora de Finalización: <?php $horaFin = new DateTime($evento->fecha_fin); echo $horaFin->format('H:i'); ?></p><br>
+                            <p class="card-text"><i class="glyphicon glyphicon-tags"></i> Categoría: @foreach ($categorias as $categoria) {{$categoria->nombre}}  @endforeach</p>
                         </div><!-- card content -->
                     </div>
                     <div class="card">
                         <div class="card-content">
                             <span class="card-title">Ubicación</span><br><br>
-                            <p class="card-text"><i class="glyphicon glyphicon-plane"></i> AREQUIPA</p>
-                            <p class="card-text"><i class="glyphicon glyphicon-map-marker"></i> Dirección</p>
-                            <p class="card-text"><i> Referencias</i></p>
+                            <p class="card-text"><i class="glyphicon glyphicon-plane"></i> {{$evento->ciudad}}</p>
+                            <p class="card-text"><i class="glyphicon glyphicon-map-marker"></i> {{$evento->direccion}}</p>
+                            <p class="card-text"><i> {{$evento->referencia}}</i></p>
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.5871874198974!2d-71.52405075505996!3d-16.394978299924194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424bacd71a2591%3A0x568581cab2a28f07!2sPiscina+Municipal+Miraflores!5e0!3m2!1ses-419!2spe!4v1511473482381"></iframe>
-                            </div>
                         </div><!-- card content -->
                     </div>
+                    @if ($evento->link_youtube)
                     <div class="card">
                         <div class="card-content">
                             <span class="card-title">Video</span><br><br>
                                 <div class="embed-responsive embed-responsive-16by9" >
-                                <iframe class="embed-responsive-item"  src="https://www.youtube.com/embed/jVIxe3YLNs8"></iframe>
+                                <iframe class="embed-responsive-item"  src="{{$evento->link_youtube}}"></iframe>
                                 </div>
                         </div><!-- card content -->
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
 
     </div>
-
-    </form>
 </div>
 
 <style type="text/css"> 

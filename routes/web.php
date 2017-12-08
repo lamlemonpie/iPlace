@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix'=>'usuarios'], function(){
+/*Route::group(['prefix'=>'usuarios'], function(){
   Route::get('/register', function () {
     return view('auth.register');
   });
@@ -37,7 +37,7 @@ Route::group(['prefix'=>'usuarios'], function(){
   });
 
 
-});
+});*/
 
 
 /*Route::group(['prefix'=>'organizadores'], function(){
@@ -58,11 +58,9 @@ Route::group(['prefix'=>'usuarios'], function(){
 
 });*/
 
-
+Route::resource('eventos', 'EventoController');
 Route::group(['prefix'=>'eventos'], function(){
-
-
-
+  //
 });
 Route::resource('eventos','EventoController');
 
@@ -112,5 +110,3 @@ Route::get('mapita',function(){
   return view('mapas.prueba');
 });
 
-
-Route::get('/pruebita','EventoController@prueba');

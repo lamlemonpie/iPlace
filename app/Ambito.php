@@ -12,7 +12,7 @@ class Ambito extends Model
     }
     
     public function eventos_ambito(){
-      return $this->hasMany('iPlace\Evento', 'id_evento', 'id');
+      return $this->hasMany('iPlace\Evento_ambito', 'id_ambito', 'id');
     }
     
 }

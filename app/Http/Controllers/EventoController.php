@@ -5,8 +5,14 @@ namespace iPlace\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use iPlace\Evento;
-use iPlace\User;
+use iPlace\Organizador;
+use iPlace\Organizador_evento;
 use iPlace\Empresa;
+use iPlace\Empresa_organizador;
+use iPlace\Ambito;
+use iPlace\Evento_ambito;
+use iPlace\Ubicacion;
+use DateTime;
 
 class EventoController extends Controller
 {
@@ -27,8 +33,14 @@ class EventoController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-        return view('eventos.crear',['user'=>$user]);
+        $organizador = Auth::user()->organizador;
+        $empresas = Empresa::whereHas('empresas_organizador', function($q) use ($organizador)
+        {
+            $q->where('id_organizador', $organizador->id);
+
+        })->get();
+        $categorias = Ambito::all();
+        return view('eventos.create',['empresas'=>$empresas, 'categorias'=>$categorias]);
     }
 
     /**
@@ -39,7 +51,57 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*request()->validate([
+          'nombre' => 'required|string|min:4|max:50',
+          'descripcion' => 'required|string|min:4'
+        ]);*/
+        $ubicacion = Ubicacion::where([
+            ['latitud', $request['latitud']],
+            ['longitud', $request['longitud']]
+            ]) -> first();
+        if (!$ubicacion)
+        {
+            $ubicacion = new Ubicacion();
+            $ubicacion->latitud = $request['latitud'];
+            $ubicacion->longitud = $request['longitud'];
+            $ubicacion->save();
+        }
+
+        $evento = new Evento();
+        $evento->nombre = $request['eventName'];
+        $evento->id_ubicacion = $ubicacion->id;
+        $evento->ciudad = $request['ciudad'];
+        $evento->direccion = $request['direccion'];
+        $evento->referencia = $request['referencia'];
+        $evento->link_youtube = $request['link_video'];
+        $evento->descripcion = $request['descripcion'];
+        $evento->info_adicional = $request['adicional'];
+        $evento->precio = $request['precio'];
+        $evento->fecha_inicio = $request['fecha_inicio'];
+        $evento->fecha_fin = $request['fecha_fin'];
+        $evento->fecha_creacion = new DateTime();
+        $evento->save();
+
+        $organizador = Auth::user()->organizador;
+
+        $empresa = Empresa::find($request['id_empresa']);
+
+        $organizador_evento = new Organizador_evento();
+        $organizador_evento->organizador()->associate($organizador);
+        $organizador_evento->evento()->associate($evento);
+        $organizador_evento->empresa()->associate($empresa);
+        $organizador_evento->fecha_ingreso = new DateTime();
+        $organizador_evento->save();
+
+        $ambito = Ambito::find($request['id_categoria']);
+
+        $evento_ambito = new Evento_ambito();
+        $evento_ambito->evento()->associate($evento);
+        $evento_ambito->ambito()->associate($ambito);
+        $evento_ambito->fecha_agrego = new DateTime();
+        $evento_ambito->save();
+
+        return redirect('/eventos/'.$evento->id);
     }
 
     /**
@@ -48,9 +110,15 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Evento $evento)
     {
-        //
+        $categorias = Ambito::whereHas('eventos_ambito', function($q) use ($evento)
+        {
+            $q->where('id_evento', $evento->id);
+
+        })->get();
+        $ubicacion = Ubicacion::find($evento->id_ubicacion);
+        return view('eventos.ver',['evento'=>$evento, 'categorias'=>$categorias, 'ubicacion'=>$ubicacion]);
     }
 
     /**
@@ -85,13 +153,5 @@ class EventoController extends Controller
     public function destroy($id)
     {
         //
-    }
-    //
-    
-    public function prueba(Request $r){
-      
-      echo $r['latitud'];
-      echo $r['longitud'];
-      dd($r);
     }
 }
