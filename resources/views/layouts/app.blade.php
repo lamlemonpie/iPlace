@@ -334,22 +334,49 @@
     #social-em:hover {
      color: #f39c12;
     }
+    
+    
+    
+    
     #map {
       height: 500px;
-      width: 100%;
+      width: 120%;
      }
    #floating-panel {
       position: absolute;
       top: 35px;
       left: 25%;
-      z-index: 5;
+    }
+    .controls {
       background-color: #fff;
-      padding: 5px;
-      border: 1px solid #999;
-      text-align: center;
-      font-family: 'Roboto','sans-serif';
-      line-height: 30px;
-      padding-left: 10px;
+      border-radius: 2px;
+      border: 1px solid transparent;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      box-sizing: border-box;
+      font-family: Roboto;
+      font-size: 15px;
+      font-weight: 300;
+      height: 29px;
+      margin-left: 17px;
+      margin-top: 10px;
+      outline: none;
+      padding: 0 11px 0 13px;
+      text-overflow: ellipsis;
+      width: 400px;
+    }
+
+    .controls:focus {
+      border-color: #4d90fe;
+    }
+    
+    
+    #infowindow-content {
+      
+      color: black;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: Roboto;
+      padding: 5px 0;
     }
 
 

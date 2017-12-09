@@ -63,11 +63,18 @@
                 <div class="col-xs-5 col-md-5">
                   <input type="hidden" id="long" name="longitud" value=""/>
                   <input type="hidden" id="lat" name="latitud" value=""/>
+                  <input type="hidden" id="id" name="id" value=""/>
                   
                   <div id="floating-panel">
-                    <input id="address" type="textbox" value="Sydney, NSW">
-                    <input id="submit" type="button" value="Geocode">
+                    <input id="address" type="text"  class="controls" placeholder="Enter a location">
                     
+                  </div>
+                  
+                  
+                  <div id="infowindow-content">
+                    <span id="place-name"  class="title"></span><br>
+                    Place ID <span id="place-id"></span><br>
+                    <span id="place-address"></span>
                   </div>
 
                   <div id="map"></div>
@@ -81,26 +88,68 @@
                       function initMap() {
                         var map = new google.maps.Map(document.getElementById('map'), {
                           center: {lat: -34.397, lng: 150.644},
-                          zoom: 14
+                          zoom: 14,
+                          disableDoubleClickZoom: true
                           
                         });
                         
                         var longitud = document.getElementById("long");
                         var latitud = document.getElementById("lat");
+                        var id = document.getElementById("id");
                         latitud.value = -34.397;
                         longitud.value = 150.644;
+                        id.value = "undefined";
+                        var input = document.getElementById('address');
                         
-                        var geocoder = new google.maps.Geocoder();
+                        
+                        var autocomplete = new google.maps.places.Autocomplete(input);
+                        autocomplete.bindTo('bounds', map);
+                        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-                        document.getElementById('submit').addEventListener('click', function() {
-                          geocodeAddress(geocoder, map);
-                        });
+
                         
-                        var infoWindow = new google.maps.InfoWindow({map: map});
+                        
+                        
+                        var infowindow = new google.maps.InfoWindow();
                         var marker = new google.maps.Marker({
                           position: map.getCenter(),
-                          map: map
+                          map: map,
+                          draggable: true
                         });
+                        
+                        
+                        
+                        
+                        
+                        
+                        autocomplete.addListener('place_changed', function() {
+                          infowindow.close();
+                          var place = autocomplete.getPlace();
+                          if (!place.geometry) {
+                            return;
+                          }
+
+                          if (place.geometry.viewport) {
+                            map.fitBounds(place.geometry.viewport);
+                          } else {
+                            map.setCenter(place.geometry.location);
+                            map.setZoom(17);
+                          }
+
+                          
+                          marker.setPosition(place.geometry.location);
+                          
+                          
+
+                          document.getElementById('place-name').textContent = place.name;
+                          document.getElementById('place-id').textContent = place.place_id;
+                          //console.log(place.name);
+                          document.getElementById('place-address').textContent =
+                              place.formatted_address;
+                          infowindow.setContent(document.getElementById('infowindow-content'));
+                          infowindow.open(map, marker);
+                        });
+                        
                         // Try HTML5 geolocation.
                         if (navigator.geolocation) {
                           navigator.geolocation.getCurrentPosition(function(position) {
@@ -110,8 +159,8 @@
                             };
                             latitud.value = position.coords.latitude;
                             longitud.value = position.coords.longitude;
-                            infoWindow.setPosition(pos);
-                            infoWindow.setContent('Location found.');
+                            //infoWindow.setPosition(pos);
+                            //infoWindow.setContent('Location found.');
                             map.setCenter(pos);
                             marker.setPosition(pos);
                           }, function() {
@@ -122,15 +171,21 @@
                           handleLocationError(false, infoWindow, map.getCenter());
                         }
                         
-                        google.maps.event.addListener(map, 'dblclick', function(e) {
+                        google.maps.event.addListener(map, 'click', function(e) {
+                          
                           var positionDoubleclick = e.latLng;
                           marker.setPosition(positionDoubleclick);
                           var longitud = document.getElementById("long");
                           var latitud = document.getElementById("lat");
                           latitud.value = e.latLng.lat();
                           longitud.value = e.latLng.lng();
+                          id.value = e.placeId;
+                          
                           // if you don't do this, the map will zoom in
-                          e.stopPropagation();
+                          //e.stopPropagation();
+                          
+                          
+                          
                         });
                         
                       }
@@ -146,22 +201,12 @@
                       }
                       
                       
-                      function geocodeAddress(geocoder, resultsMap) {
-                       var address = document.getElementById('address').value;
-                       geocoder.geocode({'address': address}, function(results, status) {
-                         if (status === 'OK') {
-                           resultsMap.setCenter(results[0].geometry.location);
-                           //markers[0].setPosition(results[0].geometry.location);
-                         } else {
-                           alert('Geocode was not successful for the following reason: ' + status);
-                         }
-                       });
-                     }
+                      
                     </script>
                     
                     
                     <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEUDWClhcBHlakaF_9bQIzvEP5XwI-OcE&callback=initMap">
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEUDWClhcBHlakaF_9bQIzvEP5XwI-OcE&libraries=places&callback=initMap">
                     </script>
 
 

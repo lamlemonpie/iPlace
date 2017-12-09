@@ -49,7 +49,90 @@
                             <p class="card-text"><i class="glyphicon glyphicon-map-marker"></i> {{$evento->direccion}}</p>
                             <p class="card-text"><i> {{$evento->referencia}}</i></p>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3827.5871874198974!2d-71.52405075505996!3d-16.394978299924194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91424bacd71a2591%3A0x568581cab2a28f07!2sPiscina+Municipal+Miraflores!5e0!3m2!1ses-419!2spe!4v1511473482381"></iframe>
+                                <div id="map"></div>
+                                
+                                <div id="infowindow-content">
+                                  <span id="place-name"  class="title"></span><br>
+                                  <span id="place-id"></span><br>
+                                  <span id="place-address"></span>
+                                </div>  
+                                
+                                
+                                
+                                
+                                      <script>
+                                        var datos = {!! json_encode($ubicacion->toArray()) !!}
+                                        var latitud = datos["latitud"];
+                                        var longitud = datos["longitud"];
+                                        var id = datos["id_maps"];
+                                        
+                                        var LatLng = {lat: latitud, lng: longitud}; 
+                                        
+                                        var map;
+                                        function initMap() {
+                                          map = new google.maps.Map(document.getElementById('map'), {
+                                            center: LatLng,
+                                            zoom: 14
+                                          });
+                                          var secretMessages = "secret message";
+                                          var infowindow = new google.maps.InfoWindow();
+                                          
+                                          var marker = new google.maps.Marker({
+                                            position: LatLng,
+                                            map: map
+                                            
+                                          });
+                                          
+                                          
+                                          marker.addListener('click', function() {
+                                            infowindow.open(map, marker);
+                                          });
+                                          
+                                          var request = {
+                                            placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4'
+                                          };
+                                          
+                                          service = new google.maps.places.PlacesService(map);
+                                          service.getDetails(request, callback);
+
+                                          function callback(place, status) {
+                                            infowindow.close();
+                                            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                              document.getElementById('place-name').textContent = place.name;
+                                              document.getElementById('place-id').textContent = place.place_id;
+                                              document.getElementById('place-address').textContent =
+                                                  place.formatted_address;
+                                              infowindow.setContent(document.getElementById('infowindow-content'));
+                                              infowindow.open(map, marker);
+                                              
+                                            }
+                                          }
+                                          
+                                          
+                                          
+                                          
+                                          
+                                          
+                                        }
+                                      </script>
+                                      <script async defer
+                                      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEUDWClhcBHlakaF_9bQIzvEP5XwI-OcE&libraries=places&callback=initMap">
+                                      </script>
+                                                          
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                         </div><!-- card content -->
                     </div>
                     @if ($evento->link_youtube)

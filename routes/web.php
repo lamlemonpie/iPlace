@@ -95,7 +95,7 @@ Route::group(['prefix'=>'solicituds'], function(){
 Route::resource('solicituds','SolicitudController');
 
 
-
+  
 Route::resource('ambitos','AmbitoController');
 
 
