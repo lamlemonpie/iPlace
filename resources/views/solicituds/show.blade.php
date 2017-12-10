@@ -7,21 +7,16 @@
   <br><br> <br>
 
   	<div class="row">
-	    <div class="col-xs-2 col-sm-2 col-md-2"></div>
-	    <div class="col-xs-8 col-sm-8 col-md-8 well well-sm">
+	    <div class="col-xs-3 col-sm-3 col-md-3"></div>
+	    <div class="col-xs-6 col-sm-6 col-md-6 well well-sm">
 	        <form class="form-horizontal" role="form" method="POST" action="{{asset('solicituds/'.$solicitud->id.'/accept')}}">
 	                {{ csrf_field() }}
 
 	        <legend class="text-center"><b>Ver Solicitud</b></legend>
 
-	        	<div class="col-sm-6 col-md-4">
-	        		<div class="img">
-		            	<img src="{{asset('images/foto.png')}}" />
-	        		</div>
-		        </div>
             <div class="tabla">
 
-              <div class="col-sm-6 col-md-8">
+              <div class="col-sm-12 col-md-12">
                 <table class="table table-responsive">
                     <tr>
                       <td><i class="glyphicon glyphicon-folder-open"></i><b> Nombre Empresa:</b></td>

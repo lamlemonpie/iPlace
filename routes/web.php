@@ -58,6 +58,14 @@ Route::get('/', function () {
 
 });*/
 
+Route::get('pago/persona', function () {
+    return view('pago.persona');
+});
+
+Route::get('pago/evento', function () {
+    return view('pago.eventos');
+});
+
 Route::resource('eventos', 'EventoController');
 Route::group(['prefix'=>'eventos'], function(){
   //
@@ -70,6 +78,7 @@ Route::group(['prefix'=>'organizadors'], function(){
 
 
 });
+
 
 
 Route::group(['prefix'=>'empresas'], function(){

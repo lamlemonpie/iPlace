@@ -21,16 +21,35 @@
                             <br>
                         </div><!-- card content -->
                     </div>
+
+
+                    <div class="card">
+
+                       <div class="card-content">
+                       <!--<a href="{{asset('#')}}" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistentes</a>-->
+                        <span class="card-title">Asistentes</span>
+                          <table class="table table-responsive">
+                            <tr>
+                              <td>
+                                <li> {$usuario->nombres } {usuario->apellidos } </li> 
+                                <li> {$usuario->nombres } {usuario->apellidos } </li> 
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-xs-5 col-md-5">
                     <div class="card">
                         <div class="container"></div>
                         <div class="card-content">
+                          <!--
                             <a href="https://www.facebook.com/bootsnipp"><i id="social-fb1" class="fa fa-facebook-square fa-3x social"></i></a>
                             <a href="https://twitter.com/bootsnipp"><i id="social-tw1" class="fa fa-twitter-square fa-3x social"></i></a>
                             <a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp1" class="fa fa-google-plus-square fa-3x social"></i></a>
                             <a href="mailto:bootsnipp@gmail.com"><i id="social-em1" class="fa fa-envelope-square fa-3x social"></i></a>
-                            <font size="5">&ensp; Redes Sociales</font>
+                          -->
+                            <a href="{{asset('eventos')}}" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistir a este evento</a>
                         </div>
                     </div>
                     <div class="card">
@@ -149,7 +168,8 @@
             </div>
         </div>
 
-    </div>
+      </div>
+  </div>
 </div>
 
 <style type="text/css"> 

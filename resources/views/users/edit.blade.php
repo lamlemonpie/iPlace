@@ -7,15 +7,15 @@
   <br><br> <br>
 
   	<div class="row">
-	    <div class="col-xs-2 col-sm-2 col-md-2"></div>
-	    <div class="col-xs-8 col-sm-8 col-md-8 well well-sm">
+	    <div class="col-xs-3 col-sm-3 col-md-3"></div>
+	    <div class="col-xs-6 col-sm-6 col-md-6 well well-sm">
 	        <form class="form-horizontal" role="form" method="POST" action="{{asset('users/'.$user->id)}}">
 	        <input name="_method" type="hidden" value="PATCH">
 	                {{ csrf_field() }}
 
 	        <legend><b>Editar Usuario</b></legend>
 	        	<div class="col-sm-6 col-md-4">
-	        	<br>
+	        	<br><br><br>
 		            <img src="https://cdn3.iconfinder.com/data/icons/users-6/100/654853-user-men-2-512.png" alt="" class="img-rounded img-responsive" />
 		        </div>
 		        <div class="col-sm-6 col-md-8">

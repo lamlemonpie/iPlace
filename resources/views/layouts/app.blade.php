@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -30,15 +30,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/css/multi-select.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/multi-select/0.9.12/js/jquery.multi-select.min.js"></script>
 
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
 
 
     <!--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css"></link>
     -->
-
 
 
 
@@ -119,7 +118,6 @@
                                     <li><a href="{{ ('/users') }}"><i class="glyphicon glyphicon-check"></i> Ver Usuarios </a></li>
                                 </ul>
                             </li>
-
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="fa fa-user-circle-o"></i> Empresas <span class="caret"></span>
@@ -129,6 +127,7 @@
                                     <li><a href="{{ ('/empresas') }}"><i class="glyphicon glyphicon-list"></i> Ver mis empresas </a></li>
                                 </ul>
                             </li>
+
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -169,10 +168,23 @@
         </nav>
 
         @auth
+<!--
+        <div id="wrapper">
+            <div id="sidebar-wrapper">
+                <u1 class="sidebar-nav">
+                    <li><a href="#">Account</li>
+                    <li><a href="#">Account</li>
+                    <li><a href="#">Account</li>
+                </u1>
+            </div>
+        </div>
+-->
+        <!-- Sidebar -->
+        
         <nav class="navbar navbar-inverse navbar-static-top second-navbar">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <!-- Collapsed Hamburger -->
+                    
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse2">
                         <span class="sr-only">iPlace</span>
                         <span class="icon-bar"></span>
@@ -189,9 +201,10 @@
                         <li><a href="{{ ('#') }}"> Ingeniería </a></li>
                     </ul>
                 </div>
-                @endauth
             </div>
         </nav>
+    
+        @endauth
 
         @yield('content')
 
@@ -257,7 +270,7 @@
         background-color: #000000;
         color : #FFF;
         padding: 1% 0;
-        font-size: 1.3em;
+        font-size: 1.0em;
         border: 0;
     }
     .navbar .nav > li > a {
