@@ -87,8 +87,25 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            @if(!Auth::user()->organizador)
                             <li><a href="{{ asset('organizadors/create') }}">Convertirme en organizador</a></li>
+                            @endif
 
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <i class="fa fa-user-circle-o"></i> Eventos <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ ('/eventos/create') }}"><i class="glyphicon glyphicon-check"></i> Crear evento </a></li>
+                                    @if(Auth::user()->organizador)
+                                      <li><a href="{{ ('/eventos/misEventos') }}"><i class="glyphicon glyphicon-list"></i> Ver mis eventos creados</a></li>
+                                    @endif
+                                    <li><a href=""><i class="glyphicon glyphicon-list"></i> Ver mis eventos </a></li>
+                                </ul>
+                            </li>
+
+                            @if(Auth::user()->organizador)
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="fa fa-user-circle-o"></i> Solicitudes <span class="caret"></span>
@@ -99,17 +116,6 @@
                                     <li><a href="{{ ('/solicituds/enviado') }}"><i class="glyphicon glyphicon-list"></i> Ver mis solicitudes Enviadas </a></li>
                                 </ul>
                             </li>
-
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <i class="fa fa-user-circle-o"></i> Eventos <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ ('/eventos/create') }}"><i class="glyphicon glyphicon-check"></i> Crear evento </a></li>
-                                    <li><a href="{{ ('#') }}"><i class="glyphicon glyphicon-list"></i> Ver mis eventos </a></li>
-                                </ul>
-                            </li>
-
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="fa fa-user-circle-o"></i> Usuarios <span class="caret"></span>
@@ -138,7 +144,7 @@
                                     <li><a href="{{ ('/ambitos') }}"><i class="glyphicon glyphicon-list"></i> Ver categorías </a></li>
                                 </ul>
                             </li>
-
+                            @endif
 
                             <li class="active" class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -180,11 +186,11 @@
         </div>
 -->
         <!-- Sidebar -->
-        
+
         <nav class="navbar navbar-inverse navbar-static-top second-navbar">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    
+
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse2">
                         <span class="sr-only">iPlace</span>
                         <span class="icon-bar"></span>
@@ -195,15 +201,14 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse2">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="{{ ('#') }}"> Tecnología </a></li>
-                        <li><a href="{{ ('#') }}"> Biología </a></li>
-                        <li><a href="{{ ('#') }}"> Medicina </a></li>
-                        <li><a href="{{ ('#') }}"> Ingeniería </a></li>
+                        @foreach(iPlace\Ambito::all() as $categoria)
+                            <li><a href="{{asset('BusquedaCategoria/buscar/'.$categoria->id)}}"> {{$categoria->nombre}} </a></li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
         </nav>
-    
+
         @endauth
 
         @yield('content')
@@ -347,10 +352,10 @@
     #social-em:hover {
      color: #f39c12;
     }
-    
-    
-    
-    
+
+
+
+
     #map {
       height: 500px;
       width: 120%;
@@ -381,10 +386,10 @@
     .controls:focus {
       border-color: #4d90fe;
     }
-    
-    
+
+
     #infowindow-content {
-      
+
       color: black;
       font-size: 11px;
       font-weight: 700;

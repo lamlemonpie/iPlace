@@ -8,120 +8,52 @@
 
   	<div class="row">
 	    <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
-	        <form class="form-horizontal" role="form" method="POST" action="">
-	        <input name="_method" type="hidden" value="PATCH">
-	                {{ csrf_field() }}
 
-	        	<legend class="text-center"><b>Eventos</b></legend>
+
+	        	<legend class="text-center"><b>{{$categoria->nombre}}</b></legend>
 
 	        	<div class="container">
+
+
+              @foreach($eventos as $evento)
 	        		<div class="col-sm-4 col-md-4">
 		        		<div class="card">
 			                <div class="card-image">
 			                    <a href="{{asset('/eventos/ver')}}" title=""><img src="http://lorempixel.com/555/300/sports" class="img-responsive"></a>
 			                </div><!-- card image -->
 			                <div class="card-content">
-			                    <span class="card-title">Material Cards</span>
+			                    <span class="card-title">{{$evento->nombre}}</span>
 			                    <br><br>
-							    <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Some example text.</p>
-							    <p class="card-text"><i class="glyphicon glyphicon-tags"></i>  Some example text.</p>
+							    <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> {{$evento->fecha_inicio}}</p>
+
+                  @foreach($evento->eventos_ambito as $eventos_ambito)
+                  <p class="card-text"><i class="glyphicon glyphicon-tags"></i>  {{$eventos_ambito->ambito -> nombre}} </p>
+                  @endforeach
+
+                  @if( $evento->precio == 0)
+                    <p class="card-text"><i class="glyphicon glyphicon-usd"></i> Gratuito </p>
+                  @else
+                    <p class="card-text"><i class="glyphicon glyphicon-usd"></i> {{$evento->precio}} </p>
+                  @endif
 							    <br>
-							    <a href="#" class="btn btn-primary">See Profile</a>
+							    <a href="{{asset('eventos')}}{{'/'.$evento->id}}" class="btn btn-primary">Ver Evento</a>
 			                </div><!-- card content -->
 			            </div>
 			        </div>
 
-			       	<div class="col-sm-4 col-md-4">
-		        		<div class="card">
-			                <div class="card-image">
-			                    <a href="{{asset('#')}}" title=""><img src="http://lorempixel.com/555/300/sports" class="img-responsive"></a>
-			                </div><!-- card image -->
-			                <div class="card-content">
-			                    <span class="card-title">Material Cards</span>
-			                    <br><br>
-							    <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Some example text.</p>
-							    <p class="card-text"><i class="glyphicon glyphicon-tags"></i>  Some example text.</p>
-							    <br>
-							    <a href="#" class="btn btn-primary">See Profile</a>
-			                </div><!-- card content -->
-			            </div>
-			        </div>
+			       	@endforeach
 
-					<div class="col-sm-4 col-md-4">
-		        		<div class="card">
-			                <div class="card-image">
-			                    <a href="{{asset('#')}}" title=""><img src="http://lorempixel.com/555/300/sports" class="img-responsive"></a>
-			                </div><!-- card image -->
-			                <div class="card-content">
-			                    <span class="card-title">Material Cards</span>
-			                    <br><br>
-							    <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Some example text.</p>
-							    <p class="card-text"><i class="glyphicon glyphicon-tags"></i>  Some example text.</p>
-							    <br>
-							    <a href="#" class="btn btn-primary">See Profile</a>
-			                </div><!-- card content -->
-			            </div>
-			        </div>
 			     </div>
 
 			     <br>
 
-			     <div class="container">
-	        		<div class="col-sm-4 col-md-4">
-		        		<div class="card">
-			                <div class="card-image">
-			                    <a href="{{asset('#')}}" title=""><img src="http://lorempixel.com/555/300/sports" class="img-responsive"></a>
-			                </div><!-- card image -->
-			                <div class="card-content">
-			                    <span class="card-title">Material Cards</span>
-			                    <br><br>
-							    <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Some example text.</p>
-							    <p class="card-text"><i class="glyphicon glyphicon-tags"></i>  Some example text.</p>
-							    <br>
-							    <a href="#" class="btn btn-primary">See Profile</a>
-			                </div><!-- card content -->
-			            </div>
-			        </div>
 
-			       	<div class="col-sm-4 col-md-4">
-		        		<div class="card">
-			                <div class="card-image">
-			                    <a href="{{asset('#')}}" title=""><img src="http://lorempixel.com/555/300/sports" class="img-responsive"></a>
-			                </div><!-- card image -->
-			                <div class="card-content">
-			                    <span class="card-title">Material Cards</span>
-			                    <br><br>
-							    <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Some example text.</p>
-							    <p class="card-text"><i class="glyphicon glyphicon-tags"></i>  Some example text.</p>
-							    <br>
-							    <a href="#" class="btn btn-primary">See Profile</a>
-			                </div><!-- card content -->
-			            </div>
-			        </div>
-
-					<div class="col-sm-4 col-md-4">
-		        		<div class="card">
-			                <div class="card-image">
-			                    <a href="{{asset('#')}}" title=""><img src="http://lorempixel.com/555/300/sports" class="img-responsive"></a>
-			                </div><!-- card image -->
-			                <div class="card-content">
-			                    <span class="card-title">Material Cards</span>
-			                    <br><br>
-							    <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Some example text.</p>
-							    <p class="card-text"><i class="glyphicon glyphicon-tags"></i>  Some example text.</p>
-							    <br>
-							    <a href="#" class="btn btn-primary">See Profile</a>
-			                </div><!-- card content -->
-			            </div>
-			        </div>
-			     </div>
-			</form>
 		</div>
 	</div>
     <br>
 </div>
 
-<style type="text/css">	
+<style type="text/css">
 
 .card{
 	background-color: #FFF;
@@ -133,12 +65,12 @@
 }
 
 .card .card-content {
-    padding: 20px;    
+    padding: 20px;
 }
 
 .card .card-content .card-title, .card-reveal .card-title{
     font-size: 24px;
-    font-weight: 200;    
+    font-weight: 200;
 }
 
 .card .card-action{

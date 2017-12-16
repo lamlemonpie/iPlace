@@ -66,9 +66,11 @@ Route::get('pago/evento', function () {
     return view('pago.eventos');
 });
 
-Route::resource('eventos', 'EventoController');
+
 Route::group(['prefix'=>'eventos'], function(){
-  //
+
+  Route::get('/misEventos','EventoController@misEventos');
+
 });
 Route::resource('eventos','EventoController');
 
@@ -103,8 +105,13 @@ Route::group(['prefix'=>'solicituds'], function(){
 });
 Route::resource('solicituds','SolicitudController');
 
+Route::group(['prefix'=>'BusquedaCategoria'], function(){
 
-  
+  Route::get('/buscar/{ambito}','BusquedaCategoriaController@buscar');
+
+});
+
+
 Route::resource('ambitos','AmbitoController');
 
 
@@ -118,4 +125,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('mapita',function(){
   return view('mapas.prueba');
 });
-

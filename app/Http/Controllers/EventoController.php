@@ -24,6 +24,12 @@ class EventoController extends Controller
     public function index()
     {
         //
+        $eventos = Evento::with('eventos_ambito.ambito')->get();
+
+        $categoria = new \stdClass();
+        $categoria -> nombre = "Todos los Eventos";
+
+        return view('eventos.mostrar',['eventos'=>$eventos,'categoria'=>$categoria]);
     }
 
     /**
@@ -76,7 +82,14 @@ class EventoController extends Controller
         $evento->link_youtube = $request['link_video'];
         $evento->descripcion = $request['descripcion'];
         $evento->info_adicional = $request['adicional'];
-        $evento->precio = $request['precio'];
+        if($request['precio']== NULL)
+        {
+          $evento->precio = 0;
+        }
+        else {
+          $evento->precio = $request['precio'];
+        }
+
         $evento->fecha_inicio = $request['fecha_inicio'];
         $evento->fecha_fin = $request['fecha_fin'];
         $evento->fecha_creacion = new DateTime();
@@ -154,4 +167,21 @@ class EventoController extends Controller
     {
         //
     }
+
+    public function misEventos()
+    {
+      $organizador = Auth::user()->organizador;
+
+      $eventos = Evento::with('eventos_ambito.ambito')->whereHas('organizadores_evento', function($q) use ($organizador)
+      {
+          $q->where('id_organizador', $organizador->id);
+
+      })->get();
+
+      $categoria = new \stdClass();
+      $categoria -> nombre = "Mis Eventos";
+
+      return view('eventos.mostrar',['eventos'=>$eventos,'categoria'=>$categoria]);
+    }
+
 }
