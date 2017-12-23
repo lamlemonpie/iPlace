@@ -5,6 +5,9 @@
 <br><br><br>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            <div class="text-center">
+                <h1> Login </h1><br>
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
 

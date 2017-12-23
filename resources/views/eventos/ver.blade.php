@@ -7,10 +7,6 @@
     <div class="container">
         <div class="row">
 
-          @if($es_organizador)
-            <a href="{{asset('eventos/'.$evento->id.'/edit')}}" id="id_evento_cancelar" name="evento_cancelar" class=" btn-warning btn-md btn-lg">Editar</a>
-          @endif
-
             <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
                 <div class="col-xs-7 col-md-7">
                     <div class="card">
@@ -26,13 +22,6 @@
                             <br>
                         </div><!-- card content -->
                     </div>
-
-
-
-
-
-
-
 
 
                     <div class="card">
@@ -54,41 +43,56 @@
                     </div>
                 </div>
                 <div class="col-xs-5 col-md-5">
-                    <div class="card">
-                        <div class="container"></div>
-                        <div class="card-content">
                           <!--
                             <a href="https://www.facebook.com/bootsnipp"><i id="social-fb1" class="fa fa-facebook-square fa-3x social"></i></a>
                             <a href="https://twitter.com/bootsnipp"><i id="social-tw1" class="fa fa-twitter-square fa-3x social"></i></a>
                             <a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp1" class="fa fa-google-plus-square fa-3x social"></i></a>
                             <a href="mailto:bootsnipp@gmail.com"><i id="social-em1" class="fa fa-envelope-square fa-3x social"></i></a>
                           -->
-
-                            @if(is_null($es_organizador))
-
-                                @if($usuario_evento)
-                                  Usted ya es asistente
-                                  <a href="{{asset('eventos/'.$evento->id.'/cancelar')}}" id="id_evento_cancelar" name="evento_cancelar" class=" btn-warning btn-md btn-lg">Cancelar</a>
-                                @else
-                                  <a href="{{asset('eventos/'.$evento->id.'/asistir')}}" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistir a este evento</a>
-                                @endif
-                            @endif
-                                <br> <br>
-                            @if( $evento->precio == 0)
-                              <a  id="id_evento_precio" name="evento_precio" class=" btn-warning btn-md btn-lg">Gratuito</a>
-                            @else
-                              <a  id="id_evento_precio" name="evento_precio" class=" btn-warning btn-md btn-lg">S/. {{$evento->precio}}</a>
-                            @endif
-
+                    @if($es_organizador)
+                      <div class="card">
+                        <div class="card-content">
+                          <span class="card-title">¿Editar evento?</span><br><br>
+                            <a href="{{asset('eventos/'.$evento->id.'/edit')}}" id="id_evento_cancelar" name="evento_cancelar" class=" btn-warning btn-lg">Editar este evento</a>
                         </div>
-                    </div>
+                      </div>
+                    @endif                    
+                  
+                    @if(is_null($es_organizador))
                     <div class="card">
                         <div class="card-content">
+                          <span class="card-title">¿Asistir a evento?</span><br><br>
+                                @if($usuario_evento)
+                                  Usted ya es asistente
+                                  <a href="{{asset('eventos/'.$evento->id.'/cancelar')}}" id="id_evento_cancelar" name="evento_cancelar" class=" btn-warning btn-lg">Cancelar</a>
+                                @else
+                                  <a href="{{asset('eventos/'.$evento->id.'/asistir')}}" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-lg">Asistir a este evento</a>
+                                @endif
+                        </div>
+                    </div>
+                    @endif
+
+                    <div class="card">
+                      <div class="card-content">
+                          <span class="card-title">Precio</span>
+                            @if( $evento->precio == 0)
+                              <!--<a  name="evento_precio" id="id_evento_precio" class="btn-primary btn-lg disabled" role="button" aria-disabled="true">Gratuito</a>-->
+                              <h1><span class="label label-info">Gratuito</span></h1>
+                            @else
+                              <!--<a  name="evento_precio" id="id_evento_precio" class="btn-info btn-lg disabled" aria-disabled="true">S/. {{$evento->precio}}</a>-->
+                              <h1><span class="label label-info">S/. {{$evento->precio}}</span></h1>
+                            @endif
+                      </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-content">
+                          <span class="card-title">Información</span> <br><br>
                             <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Fecha de Inicio: <?php $fechaInicio = new DateTime($evento->fecha_inicio); echo $fechaInicio->format('d/m/Y'); ?></p>
                             <p class="card-text"><i class="glyphicon glyphicon-time"></i> Hora de Inicio: <?php $horaInicio = new DateTime($evento->fecha_inicio); echo $horaInicio->format('H:i'); ?></p><br>
                             <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Fecha de Finalización: <?php $fechaFin = new DateTime($evento->fecha_fin); echo $fechaFin->format('d/m/Y'); ?></p>
                             <p class="card-text"><i class="glyphicon glyphicon-time"></i> Hora de Finalización: <?php $horaFin = new DateTime($evento->fecha_fin); echo $horaFin->format('H:i'); ?></p><br>
-                            <p class="card-text"><i class="glyphicon glyphicon-tags"></i> Categoría: @foreach ($categorias as $categoria) {{$categoria->nombre}}  @endforeach</p>
+                            <p class="card-text"><i class="glyphicon glyphicon-book"></i> Categoría: @foreach ($categorias as $categoria) {{$categoria->nombre}}  @endforeach</p>
                         </div><!-- card content -->
                     </div>
                     <div class="card">
@@ -162,8 +166,10 @@
 
 
 
-                        </div><!-- card content -->
+                            </div><!-- card content -->
+                        </div>
                     </div>
+
                     @if ($evento->link_youtube)
                     <div class="card">
                         <div class="card-content">

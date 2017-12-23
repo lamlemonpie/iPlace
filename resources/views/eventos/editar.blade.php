@@ -8,40 +8,46 @@
     <form class="form-horizontal" role="form" method="POST" action="{{asset('eventos/'.$evento->id)}}">
                     {{ csrf_field() }}
 
+    <div class="row">
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
                 <legend><b>Detalles del Evento</b></legend>
                 <div class="col-xs-1 col-md-1"></div>
                 <div class="col-xs-5 col-md-5">
-                    <label for="">Nombre del evento</label>
-                        <input class="form-control" name="eventName" placeholder="Nombre del evento" type="text"  required/><br>
-                    <label for="">Elije una categoria</label>
+                    <label for="">Nombre del evento <FONT COLOR="red">*</FONT> </label>
+                        <input class="form-control" name="eventName" value="{{$evento->nombre}}" type="text"  required/><br>
+                    <label for="">Elije una categoria <FONT COLOR="red">*</FONT> </label>
                         <select class="form-control" name="id_categoria">
                           @foreach ($categorias as $categoria)
                           <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                           @endforeach
                         </select><br>
-                    <label for="">Descripción del evento</label>
-                        <textarea name="descripcion" id="descripcion" class="form-control" rows="4" cols="14" required="required" placeholder="Escriba aquí la descripción del evento"></textarea><br>
-                    <label>Fecha de inicio</label><br>
+                    <label for="">Descripción del evento <FONT COLOR="red">*</FONT> </label>
+                        <!--<input class="form-control" id="descripcion" name="descripcion" value="{{$evento->descripcion}}" type="text"  required/><br>-->
+                        <textarea class="form-control" id="descripcion" name="descripcion" type="text" rows="4" type="text"  required>{{$evento->descripcion}} </textarea> <br>
+                    <label>Fecha de inicio <FONT COLOR="red">*</FONT> </label><br>
                         <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" onfocusout="setFinMin($('#fecha_inicio').val())" min="<?php echo date('Y-m-d\TH:i') ?>" required>
                     <label>Fecha de finalización</label><br>
                         <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" min = "<?php echo date('Y-m-d\TH:i') ?>" required>
                 </div>
                 <div class="col-xs-5 col-md-5">
                     <label for="">Información adicional</label>
-                        <textarea name="adicional" id="id_adicional" class="form-control" rows="8" cols="14" required="required" placeholder="Escriba aquí la Información adicional del evento"></textarea><br>
+                        <textarea name="adicional" id="id_adicional" class="form-control" rows="8" cols="14" required="required">{{$evento->info_adicional}}</textarea><br>
                     <label for="">Video</label>
-                        <input class="form-control" name="link_video" placeholder="Link de Youtube" type="text" /><br>
-                    <label for="">Empresa organizadora</label>
+                        <input class="form-control" name="link_video" value="{{$evento->link_youtube}}"" type="text" /><br>
+                    <label for="">Empresa organizadora <FONT COLOR="red">*</FONT></label>
                         <select class="form-control" id="id_empresa" name="id_empresa">
                             @foreach ($empresas as $empresa)
-                            <option value="{{$empresa->id}}">{{$empresa->nombre}}</option>
+                              <option value="{{$empresa->id}}">{{$empresa->nombre}}</option>
                             @endforeach
                         </select>
+                    <br>
+                    <FONT COLOR="red">  * Campos obligatorios </FONT>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>
+
             </div>
         </div>
 
@@ -50,8 +56,9 @@
                 <legend><b>Ubicación</b></legend>
                 <div class="col-xs-1 col-md-1"></div>
                 <div class="col-xs-5 col-md-5">
-                    <label for="">Ciudad</label>
+                    <label for="">Ciudad <FONT COLOR="red">*</FONT></label>
                         <select class="form-control" name="ciudad">
+                            <option value="{{$evento->ciudad}}">{{$evento->ciudad}}</option>
                             <option value="Amazonas">Amazonas</option>
                             <option value="Áncash">Áncash</option>
                             <option value="Apurímac">Apurímac</option>
@@ -77,14 +84,13 @@
                             <option value="Tacna">Tacna</option>
                             <option value="Tumbes">Tumbes</option>
                             <option value="Ucayali">Ucayali</option>
-
-
                         </select><br>
-                    <label for="">Dirección</label>
-                        <input class="form-control" name="direccion" placeholder="Dirección donde será el evento" type="text" required /><br>
+                    <label for="">Dirección <FONT COLOR="red">*</FONT> </label>
+                        <input class="form-control" name="direccion" value="{{$evento->direccion}}" type="text" required /><br>
                     <label for="">Referencia</label>
-                        <input class="form-control" name="referencia" placeholder="Ej. A 3 cuadras de la UNSA" type="text" /><br>
+                        <input class="form-control" name="referencia" value="{{$evento->referencia}}" type="text" /><br>
 
+                    <FONT COLOR="red">  * Campos obligatorios </FONT>
                 </div>
                 <div class="col-xs-5 col-md-5">
                   <input type="hidden" id="long" name="longitud" value=""/>
@@ -216,9 +222,6 @@
 
                       }
 
-
-
-
                       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                         infoWindow.setPosition(pos);
                         infoWindow.setContent(browserHasGeolocation ?
@@ -243,7 +246,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
-                <legend><b>Precios</b></legend>
+                <legend><b>Precios </b></legend>
                 <div class="col-xs-1 col-md-1"></div>
                 <div class="col-xs-5 col-md-5">
                     <label for="">Tipo de moneda</label>
@@ -252,8 +255,8 @@
                         </select><br>
                 </div>
                 <div class="col-xs-5 col-md-5">
-                    <label for="">Precio</label>
-                        <input class="form-control" name="precio" placeholder="00.0" type="text" required/><br>
+                    <label for="">Precio  <FONT COLOR="red">*</FONT>  </label>
+                        <input class="form-control" name="precio" value="{{$evento->precio}}" type="text" required/><br>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>
             </div>

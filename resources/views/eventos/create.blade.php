@@ -14,32 +14,33 @@
                 <legend><b>Detalles del Evento</b></legend>
                 <div class="col-xs-1 col-md-1"></div>
                 <div class="col-xs-5 col-md-5">
-                    <label for="">Nombre del evento</label>
+                    <label for="">Nombre del evento <FONT COLOR="red">*</FONT></label>
                         <input class="form-control" name="eventName" placeholder="Nombre del evento" type="text" required/><br>
-                    <label for="">Elije una categoria</label>
+                    <label for="">Elije una categoria <FONT COLOR="red">*</FONT> </label>
                         <select class="form-control" name="id_categoria">
                           @foreach ($categorias as $categoria)
                           <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                           @endforeach
                         </select><br>
-                    <label for="">Descripción del evento</label>
+                    <label for="">Descripción del evento <FONT COLOR="red">*</FONT></label>
                         <textarea name="descripcion" id="descripcion" class="form-control" rows="4" cols="14" required="required" placeholder="Escriba aquí la descripción del evento"></textarea><br>
-                    <label>Fecha de inicio</label><br>
-                        <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" onfocusout="setFinMin($('#fecha_inicio').val())" min="<?php echo date('Y-m-d\TH:i') ?>" required>
+                    <label>Fecha de inicio <FONT COLOR="red">*</FONT></label><br>
+                        <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" onfocusout="setFinMin($('#fecha_inicio').val())" min="<?php echo date('Y-m-d\TH:i') ?>" required><br>
                     <label>Fecha de finalización</label><br>
-                        <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" min = "<?php echo date('Y-m-d\TH:i') ?>" required>
+                        <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" min = "<?php echo date('Y-m-d\TH:i') ?>">
                 </div>
                 <div class="col-xs-5 col-md-5">
                     <label for="">Información adicional</label>
                         <textarea name="adicional" id="id_adicional" class="form-control" rows="8" cols="14" required="required" placeholder="Escriba aquí la Información adicional del evento"></textarea><br>
                     <label for="">Video</label>
                         <input class="form-control" name="link_video" placeholder="Link de Youtube" type="text" /><br>
-                    <label for="">Empresa organizadora</label>
+                    <label for="">Empresa organizadora <FONT COLOR="red">*</FONT></label>
                         <select class="form-control" id="id_empresa" name="id_empresa">
                             @foreach ($empresas as $empresa)
                             <option value="{{$empresa->id}}">{{$empresa->nombre}}</option>
                             @endforeach
-                        </select>
+                        </select><br>
+                    <FONT COLOR="red">* Campos Obligatorios</FONT>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>
             </div>
@@ -50,7 +51,7 @@
                 <legend><b>Ubicación</b></legend>
                 <div class="col-xs-1 col-md-1"></div>
                 <div class="col-xs-5 col-md-5">
-                    <label for="">Ciudad</label>
+                    <label for="">Ciudad <FONT COLOR="red">*</FONT></label>
                         <select class="form-control" name="ciudad">
                             <option value="Amazonas">Amazonas</option>
                             <option value="Áncash">Áncash</option>
@@ -80,10 +81,11 @@
 
 
                         </select><br>
-                    <label for="">Dirección</label>
+                    <label for="">Dirección <FONT COLOR="red">*</FONT></label>
                         <input class="form-control" name="direccion" placeholder="Dirección donde será el evento" type="text" required /><br>
                     <label for="">Referencia</label>
                         <input class="form-control" name="referencia" placeholder="Ej. A 3 cuadras de la UNSA" type="text" /><br>
+                    <FONT COLOR="red">* Campos obligatorios</FONT>
 
                 </div>
                 <div class="col-xs-5 col-md-5">
@@ -252,7 +254,7 @@
                         </select><br>
                 </div>
                 <div class="col-xs-5 col-md-5">
-                    <label for="">Precio</label>
+                    <label for="">Precio <FONT COLOR="red">*</FONT></label>
                         <input class="form-control" name="precio" placeholder="00.0" type="text" required/><br>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>

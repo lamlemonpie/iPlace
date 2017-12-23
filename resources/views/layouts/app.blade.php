@@ -225,22 +225,19 @@
                 </div>
                 <div class="row">
                       <div class="col-md-4">
-                          <br>
+                        <br>
                             <p><a class="footertext" href="{{ ('#') }}">¿Cómo funciona?</a></p>
                             <p><a class="footertext" href="{{ ('#') }}">Preguntas frecuentes</a></p>
-                            <p><a class="footertext" href="{{ ('#') }}">Acerca de nosotros</a></p>
-                          <br>
+                    
                       </div>
                       <div class="col-md-4">
-                        <br>
+                            <p><a class="footertext" href="{{ ('#') }}">Acerca de Nosotros</a></p>    
                             <p><a class="footertext" href="{{ ('#') }}">Explora iPlace</a></p>
-                            <p><a class="footertext" href="{{ ('#') }}">Danos tu opinion</a></p>
-                            <p><a class="footertext" href="{{ ('#') }}">Blog</a></p>
-                            <p><a class="footertext" href="{{ ('#') }}">Libro de Reclamaciones</a></p>
-                          <br>
+                            <p><a class="footertext" href="{{ ('#') }}">Danos tu opinion</a></p>                            
+                          
                       </div>
                       <div class="col-md-4">
-                      <br>
+                      
                             <a href="https://www.facebook.com"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
                             <a href="https://twitter.com"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
                             <a href="https://plus.google.com"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
@@ -324,8 +321,9 @@
           rgba(20, 20, 20, 0.9)
         ),
         /* image to overlay */
-        /*url(http://images.cdn.fotopedia.com/_avPIZmqM3w-7z161LH_268-hd.jpg);*/
-        url(https://mir-s3-cdn-cf.behance.net/project_modules/disp/a7fbff15899853.562b53338a6e9.png);
+        url(http://2015.university-industry.com/img/footer_skyline.png);
+        /*url(foot.png);*/
+        background-position: bottom;
     }
     .footertext {
       color: #ffffff;
