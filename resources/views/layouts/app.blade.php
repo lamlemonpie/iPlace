@@ -97,11 +97,12 @@
                                     <i class="fa fa-user-circle-o"></i> Eventos <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
+                                  @if(Auth::user()->organizador)
                                     <li><a href="{{ ('/eventos/create') }}"><i class="glyphicon glyphicon-check"></i> Crear evento </a></li>
-                                    @if(Auth::user()->organizador)
                                       <li><a href="{{ ('/eventos/misEventos') }}"><i class="glyphicon glyphicon-list"></i> Ver mis eventos creados</a></li>
                                     @endif
-                                    <li><a href=""><i class="glyphicon glyphicon-list"></i> Ver mis eventos </a></li>
+                                    <li><a href="{{ ('/eventos/misEventosAsistente') }}"><i class="glyphicon glyphicon-list"></i> Ver eventos por asistir </a></li>
+                                    <li><a href=""><i class="glyphicon glyphicon-list"></i> Ver eventos asistidos </a></li>
                                 </ul>
                             </li>
 

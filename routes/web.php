@@ -69,7 +69,14 @@ Route::get('pago/evento', function () {
 
 Route::group(['prefix'=>'eventos'], function(){
 
+  Route::get('/{evento}/asistir','UsuarioEventoController@create');
+  Route::get('/{evento}/cancelar','UsuarioEventoController@cancel');
+  Route::get('/{evento}/edit','EventoController@edit');
+  Route::post('/{evento}','EventoController@update');
+  Route::post('/{evento}/confirmarAsistencia','UsuarioEventoController@store');
+  Route::post('/{evento}/cancelarAsistencia','UsuarioEventoController@destroy');
   Route::get('/misEventos','EventoController@misEventos');
+  Route::get('/misEventosAsistente','EventoController@misEventosAsistente');
 
 });
 Route::resource('eventos','EventoController');

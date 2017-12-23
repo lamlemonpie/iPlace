@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Crear Evento')
 @section('content')
 
 <div class="container">
@@ -15,7 +15,7 @@
                 <div class="col-xs-1 col-md-1"></div>
                 <div class="col-xs-5 col-md-5">
                     <label for="">Nombre del evento</label>
-                        <input class="form-control" name="eventName" placeholder="Nombre del evento" type="text" /><br>
+                        <input class="form-control" name="eventName" placeholder="Nombre del evento" type="text" required/><br>
                     <label for="">Elije una categoria</label>
                         <select class="form-control" name="id_categoria">
                           @foreach ($categorias as $categoria)
@@ -27,7 +27,7 @@
                     <label>Fecha de inicio</label><br>
                         <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" onfocusout="setFinMin($('#fecha_inicio').val())" min="<?php echo date('Y-m-d\TH:i') ?>" required>
                     <label>Fecha de finalización</label><br>
-                        <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" min = "<?php echo date('Y-m-d\TH:i') ?>" required> 
+                        <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" min = "<?php echo date('Y-m-d\TH:i') ?>" required>
                 </div>
                 <div class="col-xs-5 col-md-5">
                     <label for="">Información adicional</label>
@@ -52,25 +52,51 @@
                 <div class="col-xs-5 col-md-5">
                     <label for="">Ciudad</label>
                         <select class="form-control" name="ciudad">
-                            <option value="Ciudad">Ciudad</option>
+                            <option value="Amazonas">Amazonas</option>
+                            <option value="Áncash">Áncash</option>
+                            <option value="Apurímac">Apurímac</option>
+                            <option value="Arequipa">Arequipa</option>
+                            <option value="Ayacucho">Ayacucho</option>
+                            <option value="Cajamarca">Cajamarca</option>
+                            <option value="Callao">Callao</option>
+                            <option value="Cuzco">Cuzco</option>
+                            <option value="Huancavelica">Huancavelica</option>
+                            <option value="Huánuco">Huánuco</option>
+                            <option value="Ica">Ica</option>
+                            <option value="Junín">Junín</option>
+                            <option value="La Libertad">La Libertad</option>
+                            <option value="Lambayeque">Lambayeque</option>
+                            <option value="Lima">Lima</option>
+                            <option value="Loreto">Loreto</option>
+                            <option value="Madre de Dios">Madre de Dios</option>
+                            <option value="Moquegua">Moquegua</option>
+                            <option value="Pasco">Pasco</option>
+                            <option value="Piura">Piura</option>
+                            <option value="Puno">Puno</option>
+                            <option value="San Martín">San Martín</option>
+                            <option value="Tacna">Tacna</option>
+                            <option value="Tumbes">Tumbes</option>
+                            <option value="Ucayali">Ucayali</option>
+
+
                         </select><br>
                     <label for="">Dirección</label>
-                        <input class="form-control" name="direccion" placeholder="Dirección donde será el evento" type="text" /><br>
+                        <input class="form-control" name="direccion" placeholder="Dirección donde será el evento" type="text" required /><br>
                     <label for="">Referencia</label>
                         <input class="form-control" name="referencia" placeholder="Ej. A 3 cuadras de la UNSA" type="text" /><br>
-                    
+
                 </div>
                 <div class="col-xs-5 col-md-5">
                   <input type="hidden" id="long" name="longitud" value=""/>
                   <input type="hidden" id="lat" name="latitud" value=""/>
                   <input type="hidden" id="id" name="id" value=""/>
-                  
+
                   <div id="floating-panel">
                     <input id="address" type="text"  class="controls" placeholder="Enter a location">
-                    
+
                   </div>
-                  
-                  
+
+
                   <div id="infowindow-content">
                     <span id="place-name"  class="title"></span><br>
                     Place ID <span id="place-id"></span><br>
@@ -90,9 +116,9 @@
                           center: {lat: -34.397, lng: 150.644},
                           zoom: 14,
                           disableDoubleClickZoom: true
-                          
+
                         });
-                        
+
                         var longitud = document.getElementById("long");
                         var latitud = document.getElementById("lat");
                         var id = document.getElementById("id");
@@ -100,28 +126,28 @@
                         longitud.value = 150.644;
                         id.value = "undefined";
                         var input = document.getElementById('address');
-                        
-                        
+
+
                         var autocomplete = new google.maps.places.Autocomplete(input);
                         autocomplete.bindTo('bounds', map);
                         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
 
-                        
-                        
-                        
+
+
+
                         var infowindow = new google.maps.InfoWindow();
                         var marker = new google.maps.Marker({
                           position: map.getCenter(),
                           map: map,
                           draggable: true
                         });
-                        
-                        
-                        
-                        
-                        
-                        
+
+
+
+
+
+
                         autocomplete.addListener('place_changed', function() {
                           infowindow.close();
                           var place = autocomplete.getPlace();
@@ -136,10 +162,10 @@
                             map.setZoom(17);
                           }
 
-                          
+
                           marker.setPosition(place.geometry.location);
-                          
-                          
+
+
 
                           document.getElementById('place-name').textContent = place.name;
                           document.getElementById('place-id').textContent = place.place_id;
@@ -149,7 +175,7 @@
                           infowindow.setContent(document.getElementById('infowindow-content'));
                           infowindow.open(map, marker);
                         });
-                        
+
                         // Try HTML5 geolocation.
                         if (navigator.geolocation) {
                           navigator.geolocation.getCurrentPosition(function(position) {
@@ -170,9 +196,9 @@
                           // Browser doesn't support Geolocation
                           handleLocationError(false, infoWindow, map.getCenter());
                         }
-                        
+
                         google.maps.event.addListener(map, 'click', function(e) {
-                          
+
                           var positionDoubleclick = e.latLng;
                           marker.setPosition(positionDoubleclick);
                           var longitud = document.getElementById("long");
@@ -180,17 +206,17 @@
                           latitud.value = e.latLng.lat();
                           longitud.value = e.latLng.lng();
                           id.value = e.placeId;
-                          
+
                           // if you don't do this, the map will zoom in
                           //e.stopPropagation();
-                          
-                          
-                          
+
+
+
                         });
-                        
+
                       }
 
-                      
+
 
 
                       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -199,12 +225,12 @@
                                               'Error: The Geolocation service failed.' :
                                               'Error: Your browser doesn\'t support geolocation.');
                       }
-                      
-                      
-                      
+
+
+
                     </script>
-                    
-                    
+
+
                     <script async defer
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEUDWClhcBHlakaF_9bQIzvEP5XwI-OcE&libraries=places&callback=initMap">
                     </script>
@@ -227,7 +253,7 @@
                 </div>
                 <div class="col-xs-5 col-md-5">
                     <label for="">Precio</label>
-                        <input class="form-control" name="precio" placeholder="00.0" type="text" /><br>
+                        <input class="form-control" name="precio" placeholder="00.0" type="text" required/><br>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>
             </div>

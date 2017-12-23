@@ -12,6 +12,7 @@ use iPlace\Empresa_organizador;
 use iPlace\Ambito;
 use iPlace\Evento_ambito;
 use iPlace\Ubicacion;
+use iPlace\User;
 use DateTime;
 
 class EventoController extends Controller
@@ -130,8 +131,27 @@ class EventoController extends Controller
             $q->where('id_evento', $evento->id);
 
         })->get();
+
+        $asistentes = User::whereHas('eventos_usuario', function($q) use ($evento)
+        {
+            $q->where('id_evento', $evento->id);
+
+        })->get();
+
         $ubicacion = Ubicacion::find($evento->id_ubicacion);
-        return view('eventos.ver',['evento'=>$evento, 'categorias'=>$categorias, 'ubicacion'=>$ubicacion]);
+        $es_organizador= NULL;
+        if(Auth::user()->organizador)
+        {
+          $es_organizador = Auth::user()->organizador->organizadores_evento
+            ->where('id_evento',$evento->id)->first();
+        }
+
+
+        $usuario_evento = Auth::user()->eventos_usuario
+              ->where('id_evento', $evento->id)->first();
+
+        return view('eventos.ver',['evento'=>$evento, 'categorias'=>$categorias,
+        'ubicacion'=>$ubicacion,'usuario_evento'=>$usuario_evento, 'es_organizador'=>$es_organizador, 'asistentes'=>$asistentes]);
     }
 
     /**
@@ -140,9 +160,17 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Evento $evento)
     {
-        //
+      $organizador = Auth::user()->organizador;
+      $empresas = Empresa::whereHas('empresas_organizador', function($q) use ($organizador)
+      {
+          $q->where('id_organizador', $organizador->id);
+
+      })->get();
+      $categorias = Ambito::all();
+
+        return view('eventos.editar',['evento'=>$evento,'empresas'=>$empresas, 'categorias'=>$categorias]);
     }
 
     /**
@@ -152,9 +180,11 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Evento $evento)
     {
-        //
+        $evento->update($request->all());
+
+        return redirect('/eventos/'.$evento->id);
     }
 
     /**
@@ -180,6 +210,23 @@ class EventoController extends Controller
 
       $categoria = new \stdClass();
       $categoria -> nombre = "Mis Eventos";
+
+      return view('eventos.mostrar',['eventos'=>$eventos,'categoria'=>$categoria]);
+    }
+
+
+    public function misEventosAsistente()
+    {
+
+      $usuario = Auth::user();
+      $eventos = Evento::with('eventos_ambito.ambito')->whereHas('eventos_usuario', function($q) use ($usuario)
+      {
+          $q->where('id_usuario', $usuario->id);
+
+      })->get();
+
+      $categoria = new \stdClass();
+      $categoria -> nombre = "Mis Eventos a Asistir";
 
       return view('eventos.mostrar',['eventos'=>$eventos,'categoria'=>$categoria]);
     }

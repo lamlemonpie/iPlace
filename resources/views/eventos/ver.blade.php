@@ -6,6 +6,11 @@
 <br><br><br>
     <div class="container">
         <div class="row">
+
+          @if($es_organizador)
+            <a href="{{asset('eventos/'.$evento->id.'/edit')}}" id="id_evento_cancelar" name="evento_cancelar" class=" btn-warning btn-md btn-lg">Editar</a>
+          @endif
+
             <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
                 <div class="col-xs-7 col-md-7">
                     <div class="card">
@@ -23,16 +28,25 @@
                     </div>
 
 
+
+
+
+
+
+
+
                     <div class="card">
 
                        <div class="card-content">
-                       <!--<a href="{{asset('#')}}" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistentes</a>-->
+
                         <span class="card-title">Asistentes</span>
                           <table class="table table-responsive">
                             <tr>
                               <td>
-                                <li> {$usuario->nombres } {usuario->apellidos } </li> 
-                                <li> {$usuario->nombres } {usuario->apellidos } </li> 
+
+                                @foreach( $asistentes as $asistente)
+                                <li> {{$asistente->nombres }} {{$asistente->apellidos }} </li>
+                                @endforeach
                               </td>
                             </tr>
                           </table>
@@ -49,7 +63,23 @@
                             <a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp1" class="fa fa-google-plus-square fa-3x social"></i></a>
                             <a href="mailto:bootsnipp@gmail.com"><i id="social-em1" class="fa fa-envelope-square fa-3x social"></i></a>
                           -->
-                            <a href="{{asset('eventos')}}" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistir a este evento</a>
+
+                            @if(is_null($es_organizador))
+
+                                @if($usuario_evento)
+                                  Usted ya es asistente
+                                  <a href="{{asset('eventos/'.$evento->id.'/cancelar')}}" id="id_evento_cancelar" name="evento_cancelar" class=" btn-warning btn-md btn-lg">Cancelar</a>
+                                @else
+                                  <a href="{{asset('eventos/'.$evento->id.'/asistir')}}" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistir a este evento</a>
+                                @endif
+                            @endif
+                                <br> <br>
+                            @if( $evento->precio == 0)
+                              <a  id="id_evento_precio" name="evento_precio" class=" btn-warning btn-md btn-lg">Gratuito</a>
+                            @else
+                              <a  id="id_evento_precio" name="evento_precio" class=" btn-warning btn-md btn-lg">S/. {{$evento->precio}}</a>
+                            @endif
+
                         </div>
                     </div>
                     <div class="card">
@@ -68,25 +98,28 @@
                             <p class="card-text"><i class="glyphicon glyphicon-map-marker"></i> {{$evento->direccion}}</p>
                             <p class="card-text"><i> {{$evento->referencia}}</i></p>
                             <div class="embed-responsive embed-responsive-16by9">
-                                <div id="map"></div>
-                                
+                                <div id="map" style="  height: 250px; width: 100%;"></div>
+
                                 <div id="infowindow-content">
                                   <span id="place-name"  class="title"></span><br>
                                   <span id="place-id"></span><br>
                                   <span id="place-address"></span>
-                                </div>  
-                                
-                                
-                                
-                                
+                                </div>
+
+
+
+
                                       <script>
                                         var datos = {!! json_encode($ubicacion->toArray()) !!}
                                         var latitud = datos["latitud"];
                                         var longitud = datos["longitud"];
+                                        // var latitud = 17.866666634;
+                                        //var longitud = -71.13141516;
                                         var id = datos["id_maps"];
-                                        
-                                        var LatLng = {lat: latitud, lng: longitud}; 
-                                        
+
+                                        var LatLng = {lat: latitud, lng: longitud};
+                                        //var Latlng = new google.maps.LatLng(latitud,longitud);
+
                                         var map;
                                         function initMap() {
                                           map = new google.maps.Map(document.getElementById('map'), {
@@ -95,63 +128,40 @@
                                           });
                                           var secretMessages = "secret message";
                                           var infowindow = new google.maps.InfoWindow();
-                                          
+
                                           var marker = new google.maps.Marker({
                                             position: LatLng,
                                             map: map
-                                            
-                                          });
-                                          
-                                          
-                                          marker.addListener('click', function() {
-                                            infowindow.open(map, marker);
-                                          });
-                                          
-                                          var request = {
-                                            placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4'
-                                          };
-                                          
-                                          service = new google.maps.places.PlacesService(map);
-                                          service.getDetails(request, callback);
 
-                                          function callback(place, status) {
-                                            infowindow.close();
-                                            if (status == google.maps.places.PlacesServiceStatus.OK) {
-                                              document.getElementById('place-name').textContent = place.name;
-                                              document.getElementById('place-id').textContent = place.place_id;
-                                              document.getElementById('place-address').textContent =
-                                                  place.formatted_address;
-                                              infowindow.setContent(document.getElementById('infowindow-content'));
-                                              infowindow.open(map, marker);
-                                              
-                                            }
-                                          }
-                                          
-                                          
-                                          
-                                          
-                                          
-                                          
+                                          });
+
+
+
+
+
+
+
+
                                         }
                                       </script>
                                       <script async defer
                                       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEUDWClhcBHlakaF_9bQIzvEP5XwI-OcE&libraries=places&callback=initMap">
                                       </script>
-                                                          
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         </div><!-- card content -->
                     </div>
                     @if ($evento->link_youtube)
@@ -172,7 +182,7 @@
   </div>
 </div>
 
-<style type="text/css"> 
+<style type="text/css">
 
 .card{
     background-color: #FFF;
@@ -184,12 +194,12 @@
 }
 
 .card .card-content {
-    padding: 20px;    
+    padding: 20px;
 }
 
 .card .card-content .card-title, .card-reveal .card-title{
     font-size: 24px;
-    font-weight: 200;    
+    font-weight: 200;
 }
 
 .card .card-action{
