@@ -10,6 +10,12 @@ use iPlace\Usuario_evento;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('organizador');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -98,19 +104,5 @@ class UserController extends Controller
         //
     }
 
-    public function prueba(){
-      $user =new User();
-      $user->nombres = 'Alexis';
-      $user->apellidos = 'Mendoza';
-      $user->password= 'pass';
-      $user->email = 'texs.mssav@gmail.com';
-      $user->sexo = 'M';
-      $user -> save();
 
-      $b = new Usuario_evento();
-      $b->usuario()->associate($user);
-      $b->save();
-
-      dd($b->usuario);
-    }
 }

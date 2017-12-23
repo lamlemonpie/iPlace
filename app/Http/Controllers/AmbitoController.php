@@ -8,6 +8,11 @@ use DateTime;
 
 class AmbitoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('organizador');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -12,6 +12,13 @@ use iPlace\Empresa_organizador;
 
 class SolicitudController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('organizador');
+    }
+
     /**
      * Display a listing of the resource.
      *

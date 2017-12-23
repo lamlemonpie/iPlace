@@ -13,6 +13,12 @@ use DateTime;
 
 class EmpresaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('organizador');
+    }
+
     /**
      * Display a listing of the resource.
      *

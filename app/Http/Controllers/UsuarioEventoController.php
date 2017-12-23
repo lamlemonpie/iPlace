@@ -48,12 +48,23 @@ class UsuarioEventoController extends Controller
      */
     public function store(Evento $evento,Request $request)
     {
-        $ue = new Usuario_evento;
-        $ue -> id_usuario = Auth::user()->id;
-        $ue -> id_evento = $evento -> id;
-        $ue -> fecha_registro = new DateTime;
 
-        $ue -> save();
+
+        if(Usuario_evento::where('id_usuario',Auth::user()->id)->exists())
+        {
+          return redirect('/eventos/'.$evento->id);
+        }
+        else {
+          $ue = new Usuario_evento;
+          $ue -> id_usuario = Auth::user()->id;
+          $ue -> id_evento = $evento -> id;
+          $ue -> fecha_registro = new DateTime;
+
+          $ue -> save();
+
+        }
+
+
 
         return redirect('/eventos/'.$evento->id);
     }
