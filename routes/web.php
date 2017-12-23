@@ -79,7 +79,7 @@ Route::group(['prefix'=>'eventos'], function(){
   Route::get('/misEventosAsistente','EventoController@misEventosAsistente');
 
 });
-Route::resource('eventos','EventoController')->middleware('organizador');
+Route::resource('eventos','EventoController');
 
 Route::resource('organizadors','OrganizadorController');
 Route::group(['prefix'=>'organizadors'], function(){

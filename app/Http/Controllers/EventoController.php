@@ -17,6 +17,12 @@ use DateTime;
 
 class EventoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('organizador', ['except' => ['index','show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
