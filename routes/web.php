@@ -58,6 +58,10 @@ Route::get('/', function () {
 
 });*/
 
+Route::get('upload', function () {
+    return view('upload');
+});
+
 Route::get('pago/persona', function () {
     return view('pago.persona');
 });
@@ -66,7 +70,11 @@ Route::get('pago/evento', function () {
     return view('pago.eventos');
 });
 
+Route::get('eventoss', function () {
+    return view('eventos.mostrar');
+});
 
+Route::resource('eventos', 'EventoController');
 Route::group(['prefix'=>'eventos'], function(){
 
   Route::get('/{evento}/asistir','UsuarioEventoController@create');

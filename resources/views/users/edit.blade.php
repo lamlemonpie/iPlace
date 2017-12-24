@@ -15,8 +15,15 @@
 
 	        <legend><b>Editar Usuario</b></legend>
 	        	<div class="col-sm-6 col-md-4">
-	        	<br><br><br>
-		            <img src="https://cdn3.iconfinder.com/data/icons/users-6/100/654853-user-men-2-512.png" alt="" class="img-rounded img-responsive" />
+	        	<br>
+		            <div class="text-center">
+		              <img class="img-responsive" src="http://fillmurray.com/g/300/300" id="img-preview" />
+		            </div>
+		            <br>
+		            <label class="file-upload-container" for="file-upload">
+		              <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
+		              Select an Image
+		            </label>
 		        </div>
 		        <div class="col-sm-6 col-md-8">
 					<label for="name" class="control-label">Nombres:</label>
@@ -54,10 +61,31 @@
 	</div>
 </div>
 
+<script src="/js/upload.js"></script>
+
 
 <style type="">
 	.well{
       background-color: rgb(250, 250, 250);
     }
+	.file-upload-container {
+	  width: 100%;
+	  height: 50px;
+	  overflow: hidden;
+	  background: #80bfff;
+	  user-select: none;
+	  transition: all 150ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+	  text-align: center;
+	  color: white;
+	  line-height: 50px;
+	  font-weight: 300;
+	  font-size: 20px;
+	}
+
+	.file-upload-container:hover {
+	  cursor: pointer;
+	  background: #4da6ff;
+	}
 </style>
+
 @endsection

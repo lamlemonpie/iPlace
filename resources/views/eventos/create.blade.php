@@ -13,33 +13,47 @@
             <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
                 <legend><b>Detalles del Evento</b></legend>
                 <div class="col-xs-1 col-md-1"></div>
-                <div class="col-xs-5 col-md-5">
-                    <label for="">Nombre del evento <FONT COLOR="red">*</FONT></label>
-                        <input class="form-control" name="eventName" placeholder="Nombre del evento" type="text" required/><br>
-                    <label for="">Elije una categoria <FONT COLOR="red">*</FONT> </label>
-                        <select class="form-control" name="id_categoria">
-                          @foreach ($categorias as $categoria)
-                          <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
-                          @endforeach
-                        </select><br>
-                    <label for="">Descripción del evento <FONT COLOR="red">*</FONT></label>
-                        <textarea name="descripcion" id="descripcion" class="form-control" rows="4" cols="14" required="required" placeholder="Escriba aquí la descripción del evento"></textarea><br>
+                <div class="col-xs-4 col-md-4">
+
+                    <div class="text-center">
+                      <img class="img-responsive" src="http://fillmurray.com/g/300/300" id="img-preview" />
+                    </div>
+                    <br>
+                    <label class="file-upload-container" for="file-upload">
+                      <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
+                      Select an Image
+                    </label><br><br>
+
                     <label>Fecha de inicio <FONT COLOR="red">*</FONT></label><br>
                         <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" onfocusout="setFinMin($('#fecha_inicio').val())" min="<?php echo date('Y-m-d\TH:i') ?>" required><br>
                     <label>Fecha de finalización</label><br>
-                        <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" min = "<?php echo date('Y-m-d\TH:i') ?>">
-                </div>
-                <div class="col-xs-5 col-md-5">
-                    <label for="">Información adicional</label>
-                        <textarea name="adicional" id="id_adicional" class="form-control" rows="8" cols="14" required="required" placeholder="Escriba aquí la Información adicional del evento"></textarea><br>
-                    <label for="">Video</label>
-                        <input class="form-control" name="link_video" placeholder="Link de Youtube" type="text" /><br>
+                        <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" min = "<?php echo date('Y-m-d\TH:i') ?>"><br>
+
                     <label for="">Empresa organizadora <FONT COLOR="red">*</FONT></label>
                         <select class="form-control" id="id_empresa" name="id_empresa">
                             @foreach ($empresas as $empresa)
                             <option value="{{$empresa->id}}">{{$empresa->nombre}}</option>
                             @endforeach
                         </select><br>
+                </div>
+                <div class="col-xs-6 col-md-6">
+
+                    <label for="">Nombre del evento <FONT COLOR="red">*</FONT></label>
+                        <input class="form-control" name="eventName" placeholder="Nombre del evento" type="text" required/><br>
+                    <label for="">Elije una categoria <FONT COLOR="red">*</FONT> </label>
+                      <select class="form-control" name="id_categoria">
+                        @foreach ($categorias as $categoria)
+                        <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                        @endforeach
+                      </select><br>
+                    <label for="">Descripción del evento <FONT COLOR="red">*</FONT></label>
+                        <textarea name="descripcion" id="descripcion" class="form-control" rows="4" cols="14" required="required" placeholder="Escriba aquí la descripción del evento"></textarea><br>
+
+                    <label for="">Información adicional</label>
+                        <textarea name="adicional" id="id_adicional" class="form-control" rows="8" cols="14" required="required" placeholder="Escriba aquí la Información adicional del evento"></textarea><br>
+                    <label for="">Video</label>
+                        <input class="form-control" name="link_video" placeholder="Link de Youtube" type="text" /><br>
+
                     <FONT COLOR="red">* Campos Obligatorios</FONT>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>
@@ -272,10 +286,31 @@
     </form>
 </div>
 
+<script src="/js/upload.js"></script>
+
 <style type="text/css">
     .well{
         background-color: rgb(248, 248, 248);
         }
+
+      .file-upload-container {
+      width: 100%;
+      height: 50px;
+      overflow: hidden;
+      background: #80bfff;
+      user-select: none;
+      transition: all 150ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+      text-align: center;
+      color: white;
+      line-height: 50px;
+      font-weight: 300;
+      font-size: 20px;
+    }
+
+    .file-upload-container:hover {
+      cursor: pointer;
+      background: #4da6ff;
+    }
 </style>
 
 <script>
