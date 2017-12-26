@@ -22,9 +22,10 @@ class CreateEventosTable extends Migration
             $table->string('direccion');
             $table->string('referencia')->nullable();
             $table->string('link_youtube')->nullable();
-            $table->string('descripcion');
-            $table->string('info_adicional')->nullable();
+            $table->text('descripcion');
+            $table->text('info_adicional')->nullable();
             $table->float('precio', 8, 2);
+            $table->string('link_foto')->nullable();
             $table->dateTime('fecha_creacion');
             $table->dateTime('fecha_inicio');
             $table->dateTime('fecha_fin');
@@ -32,8 +33,8 @@ class CreateEventosTable extends Migration
 
             $table->foreign('id_ubicacion')->references('id')
                 ->on('ubicacions');
-              
-        
+
+
 
 
         });

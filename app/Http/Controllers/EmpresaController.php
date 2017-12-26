@@ -131,6 +131,7 @@ class EmpresaController extends Controller
 
         $empresa -> nombre = $request['nombre'];
         $empresa -> descripcion = $request['descripcion'];
+        $empresa -> link_foto = $request['link_foto'];
         $empresa -> save();
 
         return redirect('/empresas/'.$empresa->id);

@@ -87,6 +87,7 @@ class EventoController extends Controller
         $evento->direccion = $request['direccion'];
         $evento->referencia = $request['referencia'];
         $evento->link_youtube = $request['link_video'];
+        $evento->link_foto = $request['link_foto'];
         $evento->descripcion = $request['descripcion'];
         $evento->info_adicional = $request['adicional'];
         if($request['precio']== NULL)

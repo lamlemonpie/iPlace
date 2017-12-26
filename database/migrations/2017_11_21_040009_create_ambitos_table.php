@@ -17,6 +17,7 @@ class CreateAmbitosTable extends Migration
             $table->increments('id');
             $table->char('nombre', 30);
             $table->text('descripcion');
+            $table->string('link_foto')->nullable();
             $table->timestamps();
             $table->dateTime('fecha_creacion');
             $table->dateTime('fecha_modificacion');

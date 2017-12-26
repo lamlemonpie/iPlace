@@ -16,13 +16,23 @@ class CreateOrganizadorsTable extends Migration
         Schema::create('organizadors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_usuario')->unsigned();
+            $table->boolean('admin')->default(0);
             $table->timestamps();
-            
+
             $table->foreign('id_usuario')->references('id')
               ->on('users');
-            
-            
+
+
         });
+
+        DB::table('organizadors')->insert(
+          array(
+              'id_usuario' => 1,
+              'admin'=> 0
+              )
+          );
+
+
     }
 
     /**

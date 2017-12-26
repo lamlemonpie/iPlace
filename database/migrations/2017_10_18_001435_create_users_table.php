@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('id_ultima_ubicacion')->unsigned()->nullable();
             $table->char('sexo', 1);
             $table->string('email')->unique();
+            $table->string('link_foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
 
@@ -28,6 +29,68 @@ class CreateUsersTable extends Migration
                 ->on('ubicacions');
 
         });
+
+        DB::table('users')->insert(
+          array(
+              'nombres' => 'Admin',
+              'apellidos'=> 'Admin Admin',
+              'password' => bcrypt('admin'),
+              'sexo' => 'O',
+              'email' => 'admin@admin.com'
+              )
+          );
+
+        DB::table('users')->insert(
+          array(
+              'nombres' => 'Alejandro',
+              'apellidos'=> 'Larraondo Lamchog',
+              'password' => bcrypt('123456'),
+              'sexo' => 'M',
+              'email' => 'jano@admin.com'
+              )
+          );
+
+        DB::table('users')->insert(
+          array(
+              'nombres' => 'Diego',
+              'apellidos'=> 'Amable Romero',
+              'password' => bcrypt('123456'),
+              'sexo' => 'M',
+              'email' => 'diego@admin.com'
+              )
+          );
+
+        DB::table('users')->insert(
+          array(
+              'nombres' => 'Katherine',
+              'apellidos'=> 'Uñapilco Chambi',
+              'password' => bcrypt('123456'),
+              'sexo' => 'F',
+              'email' => 'kat@admin.com'
+              )
+          );
+
+        DB::table('users')->insert(
+          array(
+              'nombres' => 'Crhistian',
+              'apellidos'=> 'Turpo Apaza',
+              'password' => bcrypt('123456'),
+              'sexo' => 'M',
+              'email' => 'crhis@admin.com'
+              )
+          );
+
+        DB::table('users')->insert(
+          array(
+              'nombres' => 'Alexis',
+              'apellidos'=> 'Mendoza Villaroel',
+              'password' => bcrypt('123456'),
+              'sexo' => 'M',
+              'email' => 'alexis@admin.com'
+              )
+          );
+
+
     }
 
     /**

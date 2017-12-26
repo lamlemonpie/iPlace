@@ -85,6 +85,7 @@ class AmbitoController extends Controller
     {
         $ambito -> nombre = $request['nombre'];
         $ambito -> descripcion = $request['descripcion'];
+        $ambito -> link_foto = $request['link_foto'];
         $ambito->fecha_modificacion = new DateTime();
         $ambito -> save();
 

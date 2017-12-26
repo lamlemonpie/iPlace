@@ -18,6 +18,7 @@ class CreateEmpresasTable extends Migration
             $table->integer('id_admin')->unsigned();
             $table->char('nombre',50);
             $table->text('descripcion');
+            $table->string('link_foto')->nullable();
             $table->dateTime('fecha_creacion');
             $table->timestamps();
 
