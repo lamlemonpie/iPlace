@@ -14,14 +14,14 @@
 	        <legend class="text-center"><b>Nueva Empresa</b></legend>
 		        <div class="col-sm-4 col-md-4">
 					<div class="text-center">
-		              <img class="img-responsive" src="http://fillmurray.com/g/300/300" id="img-preview" />
+		              <img class="img-responsive" src="/images/place.png" id="img-preview" />
 		            </div>
 		            <input type="hidden" name="link_foto" id="link_foto" value="">
 
 		            <br>
 		            <label class="file-upload-container" for="file-upload">
 		              <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
-		              Select an Image
+		              Seleccione imagen
 		            </label>
 		        </div>
 		        <div class="col-sm-8 col-md-8">

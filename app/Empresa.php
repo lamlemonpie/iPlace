@@ -16,7 +16,7 @@ class Empresa extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre', 'descripcion', 'fecha_creacion'
+        'nombre', 'descripcion', 'fecha_creacion','link_foto'
     ];
 
     public function organizadores_evento(){

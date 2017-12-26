@@ -23,7 +23,7 @@
 		            <br>
 		            <label class="file-upload-container" for="file-upload">
 		              <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
-		              Select an Image
+		              <font size="3">Seleccione imagen</font>
 		            </label>
 		        </div>
 		        <div class="col-sm-6 col-md-8">

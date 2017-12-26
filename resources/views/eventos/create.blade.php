@@ -21,7 +21,7 @@
                     <br>
                     <label class="file-upload-container" for="file-upload">
                       <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
-                      Select an Image
+                      Seleccione una imagen
                     </label><br><br>
 
                     <label>Fecha de inicio <FONT COLOR="red">*</FONT></label><br>
@@ -269,7 +269,7 @@
                 </div>
                 <div class="col-xs-5 col-md-5">
                     <label for="">Precio </label>
-                        <input class="form-control" name="precio" placeholder="00.0" type="text" required/><br>
+                        <input class="form-control" name="precio" placeholder="00.0" type="text"/><br>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>
             </div>

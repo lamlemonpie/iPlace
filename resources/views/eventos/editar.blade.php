@@ -25,7 +25,7 @@
                     <br>
                     <label class="file-upload-container" for="file-upload">
                       <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
-                      Select an Image
+                      Seleccione imagen
                     </label><br><br>
 
                     
