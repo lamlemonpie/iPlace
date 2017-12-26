@@ -45,6 +45,7 @@ class AmbitoController extends Controller
         $categoria = new Ambito();
         $categoria->nombre = $request['nombre'];
         $categoria->descripcion = $request['descripcion'];
+        $categoria -> link_foto = $request['link_foto'];
         $categoria->fecha_creacion = new DateTime();
         $categoria->fecha_modificacion = new DateTime();
         $categoria->save();

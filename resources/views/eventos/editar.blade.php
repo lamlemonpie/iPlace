@@ -6,6 +6,7 @@
 <br><br><br>
 
     <form class="form-horizontal" role="form" method="POST" action="{{asset('eventos/'.$evento->id)}}">
+      <input name="_method" type="hidden" value="PATCH">
                     {{ csrf_field() }}
 
     <div class="row">
@@ -18,8 +19,9 @@
                 <div class="col-xs-4 col-md-4">
 
                     <div class="text-center">
-                      <img class="img-responsive" src="http://fillmurray.com/g/300/300" id="img-preview" />
+                      <img class="img-responsive" src="{{$evento->link_foto}}" id="img-preview" />
                     </div>
+                    <input type="hidden" name="link_foto" id="link_foto" value="{{$evento->link_foto}}">
                     <br>
                     <label class="file-upload-container" for="file-upload">
                       <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
@@ -28,10 +30,11 @@
 
                     
                     <label>Fecha de inicio <FONT COLOR="red">*</FONT> </label><br>
-                        <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" onfocusout="setFinMin($('#fecha_inicio').val())" min="<?php echo date('Y-m-d\TH:i') ?>" required>
+                        <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" onfocusout="setFinMin($('#fecha_inicio').val())" value="<?php echo date_format(date_create($evento->fecha_inicio),'Y-m-d\TH:i') ?>" min="<?php echo date('Y-m-d\TH:i') ?>" required>
+
                     <br>
-                    <label>Fecha de finalización</label><br>
-                        <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" min = "<?php echo date('Y-m-d\TH:i') ?>" required>
+                    <label>Fecha de finalización <FONT COLOR="red">*</FONT> </label><br>
+                        <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" min = "<?php echo date('Y-m-d\TH:i') ?>" value="<?php echo date_format(date_create($evento->fecha_fin),'Y-m-d\TH:i') ?>"  required>
                     <br>
                     <label for="">Empresa organizadora <FONT COLOR="red">*</FONT></label>
                         <select class="form-control" id="id_empresa" name="id_empresa">
@@ -270,7 +273,7 @@
                         </select><br>
                 </div>
                 <div class="col-xs-5 col-md-5">
-                    <label for="">Precio  <FONT COLOR="red">*</FONT>  </label>
+                    <label for="">Precio </label>
                         <input class="form-control" name="precio" value="{{$evento->precio}}" type="text" required/><br>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>
@@ -280,7 +283,7 @@
         <div class="row">
             <div class="col-xs-8 col-md-8"></div>
             <div class="col-xs-4 col-md-4">
-            <button type="submit" class="btn btn-info btn-success btn-lg btn-block">Crear Evento</button><br></div>
+            <button type="submit" class="btn btn-info btn-success btn-lg btn-block">Editar Evento</button><br></div>
         </div>
 
     </div>

@@ -16,6 +16,8 @@
 					<div class="text-center">
 		              <img class="img-responsive" src="http://fillmurray.com/g/300/300" id="img-preview" />
 		            </div>
+		            <input type="hidden" name="link_foto" id="link_foto" value="">
+
 		            <br>
 		            <label class="file-upload-container" for="file-upload">
 		              <input class="file-upload-container" id="file-upload" type="file" style="display:none;">

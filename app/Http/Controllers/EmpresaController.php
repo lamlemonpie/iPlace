@@ -63,6 +63,9 @@ class EmpresaController extends Controller
           'nombre' => 'required|string|min:4|max:50',
           'descripcion' => 'required|string|min:4'
       ]);
+
+      dd($request);
+
       $empresa = new Empresa();
       $empresa->nombre = $request['nombre'];
       $empresa->descripcion = $request['descripcion'];

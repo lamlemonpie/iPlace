@@ -15,7 +15,7 @@
 
 	        	<div class="col-sm-6 col-md-4">
 	        		<div class="img">
-		            	<img src="{{asset('images/foto.png')}}" />
+		            	<img src="{{$categoria->link_foto}}" />
 	        		</div>
 		        </div>
 		        <div class="col-sm-6 col-md-8">

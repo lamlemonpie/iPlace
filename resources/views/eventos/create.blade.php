@@ -16,7 +16,7 @@
                 <div class="col-xs-4 col-md-4">
 
                     <div class="text-center">
-                      <img class="img-responsive" src="http://fillmurray.com/g/300/300" id="img-preview" />
+                      <img class="img-responsive" src="/images/Speech.jpg " id="img-preview" />
                     </div>
                     <br>
                     <label class="file-upload-container" for="file-upload">
@@ -26,7 +26,7 @@
 
                     <label>Fecha de inicio <FONT COLOR="red">*</FONT></label><br>
                         <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" onfocusout="setFinMin($('#fecha_inicio').val())" min="<?php echo date('Y-m-d\TH:i') ?>" required><br>
-                    <label>Fecha de finalización</label><br>
+                    <label>Fecha de finalización <FONT COLOR="red">*</FONT></label><br>
                         <input type="datetime-local" class="form-control" id="fecha_fin" name="fecha_fin" min = "<?php echo date('Y-m-d\TH:i') ?>"><br>
 
                     <label for="">Empresa organizadora <FONT COLOR="red">*</FONT></label>
@@ -268,7 +268,7 @@
                         </select><br>
                 </div>
                 <div class="col-xs-5 col-md-5">
-                    <label for="">Precio <FONT COLOR="red">*</FONT></label>
+                    <label for="">Precio </label>
                         <input class="form-control" name="precio" placeholder="00.0" type="text" required/><br>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>

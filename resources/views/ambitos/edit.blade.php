@@ -17,9 +17,16 @@
 	        <legend class="text-center"><b>Editar Categoría</b></legend>
 
 	        	<div class="col-sm-6 col-md-4">
-	        		<div class="img">
-		            	<img src="{{asset('images/foto.png')}}" />
-	        		</div>
+					<div class="text-center">
+		              <img class="img-responsive" src="{{$categoria->link_foto}}" id="img-preview" />
+		            </div>
+		            <input type="hidden" name="link_foto" id="link_foto" value="{{$categoria->link_foto}}">
+
+		            <br>
+		            <label class="file-upload-container" for="file-upload">
+		              <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
+		              Select an Image
+		            </label>
 		        </div>
 		        <div class="col-sm-6 col-md-8">
 		        	<label for="categoria_name" class="control-label">Nombre de la categoría:</label>
@@ -30,7 +37,8 @@
 					<label for="">Descripción de la categoría:</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-th-list" aria-hidden="true"></i></span>
-                        	<input type="text" class="form-control" id="descripcion" placeholder="Ingrese Descripcion" name="descripcion" value="{{$categoria->descripcion}}" required>
+                        	<!--<input type="text" class="form-control" id="descripcion" placeholder="Ingrese Descripcion" name="descripcion" value="{{$categoria->descripcion}}" required>-->
+                        	<textarea class="form-control" id="descripcion" name="descripcion" type="text" rows="5" type="text"  required>{{$categoria->descripcion}} </textarea> <br>
                         </div><br>
 
 					<div class="pull-right">
@@ -42,12 +50,32 @@
 	</div>
 </div>
 
+<script src="/js/upload.js"></script>
 <style type="text/css">
 	img {
 	  display: block;
 	  max-width: 100%;
 	  height: auto;
 	}
+	.file-upload-container {
+	  width: 100%;
+	  height: 50px;
+	  overflow: hidden;
+	  background: #80bfff;
+	  user-select: none;
+	  transition: all 150ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+	  text-align: center;
+	  color: white;
+	  line-height: 50px;
+	  font-weight: 300;
+	  font-size: 20px;
+	}
+
+	.file-upload-container:hover {
+	  cursor: pointer;
+	  background: #4da6ff;
+	}
 </style>
+
 
 @endsection

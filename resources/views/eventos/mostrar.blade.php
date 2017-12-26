@@ -19,7 +19,7 @@
 	        		<div class="col-sm-4 col-md-4">
 		        		<div class="card">
 			                <div class="card-image">
-			                    <a href="{{asset('/eventos/ver')}}" title=""><img src="http://lorempixel.com/555/300/sports" class="img-responsive"></a>
+			                    <a href="{{asset('/eventos/ver')}}" title=""><img src="{{$evento->link_foto}}" class="img-responsive"></a>
 			                </div><!-- card image -->
 			                <div class="card-content">
 			                    <span class="card-title">{{$evento->nombre}}</span>

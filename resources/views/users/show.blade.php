@@ -11,7 +11,7 @@
     <div class="col-xs-6 col-sm-6 col-md-6 well well-sm">
           <legend><b>Perfil de Usuario</b></legend>
           <div class="col-sm-6 col-md-4">
-              <img src="https://cdn3.iconfinder.com/data/icons/users-6/100/654853-user-men-2-512.png" alt="" class="img-rounded img-responsive" />
+              <img src="{{$user->link_foto}}" alt="" class="img-rounded img-responsive" />
           </div>
           <div class="col-sm-6 col-md-8">
               <table class="table table-responsive">

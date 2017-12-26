@@ -16,9 +16,11 @@
 	        <legend class="text-center"><b>Editar Empresa</b></legend>
 
 	        	<div class="col-sm-6 col-md-4">
+	        		<br>
 	        		<div class="text-center">
-		              <img class="img-responsive" src="http://fillmurray.com/g/300/300" id="img-preview" />
+		              <img class="img-responsive" src="{{$empresa->link_foto}}" id="img-preview" />
 		            </div>
+		            <input type="hidden" name="link_foto" id="link_foto" value="{{$empresa->link_foto}}">
 		            <br>
 		            <label class="file-upload-container" for="file-upload">
 		              <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
@@ -34,7 +36,8 @@
 					<label for="">Descripción de la empresa</label>
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-th-list" aria-hidden="true"></i></span>
-                        	<input type="text" class="form-control" id="descripcion" placeholder="Ingrese Descripcion" name="descripcion" value="{{$empresa->descripcion}}" >
+                        	<!--<input type="text" class="form-control" id="descripcion" placeholder="Ingrese Descripcion" name="descripcion" value="{{$empresa->descripcion}}" >-->
+                        	<textarea class="form-control" id="descripcion" name="descripcion" type="text" rows="3" type="text"  required>{{$empresa->descripcion}} </textarea> <br>
                         </div><br>
 					<label for="organizador" class="control-label">Organizador (Administrador):</label>
 						<div class="input-group">

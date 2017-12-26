@@ -14,7 +14,7 @@
                             <h2><b>{{$evento->nombre}}</b></h2>
                         </div>
                         <div class="card-image">
-                            <a href="{{asset('#')}}" title=""><img src="../images/Fondo1.jpg" class="img-responsive"></a>
+                            <a href="{{asset('#')}}" title=""><img src="{{$evento->link_foto}}" class="img-responsive"></a>
                         </div><!-- card image -->
                         <div class="card-content">
                             <span class="card-title">Descripción del evento</span>
