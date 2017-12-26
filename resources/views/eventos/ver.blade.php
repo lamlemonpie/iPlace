@@ -53,11 +53,12 @@
                           -->
 
                     @if($es_organizador)
+
                       <div class="card">
                         <div class="card-content">
                           <span class="card-title">¿Editar evento?</span><br><br>
+                            <a href="{{asset('eventos/'.$evento->id.'/edit')}}" id="id_evento_editar" name="evento_editar" class=" btn-warning btn-lg">Editar Evento</a>
 
-                            <a href="#" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistir a este evento</a>
                         </div>
                       </div>
                     @endif
@@ -70,7 +71,11 @@
                                   Usted ya es asistente
                                   <a href="{{asset('eventos/'.$evento->id.'/cancelar')}}" id="id_evento_cancelar" name="evento_cancelar" class=" btn-warning btn-lg">Cancelar</a>
                                 @else
-                                  <a href="{{asset('eventos/'.$evento->id.'/asistir')}}" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-lg">Asistir a este evento</a>
+                                    @if($evento->precio == 0)
+                                      <a href="{{asset('eventos/'.$evento->id.'/asistir')}}" id="id_evento_asistir_gratuito" name="evento_asistir_gratuito" class=" btn-warning btn-lg">Asistir a este evento</a>
+                                    @else
+                                      <a href="#" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistir a este evento</a>
+                                    @endif
                                 @endif
                         </div>
                     </div>
