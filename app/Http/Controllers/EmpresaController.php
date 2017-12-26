@@ -16,7 +16,7 @@ class EmpresaController extends Controller
 
     public function __construct()
     {
-        $this->middleware('organizador');
+        $this->middleware('organizador', ['except' => ['createAjx','storeAjx']]);
     }
 
     /**
