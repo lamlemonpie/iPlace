@@ -28,7 +28,7 @@ class CreateOrganizadorsTable extends Migration
         DB::table('organizadors')->insert(
           array(
               'id_usuario' => 1,
-              'admin'=> 0
+              'admin'=> 1
               )
           );
 

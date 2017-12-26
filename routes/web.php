@@ -74,7 +74,7 @@ Route::get('eventoss', function () {
     return view('eventos.mostrar');
 });
 
-Route::resource('eventos', 'EventoController');
+
 Route::group(['prefix'=>'eventos'], function(){
 
   Route::get('/{evento}/asistir','UsuarioEventoController@create');

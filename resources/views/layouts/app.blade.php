@@ -121,14 +121,7 @@
                                     <li><a href="{{ ('/solicituds/enviado') }}"><i class="glyphicon glyphicon-list"></i> Ver mis solicitudes Enviadas </a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <i class="fa fa-user-circle-o"></i> Usuarios <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ ('/users') }}"><i class="glyphicon glyphicon-check"></i> Ver Usuarios </a></li>
-                                </ul>
-                            </li>
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="fa fa-user-circle-o"></i> Empresas <span class="caret"></span>
@@ -139,16 +132,29 @@
                                 </ul>
                             </li>
 
+                                @if(Auth::user()->organizador->admin == 1)
 
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    <i class="fa fa-user-circle-o"></i> Categorías <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ ('/ambitos/create') }}"><i class="glyphicon glyphicon-check"></i> Crear categoría </a></li>
-                                    <li><a href="{{ ('/ambitos') }}"><i class="glyphicon glyphicon-list"></i> Ver categorías </a></li>
-                                </ul>
-                            </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                            <i class="fa fa-user-circle-o"></i> Usuarios <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="{{ ('/users') }}"><i class="glyphicon glyphicon-check"></i> Ver Usuarios </a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                            <i class="fa fa-user-circle-o"></i> Categorías <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="{{ ('/ambitos/create') }}"><i class="glyphicon glyphicon-check"></i> Crear categoría </a></li>
+                                            <li><a href="{{ ('/ambitos') }}"><i class="glyphicon glyphicon-list"></i> Ver categorías </a></li>
+                                        </ul>
+                                    </li>
+
+                                @endif
+
+
                             @endif
 
                             <li class="active" class="dropdown">
@@ -232,16 +238,16 @@
                         <br>
                             <p><a class="footertext" href="{{ ('#') }}">¿Cómo funciona?</a></p>
                             <p><a class="footertext" href="{{ ('#') }}">Preguntas frecuentes</a></p>
-                    
+
                       </div>
                       <div class="col-md-4">
-                            <p><a class="footertext" href="{{ ('#') }}">Acerca de Nosotros</a></p>    
+                            <p><a class="footertext" href="{{ ('#') }}">Acerca de Nosotros</a></p>
                             <p><a class="footertext" href="{{ ('#') }}">Explora iPlace</a></p>
-                            <p><a class="footertext" href="{{ ('#') }}">Danos tu opinion</a></p>                            
-                          
+                            <p><a class="footertext" href="{{ ('#') }}">Danos tu opinion</a></p>
+
                       </div>
                       <div class="col-md-4">
-                      
+
                             <a href="https://www.facebook.com"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
                             <a href="https://twitter.com"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
                             <a href="https://plus.google.com"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>

@@ -217,7 +217,7 @@ class EventoController extends Controller
 
       $categoria = new \stdClass();
       $categoria -> nombre = "Mis Eventos";
-
+      
       return view('eventos.mostrar',['eventos'=>$eventos,'categoria'=>$categoria]);
     }
 
