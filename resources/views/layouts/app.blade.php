@@ -71,7 +71,7 @@
                         &nbsp;
                         <li>
                         <div class="col-sm-12 col-md-12">
-                            <form class="navbar-form" role="search">
+                            <form class="navbar-form" role="search" action="{{asset('busqueda/nombre')}}">
                             <div class="input-group col-md-12">
                                 <input type="text" class="form-control" placeholder="Search" name="q">
                                 <div class="input-group-btn">

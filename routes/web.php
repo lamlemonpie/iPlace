@@ -126,6 +126,7 @@ Route::group(['prefix'=>'BusquedaCategoria'], function(){
 
 });
 
+Route::get('/busqueda/nombre','BusquedaController@buscarNombre');
 
 Route::resource('ambitos','AmbitoController');
 
