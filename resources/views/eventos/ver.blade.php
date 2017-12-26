@@ -33,9 +33,11 @@
                             <tr>
                               <td>
 
+
                                 @foreach( $asistentes as $asistente)
                                 <li> {{$asistente->nombres }} {{$asistente->apellidos }} </li>
                                 @endforeach
+
                               </td>
                             </tr>
                           </table>
@@ -49,15 +51,17 @@
                             <a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp1" class="fa fa-google-plus-square fa-3x social"></i></a>
                             <a href="mailto:bootsnipp@gmail.com"><i id="social-em1" class="fa fa-envelope-square fa-3x social"></i></a>
                           -->
+
                     @if($es_organizador)
                       <div class="card">
                         <div class="card-content">
                           <span class="card-title">¿Editar evento?</span><br><br>
-                            <a href="{{asset('eventos/'.$evento->id.'/edit')}}" id="id_evento_cancelar" name="evento_cancelar" class=" btn-warning btn-lg">Editar este evento</a>
+
+                            <a href="#" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistir a este evento</a>
                         </div>
                       </div>
-                    @endif                    
-                  
+                    @endif
+
                     @if(is_null($es_organizador))
                     <div class="card">
                         <div class="card-content">
@@ -104,6 +108,7 @@
                             <div class="embed-responsive embed-responsive-16by9">
                                 <div id="map" style="  height: 250px; width: 100%;"></div>
 
+
                                 <div id="infowindow-content">
                                   <span id="place-name"  class="title"></span><br>
                                   <span id="place-id"></span><br>
@@ -111,6 +116,42 @@
                                 </div>
 
 
+                                <script src="https://checkout.culqi.com/v2"></script>
+                                  <!-- Seteando valores de config-->
+                                  <script>
+                                  	Culqi.publicKey = 'pk_test_TEQAToWbdZMlNCYf'; // Colocar tu Código de Comercio (llave pública)
+                                  	Culqi.settings({
+                                  	title: 'iPlace',
+                                  	currency: 'PEN', // Código de la moneda, 'PEN' o 'USD'
+                                  	description: 'Evento de Algo', // Descripción acerca de la compra
+                                  	amount: 3000 // Monto de la compra (sin punto decimal, en este caso 35.00 soles)
+                                  	});
+                                  </script>
+                                  <script>
+                                  $("#id_evento_asistir").on('click', function(e) {
+                                  	// Abre el formulario con las opciones de Culqi.settings
+                                  	Culqi.open();
+                                  	e.preventDefault();
+                                  	});
+                                  	// Recibimos el token desde los servidores de Culqi
+                                  	function culqi() {
+                                  	if (Culqi.token) { // Token creado exitosamente!
+                                  	// Obtener el token ID
+                                  	var token = Culqi.token.id;
+                                  	alert('Se ha creado un token: '+token);
+
+                                  	//var $algo = culqi.charge.create(new Array("Hola","asdad"));
+                                  	alert("Hola");
+
+
+                                  	} else { // Hubo algun problema!
+                                  	// Mostramos JSON de objeto error en consola
+                                  	console.log(Culqi.error);
+                                  	alert(Culqi.error.mensaje);
+                                  	}
+                                  	};
+                                  </script>
+s
 
 
                                       <script>
@@ -122,7 +163,7 @@
                                         var id = datos["id_maps"];
 
                                         var LatLng = {lat: latitud, lng: longitud};
-                                        //var Latlng = new google.maps.LatLng(latitud,longitud);
+
 
                                         var map;
                                         function initMap() {
@@ -137,10 +178,36 @@
                                             position: LatLng,
                                             map: map
 
+
                                           });
 
 
 
+
+
+                                          marker.addListener('click', function() {
+                                            infowindow.open(map, marker);
+                                          });
+
+                                          var request = {
+                                            placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4'
+                                          };
+
+                                          service = new google.maps.places.PlacesService(map);
+                                          service.getDetails(request, callback);
+
+                                          function callback(place, status) {
+                                            infowindow.close();
+                                            if (status == google.maps.places.PlacesServiceStatus.OK) {
+                                              document.getElementById('place-name').textContent = place.name;
+                                              document.getElementById('place-id').textContent = place.place_id;
+                                              document.getElementById('place-address').textContent =
+                                                  place.formatted_address;
+                                              infowindow.setContent(document.getElementById('infowindow-content'));
+                                              infowindow.open(map, marker);
+
+                                            }
+                                          }
 
 
 
@@ -166,9 +233,10 @@
 
 
 
+
                             </div><!-- card content -->
                         </div>
-                    </div>
+
 
                     @if ($evento->link_youtube)
                     <div class="card">

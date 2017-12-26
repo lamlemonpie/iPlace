@@ -132,7 +132,9 @@ Route::resource('ambitos','AmbitoController');
 
 
 Route::resource('users','UserController');
+Route::resource('pagos','PagoController');
 Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
