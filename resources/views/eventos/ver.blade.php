@@ -11,7 +11,7 @@
                 <div class="col-xs-7 col-md-7">
                     <div class="card">
                         <div class="container">
-                            <h2><b>{{$evento->nombre}}</b></h2>
+                            <h2><b id="id_nombre">{{$evento->nombre}}</b></h2>
                         </div>
                         <div class="card-image">
                             <a href="{{asset('#')}}" title=""><img src="{{$evento->link_foto}}" class="img-responsive"></a>
@@ -89,7 +89,7 @@
                               <h1><span class="label label-info">Gratuito</span></h1>
                             @else
                               <!--<a  name="evento_precio" id="id_evento_precio" class="btn-info btn-lg disabled" aria-disabled="true">S/. {{$evento->precio}}</a>-->
-                              <h1><span class="label label-info">S/. {{$evento->precio}}</span></h1>
+                              <h1><span class="label label-info" id="id_precio">S/. {{$evento->precio}}</span></h1>
                             @endif
                       </div>
                     </div>
@@ -124,12 +124,13 @@
                                 <script src="https://checkout.culqi.com/v2"></script>
                                   <!-- Seteando valores de config-->
                                   <script>
+
                                   	Culqi.publicKey = 'pk_test_TEQAToWbdZMlNCYf'; // Colocar tu Código de Comercio (llave pública)
                                   	Culqi.settings({
                                   	title: 'iPlace',
                                   	currency: 'PEN', // Código de la moneda, 'PEN' o 'USD'
-                                  	description: 'Evento de Algo', // Descripción acerca de la compra
-                                  	amount: 3000 // Monto de la compra (sin punto decimal, en este caso 35.00 soles)
+                                  	description: "{{$evento->nombre}}", // Descripción acerca de la compra
+                                  	amount: {{$evento->precio}}*100.00 // Monto de la compra (sin punto decimal, en este caso 35.00 soles)
                                   	});
                                   </script>
                                   <script>
