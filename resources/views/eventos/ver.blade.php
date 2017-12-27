@@ -74,15 +74,15 @@
                     @if(is_null($es_organizador))
                     <div class="card">
                         <div class="card-content">
-                          <span class="card-title">¿Asistir a evento?</span><br><br>
+                          <span class="card-title">¿Asistir a evento?</span>
                                 @if($usuario_evento)
-                                  Usted ya es asistente
+                                  <h1><span class="label label-success" id="id_precio">Usted ya es asistente</span></h1>
                                   <a href="{{asset('eventos/'.$evento->id.'/cancelar')}}" id="id_evento_cancelar" name="evento_cancelar" class=" btn-warning btn-lg">Cancelar</a>
                                 @else
                                     @if($evento->precio == 0)
                                       <a href="{{asset('eventos/'.$evento->id.'/asistir')}}" id="id_evento_asistir_gratuito" name="evento_asistir_gratuito" class=" btn-warning btn-lg">Asistir a este evento</a>
                                     @else
-                                      <a href="#" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistir a este evento</a>
+                                      <br><br><a href="#" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistir a este evento</a>
                                       <br><br>
                                       Acepto los términos y condiciones <a href="#"> </a> <input type="checkbox" id="check"/>
                                     @endif
