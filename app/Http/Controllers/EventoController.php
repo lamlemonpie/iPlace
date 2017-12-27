@@ -20,7 +20,7 @@ class EventoController extends Controller
 
     public function __construct()
     {
-        $this->middleware('organizador', ['except' => ['index','show']]);
+        $this->middleware('organizador', ['except' => ['index','show','misEventosAsistente']]);
     }
 
     /**

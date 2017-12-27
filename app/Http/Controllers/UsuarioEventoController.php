@@ -48,9 +48,9 @@ class UsuarioEventoController extends Controller
      */
     public function store(Evento $evento,Request $request)
     {
+      $existe = Auth::user()->eventos_usuario->where('id_evento',$evento->id)->first();
 
-
-        if(Usuario_evento::where('id_usuario',Auth::user()->id)->exists())
+        if($existe)
         {
           return redirect('/eventos/'.$evento->id);
         }
