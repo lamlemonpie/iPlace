@@ -3,7 +3,7 @@
   var CLOUDINARY_UPLOAD_PRESET = 'syx4u4rx';
 
   var imgPreview = document.getElementById('img-preview');
-  var img_input = document.getElementById('link_foto');
+  var img_input = document.getElementById('link_foto')
   var fileUpload = document.getElementById('file-upload');
 
   fileUpload.addEventListener('change',function(event){

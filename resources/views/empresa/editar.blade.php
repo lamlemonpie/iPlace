@@ -17,15 +17,23 @@
 
 	        	<div class="col-sm-6 col-md-4">
 	        		<br>
-	        		<div class="text-center">
-		              <img class="img-responsive" src="{{$empresa->link_foto}}" id="img-preview" />
+	        		@if($empresa->link_foto)
+	        		<div class="img">
+		              	<img class="img-responsive" src="{{$empresa->link_foto}}" id="img-preview" />
+	        		</div>
+		            @else
+		            <div class="img">
+		              <img src="/images/empresa.jpg" id='img-preview' alt="" class="img-rounded img-responsive" />
 		            </div>
+		            @endif
 		            <input type="hidden" name="link_foto" id="link_foto" value="{{$empresa->link_foto}}">
+	        		<div class="text-center">
 		            <br>
 		            <label class="file-upload-container" for="file-upload">
 		              <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
 		              Seleccione imagen
 		            </label>
+		            </div>
 		        </div>
 		        <div class="col-sm-6 col-md-8">
 		        	<label for="empresa_name" class="control-label">Nombre de la empresa:</label>

@@ -14,7 +14,7 @@
 	        <legend class="text-center"><b>Nueva Empresa</b></legend>
 		        <div class="col-sm-4 col-md-4">
 					<div class="text-center">
-		              <img class="img-responsive" src="/images/place.png" id="img-preview" />
+		              <img class="img-responsive" src="/images/empresa.jpg" id="img-preview" />
 		            </div>
 		            <input type="hidden" name="link_foto" id="link_foto" value="">
 

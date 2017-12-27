@@ -10,7 +10,32 @@
 	    <div class="col-xs-12 col-sm-12 col-md-12 well well-sm">
 
 
-	        	<legend class="text-center"><b>{{$categoria->nombre}}</b></legend>
+	        	<legend class="text-center">
+
+	        	<div class="container">
+			    <br>    
+				    <div class=" carousel carousel-inner slide" id="myCarousel" role="listbox" style=" width:100%; height: 200px !important;">
+				    <!--<div id="myCarousel" class="carousel slide" date-ride="carousel">-->
+				        <div class="carousel-inner" role="listbox">
+				            <div class="item active">
+				            @if($categoria->link_foto)
+				            <img src="{{$categoria->link_foto}}">
+				                <div class="carousel-caption">
+				                    <p><font size="10"> {{$categoria->nombre}} </font></p>
+				                </div>
+				            </div>
+				           	@else
+				           	<img src="/images/Speech.jpg">
+				                <div class="carousel-caption">
+				                    <p><font size="10"> {{$categoria->nombre}} </font></p>
+				                </div>
+				            </div>
+				           	@endif
+				        </div>
+				    </div>
+				</div>
+
+			    </legend>
 
 	        	<div class="container">
 
@@ -19,8 +44,13 @@
 	        		<div class="col-sm-4 col-md-4">
 		        		<div class="card">
 			                <div class="card-image">
-			                    <a href="{{asset('/eventos/'.$evento->id)}}" title=""><img src="{{$evento->link_foto}}" class="img-responsive"></a>
-			                </div><!-- card image -->
+			                @if($evento->link_foto)
+			                	<a href="{{asset('/eventos/'.$evento->id)}}" title=""><img src="{{$evento->link_foto}}" class="img-responsive"></a>
+				           	@else
+				           		<a href="{{asset('/eventos/'.$evento->id)}}" title=""><img src="/images/Library.jpg" class="img-responsive"></a>      
+				           	@endif
+				            
+			            </div><!-- card image -->
 			                <div class="card-content">
 			                    <span class="card-title">{{$evento->nombre}}</span>
 			                    <br><br>
@@ -76,6 +106,12 @@
 .card .card-action{
     padding: 20px;
     border-top: 1px solid rgba(160, 160, 160, 0.2);
+}
+
+.carousel-caption{
+   position: absolute;
+    top: 50%;
+    transform: translateY(-90%);
 }
 
 </style>

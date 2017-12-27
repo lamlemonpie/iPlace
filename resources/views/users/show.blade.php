@@ -11,7 +11,11 @@
     <div class="col-xs-6 col-sm-6 col-md-6 well well-sm">
           <legend><b>Perfil de Usuario</b></legend>
           <div class="col-sm-6 col-md-4">
+            @if($user->link_foto)
               <img src="{{$user->link_foto}}" alt="" class="img-rounded img-responsive" />
+            @else
+              <img src="/images/user.png" alt="" class="img-rounded img-responsive" />
+            @endif
           </div>
           <div class="col-sm-6 col-md-8">
               <table class="table table-responsive">

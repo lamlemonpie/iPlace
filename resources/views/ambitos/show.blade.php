@@ -14,9 +14,15 @@
 	        <legend class="text-center"><b>Datos de la Categoría</b></legend>
 
 	        	<div class="col-sm-6 col-md-4">
+	        		@if($categoria->link_foto)
 	        		<div class="img">
-		            	<img src="{{$categoria->link_foto}}" />
+		            	<img class="img-responsive" src="{{$categoria->link_foto}}" id="img-preview"/>
 	        		</div>
+	        		@else
+	        		<div class="img">
+		            	<img class="img-responsive" src="/images/category.jpg" id="img-preview"/>
+	        		</div>
+	        		@endif
 		        </div>
 		        <div class="col-sm-6 col-md-8">
 		        	<table class="table table-responsive">

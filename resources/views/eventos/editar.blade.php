@@ -19,7 +19,15 @@
                 <div class="col-xs-4 col-md-4">
 
                     <div class="text-center">
-                      <img class="img-responsive" src="{{$evento->link_foto}}" id="img-preview" />
+                      @if($evento->link_foto)
+                        <div class="img">
+                            <img class="img-responsive" src="{{$evento->link_foto}}" id="img-preview"/>
+                        </div>
+                      @else
+                      <div class="img">
+                        <img src="/images/Library.jpg" id='img-preview' alt="" class=" img-responsive" />
+                      </div>
+                      @endif
                     </div>
                     <input type="hidden" name="link_foto" id="link_foto" value="{{$evento->link_foto}}">
                     <br>
@@ -59,9 +67,9 @@
                         <textarea class="form-control" id="descripcion" name="descripcion" type="text" rows="4" type="text"  required>{{$evento->descripcion}} </textarea> <br>
 
                     <label for="">Información adicional</label>
-                        <textarea name="adicional" id="id_adicional" class="form-control" rows="8" cols="14" required="required">{{$evento->info_adicional}}</textarea><br>
+                        <textarea name="adicional" id="id_adicional" class="form-control" rows="5" cols="14" placeholder="Ingrese aquí Información adicional">{{$evento->info_adicional}}</textarea><br>
                     <label for="">Video</label>
-                        <input class="form-control" name="link_video" value="{{$evento->link_youtube}}"" type="text" /><br>
+                        <input class="form-control" name="link_video" value="{{$evento->link_youtube}}" placeholder="Ingrese link de youtube" type="text" /><br>
                     <FONT COLOR="red">  * Campos obligatorios </FONT>
                 </div>
                 <div class="col-xs-1 col-md-1"></div>
@@ -106,7 +114,7 @@
                     <label for="">Dirección <FONT COLOR="red">*</FONT> </label>
                         <input class="form-control" name="direccion" value="{{$evento->direccion}}" type="text" required /><br>
                     <label for="">Referencia</label>
-                        <input class="form-control" name="referencia" value="{{$evento->referencia}}" type="text" /><br>
+                        <input class="form-control" name="referencia" value="{{$evento->referencia}}" placeholder="Ej. A 3 cuadras de la UNSA" type="text" /><br>
 
                     <FONT COLOR="red">  * Campos obligatorios </FONT>
                 </div>

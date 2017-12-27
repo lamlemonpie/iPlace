@@ -17,9 +17,13 @@
 	        	<div class="col-sm-6 col-md-4">
 	        	<br>
 		            <div class="text-center">
+		           	@if($user->link_foto)
 		              <img class="img-responsive" src="{{$user->link_foto}}" id="img-preview" />
-		            </div>
+		            @else
+		              <img src="/images/user.png" id='img-preview' alt="" class="img-rounded img-responsive" />
+		            @endif
 		            <input type="hidden" name="link_foto" id="link_foto" value="{{$user->link_foto}}">
+		            </div>
 		            <br>
 		            <label class="file-upload-container" for="file-upload">
 		              <input class="file-upload-container" id="file-upload" type="file" style="display:none;">

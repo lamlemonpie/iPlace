@@ -14,7 +14,15 @@
                             <h2><b>{{$evento->nombre}}</b></h2>
                         </div>
                         <div class="card-image">
-                            <a href="{{asset('#')}}" title=""><img src="{{$evento->link_foto}}" class="img-responsive"></a>
+                            @if($evento->link_foto)
+                              <div class="img">
+                                  <img class="img-responsive" src="{{$evento->link_foto}}" id="img-preview"/>
+                              </div>
+                            @else
+                            <div class="img">
+                              <img src="/images/Library.jpg" id='img-preview' alt="" class=" img-responsive" />
+                            </div>
+                            @endif
                         </div><!-- card image -->
                         <div class="card-content">
                             <span class="card-title">Descripción del evento</span>

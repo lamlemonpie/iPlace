@@ -17,15 +17,21 @@
 	        <legend class="text-center"><b>Editar Categoría</b></legend>
 
 	        	<div class="col-sm-6 col-md-4">
-					<div class="text-center">
-		              <img class="img-responsive" src="{{$categoria->link_foto}}" id="img-preview" />
+		            @if($categoria->link_foto)
+	        		<div class="img">
+		              	<img class="img-responsive" src="{{$categoria->link_foto}}" id="img-preview" />
+	        		</div>
+		            @else
+		            <div class="img">
+		              <img src="/images/category.jpg" id='img-preview' alt="" class="img-rounded img-responsive" />
 		            </div>
+		            @endif	
 		            <input type="hidden" name="link_foto" id="link_foto" value="{{$categoria->link_foto}}">
 
 		            <br>
 		            <label class="file-upload-container" for="file-upload">
 		              <input class="file-upload-container" id="file-upload" type="file" style="display:none;">
-		              Select an Image
+		              Seleccione imagen
 		            </label>
 		        </div>
 		        <div class="col-sm-6 col-md-8">

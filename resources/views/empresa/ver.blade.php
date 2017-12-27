@@ -14,9 +14,15 @@
 	        <legend class="text-center"><b>Datos de la Empresa</b></legend>
 
 	        	<div class="col-sm-6 col-md-4">
+	        		@if($empresa->link_foto)
 	        		<div class="img">
-		            	<img src="{{$empresa->link_foto}}" />
+		            	<img class="img-responsive" src="{{$empresa->link_foto}}" id="img-preview"/>
 	        		</div>
+		            @else
+		            <div class="img">
+		              <img src="/images/empresa.jpg" id='img-preview' alt="" class="img-rounded img-responsive" />
+		            </div>
+		            @endif
 		        </div>
 		        <div class="col-sm-6 col-md-8">
 		        	<table class="table table-responsive">
@@ -47,6 +53,7 @@
 
 		</div>
 	</div>
+	<br>
 </div>
 
 <style type="text/css">
