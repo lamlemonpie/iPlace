@@ -74,17 +74,11 @@
                     @if(is_null($es_organizador))
                     <div class="card">
                         <div class="card-content">
-<<<<<<< HEAD
-                          <span class="card-title">¿Asistir a evento?</span><br><br>
-                          
-                                @if($usuario_evento)
-                                  Usted ya es asistente
-                                  <br><br>
-=======
-                          <span class="card-title">¿Asistir a evento?</span>
+
+                          <span class="card-title">¿Asistir a evento?</span><br>
                                 @if($usuario_evento)
                                   <h1><span class="label label-success" id="id_precio">Usted ya es asistente</span></h1>
->>>>>>> master
+                                  <br>
                                   <a href="{{asset('eventos/'.$evento->id.'/cancelar')}}" id="id_evento_cancelar" name="evento_cancelar" class=" btn-warning btn-lg">Cancelar</a>
                                 @else
                                     @if($evento->precio == 0)
