@@ -100,10 +100,11 @@ class PagoController extends Controller
       if($token)
       {
 
-        $SECRET_API_KEY = "ASa3QY0uw8LZ9eo9MM7zYzQRsZgQil7LR6UhI4/TdP8=";
+        //$SECRET_API_KEY = "ASa3QY0uw8LZ9eo9MM7zYzQRsZgQil7LR6UhI4/TdP8=";
+        $SECRET_API_KEY = "sk_test_YlR9MEWVPNzfEBdR";
         $culqi = new Culqi(array('api_key' => $SECRET_API_KEY));
         $culqi->setEnv("INTEG");
-
+        $usuario = Auth::user();
 
         try{
           $cargo = $culqi->Cargos->create(
@@ -111,16 +112,16 @@ class PagoController extends Controller
                   "token"=> $token,
                   "moneda"=> "PEN",
                   "monto"=> $evento->precio*100,
-                  "descripcion"=> 'Dale un aire de frescura a tu comunicación con un smartphone.',
+                  "descripcion"=> "Esperamos disfrute su estadía en el evento.",
                   "pedido"=> time(),
                   "codigo_pais"=> "PE",
-                  "ciudad"=> "Lima",
-                  "usuario"=> "71701956",
-                  "direccion"=> "Avenida Lima 1232",
-                  "telefono"=> 12313123,
-                  "nombres"=> "Stephan",
-                  "apellidos"=> "Vargas",
-                  "correo_electronico"=> "stephan.vargas@culqi.com"
+                  "ciudad"=> $evento->ciudad,
+                  "usuario"=> $usuario->id,
+                  "direccion"=> $evento->direccion,
+                  "telefono"=> 000000000,
+                  "nombres"=> $usuario->nombres,
+                  "apellidos"=> $usuario->apellidos,
+                  "correo_electronico"=> $usuario->email
               )
           );
           return json_encode($cargo);

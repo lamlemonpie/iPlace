@@ -313,7 +313,8 @@
 <script src="https://integ-pago.culqi.com/js/v1"></script>
 
 <script>
-      Culqi.codigoComercio = '4s4cv6LfyqNI';
+      //Culqi.codigoComercio = '4s4cv6LfyqNI';
+      Culqi.codigoComercio = 'pk_test_TEQAToWbdZMlNCYf';
       Culqi.configurar({
           nombre: 'iPlace',
           orden: '{{$evento->id}}',
