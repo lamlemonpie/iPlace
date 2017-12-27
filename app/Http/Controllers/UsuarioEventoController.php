@@ -64,6 +64,10 @@ class UsuarioEventoController extends Controller
 
         }
 
+        if($request->ajax())
+        {
+          return response()->json('refresh');
+        }
 
 
         return redirect('/eventos/'.$evento->id);

@@ -36,7 +36,7 @@
                       Seleccione imagen
                     </label><br><br>
 
-                    
+
                     <label>Fecha de inicio <FONT COLOR="red">*</FONT> </label><br>
                         <input type="datetime-local" class="form-control" id="fecha_inicio" name="fecha_inicio" onfocusout="setFinMin($('#fecha_inicio').val())" value="<?php echo date_format(date_create($evento->fecha_inicio),'Y-m-d\TH:i') ?>" min="<?php echo date('Y-m-d\TH:i') ?>" required>
 

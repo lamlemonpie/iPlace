@@ -216,8 +216,9 @@ class EventoController extends Controller
       })->get();
 
       $categoria = new \stdClass();
+      $categoria -> link_foto = "/images/Speech.jpg";
       $categoria -> nombre = "Mis Eventos";
-      
+
       return view('eventos.mostrar',['eventos'=>$eventos,'categoria'=>$categoria]);
     }
 
@@ -233,6 +234,7 @@ class EventoController extends Controller
       })->get();
 
       $categoria = new \stdClass();
+      $categoria -> link_foto = "/images/Speech.jpg";
       $categoria -> nombre = "Mis Eventos a Asistir";
 
       return view('eventos.mostrar',['eventos'=>$eventos,'categoria'=>$categoria]);

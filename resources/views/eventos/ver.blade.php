@@ -83,6 +83,8 @@
                                       <a href="{{asset('eventos/'.$evento->id.'/asistir')}}" id="id_evento_asistir_gratuito" name="evento_asistir_gratuito" class=" btn-warning btn-lg">Asistir a este evento</a>
                                     @else
                                       <a href="#" id="id_evento_asistir" name="evento_asistir" class=" btn-warning btn-md btn-lg">Asistir a este evento</a>
+                                      <br><br>
+                                      Acepto los términos y condiciones <a href="#"> </a> <input type="checkbox" id="check"/>
                                     @endif
                                 @endif
                         </div>
@@ -127,45 +129,6 @@
                                   <span id="place-id"></span><br>
                                   <span id="place-address"></span>
                                 </div>
-
-
-                                <script src="https://checkout.culqi.com/v2"></script>
-                                  <!-- Seteando valores de config-->
-                                  <script>
-
-                                  	Culqi.publicKey = 'pk_test_TEQAToWbdZMlNCYf'; // Colocar tu Código de Comercio (llave pública)
-                                  	Culqi.settings({
-                                  	title: 'iPlace',
-                                  	currency: 'PEN', // Código de la moneda, 'PEN' o 'USD'
-                                  	description: "{{$evento->nombre}}", // Descripción acerca de la compra
-                                  	amount: {{$evento->precio}}*100.00 // Monto de la compra (sin punto decimal, en este caso 35.00 soles)
-                                  	});
-                                  </script>
-                                  <script>
-                                  $("#id_evento_asistir").on('click', function(e) {
-                                  	// Abre el formulario con las opciones de Culqi.settings
-                                  	Culqi.open();
-                                  	e.preventDefault();
-                                  	});
-                                  	// Recibimos el token desde los servidores de Culqi
-                                  	function culqi() {
-                                  	if (Culqi.token) { // Token creado exitosamente!
-                                  	// Obtener el token ID
-                                  	var token = Culqi.token.id;
-                                  	alert('Se ha creado un token: '+token);
-
-                                  	//var $algo = culqi.charge.create(new Array("Hola","asdad"));
-                                  	alert("Hola");
-
-
-                                  	} else { // Hubo algun problema!
-                                  	// Mostramos JSON de objeto error en consola
-                                  	console.log(Culqi.error);
-                                  	alert(Culqi.error.mensaje);
-                                  	}
-                                  	};
-                                  </script>
-s
 
 
                                       <script>
@@ -346,5 +309,114 @@ s
  }
 
 </style>
+
+<script src="https://integ-pago.culqi.com/js/v1"></script>
+
+<script>
+      Culqi.codigoComercio = '4s4cv6LfyqNI';
+      Culqi.configurar({
+          nombre: 'iPlace',
+          orden: '{{$evento->id}}',
+          moneda: 'PEN',
+          descripcion: '{{$evento->nombre}}',
+          monto: {{$evento->precio*100.00}},
+          guardar:false
+      });
+  </script>
+
+  <script>
+
+      $('#id_evento_asistir').on('click', function (e) {
+
+          if($("#check").is(':checked')){
+              // Abre el formulario con las opciones de Culqi.configurar
+              Culqi.abrir();
+              e.preventDefault();
+          }else{
+              alert('Acepta los terminos y condiciones.')
+          }
+
+          });
+  </script>
+
+  <script>
+  // Ejemplo: Tratando respuesta con AJAX (jQuery)
+  function culqi() {
+
+      if(Culqi.error){
+         // Mostramos JSON de objeto error en consola
+         console.log(Culqi.error);
+
+         alert("Culqi.error.mensaje");
+      }
+      else{
+         console.log(Culqi.token.id);
+         var parametros = {
+             token: Culqi.token.id,
+             id_evento:{{$evento->id}},
+             '_token': '{{ csrf_token() }}'
+         };
+         console.log(parametros);
+         $.ajax(
+
+           {
+             url:" {{asset('/pagos/tarjeta')}} ",
+             type: 'POST',
+             data : parametros,
+             datatype: 'json',
+             success: function(data, status){
+                 data=JSON.parse(data); //convertir data json a objeto js
+
+                 console.log(data);
+
+                 if(data.objeto=="cargo"){
+                     alert("Cargo realizado exitosamente");
+                     asistir({{$evento->id}});
+
+                 }
+                 else{
+
+                     console.log(data);
+                     alert(data.mensaje_usuario);
+                 }
+
+
+             }
+           }
+
+         );
+
+         }
+  };
+  </script>
+
+<script>
+
+function asistir(id)
+{
+  var dir = "/eventos/" + id + "/confirmarAsistencia";
+  var parametros ={
+    '_token': '{{ csrf_token() }}'
+  };
+  $.ajax(
+
+    {
+      url: dir,
+      type: "POST",
+      data:parametros,
+      success: function(data){
+        console.log(data)
+        if (data == "refresh"){
+
+            window.location.reload(); // This is not jQuery but simple plain ol' JS
+        }
+      }
+    }
+
+  );
+
+}
+
+</script>
 
 @endsection

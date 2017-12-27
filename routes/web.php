@@ -11,7 +11,10 @@
 |
 */
 
-
+use iPlace\Evento;
+use Illuminate\Http\Request;
+use Culqi\Culqi;
+use Culqi\CulqiException;
 
 Route::get('/', function () {
     return view('home');
@@ -133,7 +136,7 @@ Route::resource('ambitos','AmbitoController');
 
 
 Route::resource('users','UserController');
-Route::resource('pagos','PagoController');
+Route::post('/pagos/tarjeta','PagoController@tarjeta');
 Auth::routes();
 
 
