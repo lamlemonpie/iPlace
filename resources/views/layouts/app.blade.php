@@ -36,7 +36,19 @@
     <!--CLOUDINARY-->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     <script>
+     var c_latitud;
+     var c_longitud;
+     if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(savePosition);
 
+     }
+     function savePosition(position) {
+
+       c_latitud = position.coords.latitude;
+       c_longitud = position.coords.longitude;
+      }
+     </script>
 
     <!--
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -103,9 +115,10 @@
                                 <ul class="dropdown-menu" role="menu">
                                   @if(Auth::user()->organizador)
                                     <li><a href="{{ ('/eventos/create') }}"><i class="glyphicon glyphicon-check"></i> Crear evento </a></li>
-                                      <li><a href="{{ ('/eventos/misEventos') }}"><i class="glyphicon glyphicon-list"></i> Ver mis eventos creados</a></li>
+                                    <li><a href="{{ ('/eventos/misEventos') }}"><i class="glyphicon glyphicon-list"></i> Ver mis eventos creados</a></li>
                                     @endif
-                                    <li><a href="{{ ('/eventos/misEventosAsistente') }}"><i class="glyphicon glyphicon-list"></i> Ver eventos por asistir </a></li>
+                                    <li><a href="{{ ('/eventosCercanos') }}"><i class="glyphicon glyphicon-list"></i> Eventos cercanos</a></li>
+                                    <li><a href="{{ ('/eventos/misEventosAsistente') }}"><i class="glyphicon glyphicon-list"></i> Eventos por asistir </a></li>
                                     <li><a href=""><i class="glyphicon glyphicon-list"></i> Ver eventos asistidos </a></li>
                                 </ul>
                             </li>
@@ -367,7 +380,7 @@
 
     #map {
       height: 500px;
-      width: 120%;
+      width: 100%;
      }
    #floating-panel {
       position: absolute;

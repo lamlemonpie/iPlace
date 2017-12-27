@@ -240,4 +240,50 @@ class EventoController extends Controller
       return view('eventos.mostrar',['eventos'=>$eventos,'categoria'=>$categoria]);
     }
 
+    function distance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
+    {
+      // convert from degrees to radians
+      $latFrom = deg2rad($latitudeFrom);
+      $lonFrom = deg2rad($longitudeFrom);
+      $latTo = deg2rad($latitudeTo);
+      $lonTo = deg2rad($longitudeTo);
+
+      $latDelta = $latTo - $latFrom;
+      $lonDelta = $lonTo - $lonFrom;
+
+      $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
+        cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+      return $angle * $earthRadius;
+    }
+
+    public function eventosCercanos()
+    {
+
+
+
+      return view('mapas.eventos');
+      //return view('mapas.prueba');
+
+
+    }
+
+    public function eventosCercanosAjax($lat, $long, $dist){
+      $usuario = Auth::user();
+      $eventos = Evento::all();
+      $radio_busqueda = 1000 * $dist;
+      $latitud = $lat;
+      $longitud = $long;
+
+      $eventosCercanos = [];
+
+      foreach ($eventos as $evento) {
+        $ubicacion = $evento->ubicacion;
+        if($this->distance($latitud, $longitud, $ubicacion->latitud, $ubicacion->longitud) <= $radio_busqueda){
+          array_push($eventosCercanos ,$evento);
+        }
+      }
+      return response()->json($eventosCercanos);
+    }
+
+
 }

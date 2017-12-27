@@ -143,6 +143,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::get('/eventosCercanos', 'EventoController@eventosCercanos');
+Route::get('/ajaxEventos/{lat}/{pos}/{dis}', 'EventoController@eventosCercanosAjax');
+
 Route::get('mapita',function(){
   return view('mapas.prueba');
 });
