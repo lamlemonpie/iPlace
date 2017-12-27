@@ -17,6 +17,7 @@
 
                     <div class="text-center">
                       <img class="img-responsive" src="/images/Speech.jpg " id="img-preview" />
+                      <input type="hidden" name="link_foto" id="link_foto" value="">
                     </div>
                     <br>
                     <label class="file-upload-container" for="file-upload">

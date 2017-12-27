@@ -20,7 +20,7 @@ class EventoController extends Controller
 
     public function __construct()
     {
-        $this->middleware('organizador', ['except' => ['index','show','misEventosAsistente']]);
+        $this->middleware('organizador', ['except' => ['index','show','misEventosAsistente','eventosCercanos','eventosCercanosAjax']]);
     }
 
     /**
@@ -35,6 +35,7 @@ class EventoController extends Controller
 
         $categoria = new \stdClass();
         $categoria -> nombre = "Todos los Eventos";
+        $categoria -> link_foto = "http://applemaniacos.com/noticias/wp-content/uploads/2015/03/Wallpaper-Mac-evento-9-marzo-no-logo.jpg";
 
         return view('eventos.mostrar',['eventos'=>$eventos,'categoria'=>$categoria]);
     }

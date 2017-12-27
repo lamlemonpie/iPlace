@@ -11,7 +11,8 @@ class BusquedaController extends Controller
     {
       $eventos = Evento::where('nombre','like','%'.$request['q'].'%') -> get();
       $categoria = new \stdClass();
-      $categoria -> nombre = "Resultados";
+      $categoria -> nombre = "Restultados";
+      $categoria -> link_foto = "http://www.download3dhouse.com/wp-content/uploads/2013/03/Gray-ceiling-of-large-conference-room.jpg";
 
       return view('eventos.mostrar',['eventos'=>$eventos,'categoria'=>$categoria]);
     }

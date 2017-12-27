@@ -141,7 +141,8 @@
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ ('/empresas/create') }}"><i class="glyphicon glyphicon-check"></i> Crear empresa </a></li>
-                                    <li><a href="{{ ('/empresas') }}"><i class="glyphicon glyphicon-list"></i> Ver mis empresas </a></li>
+                                    <li><a href="{{ ('/empresas') }}"><i class="glyphicon glyphicon-list"></i> Ver mis empresas creadas</a></li>
+                                    <li><a href="{{ ('/empresas/organizador') }}"><i class="glyphicon glyphicon-list"></i> Ver mis empresas organizador</a></li>
                                 </ul>
                             </li>
 

@@ -164,30 +164,9 @@
 
 
 
-                                          marker.addListener('click', function() {
-                                            infowindow.open(map, marker);
-                                          });
 
-                                          var request = {
-                                            placeId: 'ChIJN1t_tDeuEmsRUsoyG83frY4'
-                                          };
 
-                                          service = new google.maps.places.PlacesService(map);
-                                          service.getDetails(request, callback);
-
-                                          function callback(place, status) {
-                                            infowindow.close();
-                                            if (status == google.maps.places.PlacesServiceStatus.OK) {
-                                              document.getElementById('place-name').textContent = place.name;
-                                              document.getElementById('place-id').textContent = place.place_id;
-                                              document.getElementById('place-address').textContent =
-                                                  place.formatted_address;
-                                              infowindow.setContent(document.getElementById('infowindow-content'));
-                                              infowindow.open(map, marker);
-
-                                            }
-                                          }
-
+                                          
 
 
 

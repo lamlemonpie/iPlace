@@ -4,7 +4,7 @@
 
     <br>
     <div class="container">
-    <br>    
+    <br>
     <div class=" carousel carousel-inner slide" id="myCarousel" role="listbox" style=" width:100%; height: 500px !important;">
     <!--<div id="myCarousel" class="carousel slide" date-ride="carousel">-->
         <ol class="carousel-indicators">
@@ -17,7 +17,7 @@
             <img src="../images/Fondo1.jpg">
                 <div class="carousel-caption">
                     <p><font size="12"> ¡Bienvenidos! </font></p>
-                    <a href="{{ asset('eventos/mostrar') }}" role="button" class="btn btn-default btn-lg"> Ver eventos </a>
+                    <a href="{{ asset('eventos/') }}" role="button" class="btn btn-default btn-lg"> Ver eventos </a>
                 </div>
             </div>
             <div class="item">
@@ -62,7 +62,7 @@
         transform: translateY(-150%);
         text-transform: uppercase;
     }
-    
+
 </style>
 
 @endsection

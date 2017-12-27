@@ -37,6 +37,21 @@ class EmpresaController extends Controller
         return view('empresa.index',['empresas'=>$empresas]);
     }
 
+
+    public function misEmpresasOrganizador()
+    {
+      $organizador = Auth::user()->organizador;
+      $empresas = $organizador -> empresas_organizador;
+
+      $empresas = Empresa::whereHas('empresas_organizador', function($q) use ($organizador)
+      {
+          $q->where('id_organizador', $organizador->id);
+
+      })->get();
+
+      return view('empresa.index',['empresas'=> $empresas]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -64,7 +79,7 @@ class EmpresaController extends Controller
           'descripcion' => 'required|string|min:4'
       ]);
 
-      
+
 
       $empresa = new Empresa();
       $empresa->nombre = $request['nombre'];

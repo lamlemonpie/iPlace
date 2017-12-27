@@ -106,7 +106,7 @@ Route::group(['prefix'=>'empresas'], function(){
   Route::get('/createAjx', 'EmpresaController@createAjx');
   Route::post('/storeAjx', 'EmpresaController@storeAjx');
   Route::delete('{empresa}/expellOrganizador/{organizador}','EmpresaController@expellOrganizador');
-
+  Route::get('/organizador','EmpresaController@misEmpresasOrganizador');
   Route::get('/{empresa}/organizadors','EmpresaController@todosOrganizadores');
 
 
