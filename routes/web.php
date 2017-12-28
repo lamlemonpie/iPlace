@@ -17,7 +17,7 @@ use Culqi\Culqi;
 use Culqi\CulqiException;
 
 Route::get('/', function () {
-    return view('home');
+    return redirect('/home');
 
 });
 

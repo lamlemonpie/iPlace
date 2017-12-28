@@ -17,7 +17,7 @@ class EmpresaController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('organizador', ['except' => ['createAjx','storeAjx']]);
+        $this->middleware('organizador', ['except' => ['show','createAjx','storeAjx']]);
     }
 
     /**
@@ -114,7 +114,20 @@ class EmpresaController extends Controller
                         ->where('id_organizador','!=',$empresa->admin->id)
                         ->get();
 
-        return view('empresa.ver',['empresa'=>$empresa, 'nombres'=>$nombres, 'apellidos'=>$apellidos,'organizadores'=>$organizadores]);
+        $es_organizador = false;
+
+        if(Auth::user()->organizador)
+        {
+          $admin = Auth::user()->organizador->empresas_admin->where('id',$empresa->id)->first();
+          if($admin)
+          {
+            $es_organizador = true;
+
+          }
+        }
+
+
+        return view('empresa.ver',['es_organizador'=>$es_organizador,'empresa'=>$empresa, 'nombres'=>$nombres, 'apellidos'=>$apellidos,'organizadores'=>$organizadores]);
     }
 
     /**
@@ -126,12 +139,23 @@ class EmpresaController extends Controller
     public function edit(Empresa $empresa)
     {
         //
+        if(Auth::user()->organizador)
+        {
+          if($empresa->id_admin != Auth::user()->organizador->id)
+          {
+            return redirect('/empresas/'.$empresa->id);
+          }
+        }
+
+
         $nombres = $empresa -> admin -> usuario -> nombres;
         $apellidos = $empresa -> admin -> usuario -> apellidos;
 
         $organizadores = Empresa_organizador::with('organizador.usuario')->where('id_empresa',$empresa->id)
                         ->where('id_organizador','!=',$empresa->admin->id)
                         ->get();
+
+
 
         return view('empresa.editar',['empresa'=>$empresa, 'nombres'=>$nombres, 'apellidos'=>$apellidos,'organizadores'=>$organizadores]);
     }

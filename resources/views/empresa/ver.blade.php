@@ -47,7 +47,10 @@
 	                  </td>
 	                </tr>
 	              </table>
-	              <a href="{{ ('/empresas/'.$empresa->id.'/edit') }}" role="button" class="btn btn-info btn-md pull-right">Editar empresa</a><br>
+
+                @if($es_organizador)
+	               <a href="{{ ('/empresas/'.$empresa->id.'/edit') }}" role="button" class="btn btn-info btn-md pull-right">Editar empresa</a><br>
+                @endif
 	              <p>
 		        </div>
 

@@ -159,7 +159,13 @@ class EventoController extends Controller
         $usuario_evento = Auth::user()->eventos_usuario
               ->where('id_evento', $evento->id)->first();
 
-        return view('eventos.ver',['evento'=>$evento, 'categorias'=>$categorias,
+        $empresa = Empresa::whereHas('organizadores_evento', function($q) use ($evento)
+        {
+            $q->where('id_evento', $evento->id);
+
+        })->first();
+
+        return view('eventos.ver',['empresa'=>$empresa,'evento'=>$evento, 'categorias'=>$categorias,
         'ubicacion'=>$ubicacion,'usuario_evento'=>$usuario_evento, 'es_organizador'=>$es_organizador, 'asistentes'=>$asistentes]);
     }
 

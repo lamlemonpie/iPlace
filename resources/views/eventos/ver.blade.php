@@ -114,6 +114,7 @@
                             <p class="card-text"><i class="glyphicon glyphicon-calendar"></i> Fecha de Finalización: <?php $fechaFin = new DateTime($evento->fecha_fin); echo $fechaFin->format('d/m/Y'); ?></p>
                             <p class="card-text"><i class="glyphicon glyphicon-time"></i> Hora de Finalización: <?php $horaFin = new DateTime($evento->fecha_fin); echo $horaFin->format('H:i'); ?></p><br>
                             <p class="card-text"><i class="glyphicon glyphicon-book"></i> Categoría: @foreach ($categorias as $categoria) {{$categoria->nombre}}  @endforeach</p>
+                            <p class="card-text"><i class="glyphicon glyphicon-user"></i> Empresa Organizadora: <a class="text-warning" href="{{asset('/empresas/'.$empresa->id)}}">{{$empresa->nombre}}</a>   </p>
                         </div><!-- card content -->
                     </div>
                     <div class="card">
@@ -166,7 +167,7 @@
 
 
 
-                                          
+
 
 
 
