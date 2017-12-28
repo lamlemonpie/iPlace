@@ -3,6 +3,7 @@
 namespace iPlace\Http\Controllers;
 
 use Illuminate\Http\Request;
+use iPlace\Evento;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $eventos = Evento::with('eventos_ambito.ambito')->where('link_foto','!=','NULL')->take(3)->get();
+        return view('home',['eventos'=>$eventos]);
     }
 }

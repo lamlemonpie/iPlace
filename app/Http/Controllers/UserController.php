@@ -13,7 +13,8 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('organizador',['except'=>['edit','show','update']]);
+        $this->middleware('auth');
+        $this->middleware('organizador',['except'=>['edit','show','update']] );
     }
 
     /**

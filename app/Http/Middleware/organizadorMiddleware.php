@@ -16,9 +16,18 @@ class organizadorMiddleware
      */
     public function handle($request, Closure $next)
     {
-      if (!Auth::user()->organizador) {
-          return redirect('/home');
+      if($request->session()->exists('user')){
+
+        if (!Auth::user()->organizador) {
+            return redirect('/home');
+        }
+
       }
+      else {
+        return redirect('/home');
+      }
+
+
 
         return $next($request);
     }

@@ -5,12 +5,14 @@
     <br>
     <div class="container">
     <br>
+
     <div class=" carousel carousel-inner slide" id="myCarousel" role="listbox" style=" width:100%; height: 500px !important;">
     <!--<div id="myCarousel" class="carousel slide" date-ride="carousel">-->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="item active">
@@ -20,12 +22,16 @@
                     <a href="{{ asset('eventos/') }}" role="button" class="btn btn-default btn-lg"> Ver eventos </a>
                 </div>
             </div>
-            <div class="item">
-                <img src="../images/Library.jpg">
-            </div>
-            <div class="item">
-                <img src="../images/Speech.jpg">
-            </div>
+
+            @foreach($eventos as $evento)
+              <div class="item">
+                  <img src="{{$evento->link_foto}}">
+                  <div class="carousel-caption">
+                      <p><font size="8"> {{$evento->nombre}} </font></p>
+                      <a href="{{ asset('eventos/'.$evento->id) }}" role="button" class="btn btn-default btn-lg"> Ver evento </a>
+                  </div>
+              </div>
+            @endforeach
         </div>
 
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
