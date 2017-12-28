@@ -43,13 +43,16 @@
      var c_latitud;
      var c_longitud;
      if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition(savePosition);
+       //navigator.geolocation.getCurrentPosition(savePosition);
 
      }
+     savePosition();
      function savePosition(position) {
 
-       c_latitud = position.coords.latitude;
-       c_longitud = position.coords.longitude;
+       c_latitud = -76.1231231;
+       c_longitud = 12.3234234;
+       // c_latitud = position.coords.latitude;
+       // c_longitud = position.coords.longitude;
       }
      </script>
 
@@ -210,7 +213,7 @@
             </div>
         </nav>
 
-        
+
 <!--
         <div id="wrapper">
             <div id="sidebar-wrapper">
